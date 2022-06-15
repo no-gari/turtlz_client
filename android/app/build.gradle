@@ -55,9 +55,11 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            shrinkResources false
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -68,4 +70,12 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation platform('com.google.firebase:firebase-bom:29.0.4')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation "com.kakao.sdk:v2-user:2.8.2" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.8.2" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.8.2" // 카카오스토리
+    implementation "com.kakao.sdk:v2-link:2.8.2" // 메시지(카카오링크)
+    implementation "com.kakao.sdk:v2-navi:2.8.2" // 카카오내비
 }

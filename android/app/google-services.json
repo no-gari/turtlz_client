@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "353560109519",
+    "project_id": "turtlz",
+    "storage_bucket": "turtlz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353560109519:android:14dcbffd1ef4bb2ed9f2ba",
+        "android_client_info": {
+          "package_name": "com.app.Turtlz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353560109519-3kskollle1d1n80rtfm1qvgpaokb0a0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3lOsZ1l7q_nqW6a29BQs1wwIBZ20Govk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353560109519-3kskollle1d1n80rtfm1qvgpaokb0a0i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "353560109519-e3c3ehvdqk0f6c3k3hls3uvvjd922rre.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.loonshot.turtlz"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353560109519:android:c1c1274e4c5bce87d9f2ba",
+        "android_client_info": {
+          "package_name": "com.loonshot.turtlz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353560109519-nf42i1gj1spfmqm45hf8pv19nubf0mj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loonshot.turtlz",
+            "certificate_hash": "2bbcb9d793cd7383e9bf16622e41579c1aea5ca3"
+          }
+        },
+        {
+          "client_id": "353560109519-3kskollle1d1n80rtfm1qvgpaokb0a0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3lOsZ1l7q_nqW6a29BQs1wwIBZ20Govk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353560109519-3kskollle1d1n80rtfm1qvgpaokb0a0i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "353560109519-e3c3ehvdqk0f6c3k3hls3uvvjd922rre.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.loonshot.turtlz"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
