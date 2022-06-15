@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sobe/modules/notification/notification_detail/cubit/notification_detail_cubit.dart';
-import 'package:sobe/modules/notification/notification_detail/view/notification_detail_page.dart';
-import 'package:sobe/repositories/notification_repository/src/notification_repository.dart';
+import 'package:turtlz/modules/notification/notification_detail/cubit/notification_detail_cubit.dart';
+import 'package:turtlz/modules/notification/notification_detail/view/notification_detail_page.dart';
+import 'package:turtlz/repositories/notification_repository/src/notification_repository.dart';
 import 'package:vrouter/vrouter.dart';
 
 class NotificationDetailScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
-import 'package:sobe/modules/home/components/carousel.dart';
+import 'package:turtlz/modules/home/components/carousel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:sobe/modules/home/view/category_page.dart';
+import 'package:turtlz/modules/home/view/category_page.dart';
 
 class CarouselPage extends StatefulWidget {
   const CarouselPage({Key? key}) : super(key: key);

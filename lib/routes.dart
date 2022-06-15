@@ -1,10 +1,10 @@
-import 'package:sobe/modules/notification/notification_detail/view/notification_detail_screen.dart';
-import 'package:sobe/modules/notification/view/notification_screen.dart';
-import 'package:sobe/modules/magazine/view/magazine_screen.dart';
-import 'package:sobe/modules/mypage/view/my_page_screen.dart';
-import 'package:sobe/modules/store/view/store_screen.dart';
-import 'package:sobe/modules/home/view/home_screen.dart';
-import 'package:sobe/modules/main/main_screen.dart';
+import 'package:turtlz/modules/notification/notification_detail/view/notification_detail_screen.dart';
+import 'package:turtlz/modules/notification/view/notification_screen.dart';
+import 'package:turtlz/modules/magazine/view/magazine_screen.dart';
+import 'package:turtlz/modules/mypage/view/my_page_screen.dart';
+import 'package:turtlz/modules/store/view/store_screen.dart';
+import 'package:turtlz/modules/home/view/home_screen.dart';
+import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:vrouter/vrouter.dart';
 
 final routes = [

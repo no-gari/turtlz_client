@@ -1,4 +1,4 @@
-import 'package:sobe/modules/home/view/home_page.dart';
+import 'package:turtlz/modules/home/view/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 

@@ -3,7 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:sobe/app_view.dart';
+import 'package:turtlz/app_view.dart';
 import 'dart:async';
 import 'dart:io';
 

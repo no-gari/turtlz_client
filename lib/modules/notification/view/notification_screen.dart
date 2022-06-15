@@ -1,6 +1,6 @@
-import 'package:sobe/repositories/notification_repository/src/notification_repository.dart';
-import 'package:sobe/modules/notification/cubit/notification_cubit.dart';
-import 'package:sobe/modules/notification/view/notification_page.dart';
+import 'package:turtlz/repositories/notification_repository/src/notification_repository.dart';
+import 'package:turtlz/modules/notification/cubit/notification_cubit.dart';
+import 'package:turtlz/modules/notification/view/notification_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 

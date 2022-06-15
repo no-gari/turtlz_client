@@ -1,8 +1,8 @@
-import 'package:sobe/repositories/authentication_repository/src/authentication_repository.dart';
-import 'package:sobe/repositories/user_repository/src/user_repository.dart';
-import 'package:sobe/repositories/user_repository/models/user.dart';
-import 'package:sobe/support/networks/network_exceptions.dart';
-import 'package:sobe/support/networks/api_result.dart';
+import 'package:turtlz/repositories/authentication_repository/src/authentication_repository.dart';
+import 'package:turtlz/repositories/user_repository/src/user_repository.dart';
+import 'package:turtlz/repositories/user_repository/models/user.dart';
+import 'package:turtlz/support/networks/network_exceptions.dart';
+import 'package:turtlz/support/networks/api_result.dart';
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
 import 'dart:async';

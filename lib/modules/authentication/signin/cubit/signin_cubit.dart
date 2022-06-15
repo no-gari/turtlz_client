@@ -1,7 +1,7 @@
-import 'package:sobe/repositories/authentication_repository/src/authentication_repository.dart';
-import 'package:sobe/support/networks/network_exceptions.dart';
+import 'package:turtlz/repositories/authentication_repository/src/authentication_repository.dart';
+import 'package:turtlz/support/networks/network_exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sobe/support/networks/api_result.dart';
+import 'package:turtlz/support/networks/api_result.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 

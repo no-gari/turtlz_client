@@ -1,11 +1,11 @@
-import 'package:sobe/repositories/authentication_repository/src/authentication_repository.dart';
-import 'package:sobe/repositories/notification_repository/src/notification_repository.dart';
-import 'package:sobe/repositories/user_repository/src/user_repository.dart';
+import 'package:turtlz/repositories/authentication_repository/src/authentication_repository.dart';
+import 'package:turtlz/repositories/notification_repository/src/notification_repository.dart';
+import 'package:turtlz/repositories/user_repository/src/user_repository.dart';
 import 'modules/authentication/bloc/authentication_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'support/networks/dio_client.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sobe/app_view.dart';
+import 'package:turtlz/app_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp(

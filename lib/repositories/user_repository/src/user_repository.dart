@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sobe/repositories/user_repository/models/user.dart';
-import 'package:sobe/support/networks/api_result.dart';
-import 'package:sobe/support/networks/dio_client.dart';
+import 'package:turtlz/repositories/user_repository/models/user.dart';
+import 'package:turtlz/support/networks/api_result.dart';
+import 'package:turtlz/support/networks/dio_client.dart';
 
 class UserGetFailure implements Exception {}
 

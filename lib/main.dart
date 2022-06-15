@@ -1,13 +1,13 @@
-import 'package:sobe/repositories/authentication_repository/src/authentication_repository.dart';
+import 'package:turtlz/repositories/authentication_repository/src/authentication_repository.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-import 'package:sobe/support/networks/dio_client.dart';
+import 'package:turtlz/support/networks/dio_client.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:amplitude_flutter/amplitude.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sobe/my_app.dart';
+import 'package:turtlz/my_app.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'bloc_observer.dart';

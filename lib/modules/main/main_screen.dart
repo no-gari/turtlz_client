@@ -1,9 +1,9 @@
-import 'package:sobe/modules/magazine/view/magazine_screen.dart';
+import 'package:turtlz/modules/magazine/view/magazine_screen.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:sobe/modules/mypage/view/my_page_screen.dart';
-import 'package:sobe/modules/store/view/store_screen.dart';
-import 'package:sobe/modules/home/view/home_screen.dart';
-import 'package:sobe/support/notification.dart';
+import 'package:turtlz/modules/mypage/view/my_page_screen.dart';
+import 'package:turtlz/modules/store/view/store_screen.dart';
+import 'package:turtlz/modules/home/view/home_screen.dart';
+import 'package:turtlz/support/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

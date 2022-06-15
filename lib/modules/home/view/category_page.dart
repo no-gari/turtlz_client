@@ -1,4 +1,4 @@
-import 'package:sobe/modules/home/components/video_container.dart';
+import 'package:turtlz/modules/home/components/video_container.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;

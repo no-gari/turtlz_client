@@ -1,5 +1,5 @@
-import 'package:sobe/repositories/authentication_repository/authentication_repository.dart';
-import 'package:sobe/modules/authentication/signin/cubit/signin_cubit.dart';
+import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
+import 'package:turtlz/modules/authentication/signin/cubit/signin_cubit.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:universal_html/html.dart' as html;
@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:sobe/env/env.dart';
+import 'package:turtlz/env/.env.dart';
 import 'dart:io';
 
 void showLoginNeededDialog(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:sobe/modules/notification/notification_detail/cubit/notification_detail_cubit.dart';
+import 'package:turtlz/modules/notification/notification_detail/cubit/notification_detail_cubit.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';

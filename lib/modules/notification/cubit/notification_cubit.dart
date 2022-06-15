@@ -1,10 +1,10 @@
-import 'package:sobe/repositories/notification_repository/src/notification_repository.dart';
-import 'package:sobe/repositories/notification_repository/models/notification.dart';
-import 'package:sobe/support/networks/api_result.dart';
-import 'package:sobe/support/networks/network_exceptions.dart';
+import 'package:turtlz/repositories/notification_repository/src/notification_repository.dart';
+import 'package:turtlz/repositories/notification_repository/models/notification.dart';
+import 'package:turtlz/support/networks/api_result.dart';
+import 'package:turtlz/support/networks/network_exceptions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:sobe/support/networks/page_response.dart';
+import 'package:turtlz/support/networks/page_response.dart';
 
 part 'notification_state.dart';
 

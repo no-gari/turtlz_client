@@ -1,11 +1,11 @@
 import 'modules/authentication/bloc/authentication_bloc.dart';
-import 'package:sobe/support/networks/dio_client.dart';
-import 'package:sobe/modules/main/main_screen.dart';
+import 'package:turtlz/support/networks/dio_client.dart';
+import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
-import 'package:sobe/routes.dart';
+import 'routes.dart';
 
 final GlobalKey<VRouterState> vRouterKey = GlobalKey<VRouterState>();
 

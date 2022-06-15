@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:sobe/modules/notification/cubit/notification_cubit.dart';
+import 'package:turtlz/modules/notification/cubit/notification_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';

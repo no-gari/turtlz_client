@@ -1,9 +1,9 @@
-import 'package:sobe/modules/authentication/bloc/authentication_bloc.dart';
+import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:dio/dio.dart';
-import '../../env/env.dart';
+import '../../env/.env.dart';
 import 'error_message.dart';
 import 'dart:io';
 

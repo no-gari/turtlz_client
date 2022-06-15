@@ -1,5 +1,5 @@
-import 'package:sobe/modules/notification/view/notification_screen.dart';
-import 'package:sobe/modules/home/view/category_page.dart';
+import 'package:turtlz/modules/notification/view/notification_screen.dart';
+import 'package:turtlz/modules/home/view/category_page.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
