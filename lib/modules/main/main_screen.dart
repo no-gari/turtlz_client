@@ -71,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.light));
 
@@ -80,26 +80,26 @@ class _MainScreenState extends State<MainScreen> {
             children: pageList,
             controller: pageController,
             onPageChanged: _onPageChanged,
-            physics: NeverScrollableScrollPhysics()),
-        bottomNavigationBar: BottomNavigationBar(
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            items: List.generate(
-                MenuState.values.length,
-                (index) => BottomNavigationBarItem(
-                    label: '',
-                    icon: ImageIcon(Svg(
-                      "assets/icons/${MenuState.values[index].name}.svg",
-                    )))),
-            onTap: _onItemTapped,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Color(0xFF979797),
-            unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w500),
-            selectedLabelStyle: TextStyle(fontWeight: FontWeight.w700),
-            currentIndex: pageIndex,
-            selectedFontSize: 12,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: const Color(0xFF37521C),
-            elevation: 0));
+            physics: const NeverScrollableScrollPhysics()),
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+              border: Border(top: BorderSide(color: Colors.black, width: 1))),
+          child: BottomNavigationBar(
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              items: List.generate(
+                  MenuState.values.length,
+                  (index) => BottomNavigationBarItem(
+                      label: '',
+                      icon: ImageIcon(Svg(
+                          "assets/icons/${MenuState.values[index].name}.svg")))),
+              onTap: _onItemTapped,
+              selectedItemColor: Theme.of(context).primaryColor,
+              unselectedItemColor: const Color(0xFF979797),
+              currentIndex: pageIndex,
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Colors.white,
+              elevation: 0),
+        ));
   }
 }

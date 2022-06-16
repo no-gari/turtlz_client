@@ -10,24 +10,19 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('CART.', style: Theme.of(context).textTheme.headline3),
-                  IconButton(
-                      onPressed: () {},
-                      icon: ImageIcon(Svg("assets/icons/noti.svg")))
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+        body: SafeArea(
+            child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Column(children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('cart.',
+                            style: Theme.of(context).textTheme.headline3),
+                        IconButton(
+                            onPressed: () {},
+                            icon: ImageIcon(Svg("assets/icons/noti.svg")))
+                      ])
+                ]))));
   }
 }

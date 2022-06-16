@@ -24,7 +24,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('SEARCH.', style: Theme.of(context).textTheme.headline3),
+                Text('search.', style: Theme.of(context).textTheme.headline3),
                 IconButton(
                     onPressed: () {},
                     icon: ImageIcon(Svg("assets/icons/noti.svg")))
