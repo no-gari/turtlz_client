@@ -1,3 +1,4 @@
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:flutter/material.dart';
 
 class CartPage extends StatefulWidget {
@@ -8,6 +9,25 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('CART.', style: Theme.of(context).textTheme.headline3),
+                  IconButton(
+                      onPressed: () {},
+                      icon: ImageIcon(Svg("assets/icons/noti.svg")))
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

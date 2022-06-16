@@ -26,20 +26,21 @@ final theme = ThemeData(
   ),
   textTheme: TextTheme(
       headline1: TextStyle(
-          fontFamily: 'Montserrat',
-          fontSize: 35,
-          fontWeight: FontWeight.w900,
-          color: Colors.black),
+        fontFamily: 'Montserrat',
+        fontSize: 35,
+        fontWeight: FontWeight.w900,
+        color: Color(0xFF37521C),
+      ),
       headline2: TextStyle(
           fontFamily: 'Montserrat',
           fontSize: 30,
           fontWeight: FontWeight.w900,
-          color: Colors.black),
+          color: Color(0xFF37521C)),
       headline3: TextStyle(
           fontFamily: 'Montserrat',
           fontSize: 25,
           fontWeight: FontWeight.w900,
-          color: Colors.black),
+          color: Color(0xFF37521C)),
       headline4: TextStyle(
           fontFamily: 'Montserrat',
           fontSize: 20,
