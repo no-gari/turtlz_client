@@ -55,7 +55,7 @@ dependencies:
   webview_flutter: ^2.0.4
 
   # analytics
-  amplitude_flutter: ^3.9.0
+#  amplitude_flutter: ^3.9.0
   firebase_analytics: ^9.1.7
 
   # helpers
@@ -70,7 +70,7 @@ dependencies:
   extended_tabs: ^2.3.0
 
   # payment
-  bootpay: ^1.9.1
+  bootpay: ^4.2.1
 
 dev_dependencies:
   flutter_test:

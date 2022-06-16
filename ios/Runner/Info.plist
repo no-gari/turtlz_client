@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -18,10 +20,25 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kakaoa0c154bbdfaa3783d0e6cb554030e621</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<string>0</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>0fd9b9360001091b6dcb391daf4f99ab</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakao0fd9b9360001091b6dcb391daf4f99ab</string>
@@ -30,21 +47,6 @@
 		<string>kakaolink</string>
 		<string>kakaotalk-5.9.7</string>
 	</array>
-	<key>KAKAO_APP_KEY</key>
-    <string>0fd9b9360001091b6dcb391daf4f99ab</string>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLName</key>
-            <string></string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>kakaoa0c154bbdfaa3783d0e6cb554030e621</string>
-            </array>
-        </dict>
-    </array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIBackgroundModes</key>
@@ -71,7 +73,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
 </dict>
 </plist>

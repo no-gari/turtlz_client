@@ -3,7 +3,7 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:turtlz/support/networks/dio_client.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_core/firebase_core.dart';
-import 'package:amplitude_flutter/amplitude.dart';
+// import 'package:amplitude_flutter/amplitude.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ import 'bloc_observer.dart';
 void main() async {
   setPathUrlStrategy();
   await firebaseInit();
-  await amplitudeInit();
+  // await amplitudeInit();
   Bloc.observer = MyBlocObserver();
   DioClient dioClient = DioClient(Dio());
   runApp(MyApp(
@@ -28,23 +28,23 @@ Future firebaseInit() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
         options: const FirebaseOptions(
-            apiKey: "AIzaSyD8GamJ6XqqsNm4SUCOkajPOVEXayiKymc",
-            authDomain: "ustain-bafc6.firebaseapp.com",
-            projectId: "ustain-bafc6",
-            storageBucket: "ustain-bafc6.appspot.com",
-            messagingSenderId: "1097012875305",
-            appId: "1:1097012875305:web:e6428ee43c5fcb9c9bcc38",
-            measurementId: "G-HHS460QPEW"));
+            apiKey: "AIzaSyAi2Y06-KOzOPfW9Y4Rd_QxcWTAm2aGi80",
+            authDomain: "turtlz.firebaseapp.com",
+            projectId: "turtlz",
+            storageBucket: "turtlz.appspot.com",
+            messagingSenderId: "353560109519",
+            appId: "1:353560109519:web:73d67beb9e720c52d9f2ba",
+            measurementId: "G-J2FQ5XDEEM"));
   } else {
     await Firebase.initializeApp();
-    KakaoSdk.init(nativeAppKey: '0fd9b9360001091b6dcb391daf4f99ab');
+    KakaoSdk.init(nativeAppKey: 'a0c154bbdfaa3783d0e6cb554030e621');
   }
 }
-
-Future amplitudeInit() async {
-  final Amplitude analytics =
-      Amplitude.getInstance(instanceName: "aroundus-ustain");
-  await analytics.init('e529d03be979b0a303052c6440bb3d02');
-  await analytics.enableCoppaControl();
-  await analytics.trackingSessionEvents(true);
-}
+//
+// Future amplitudeInit() async {
+//   final Amplitude analytics =
+//       Amplitude.getInstance(instanceName: "aroundus-ustain");
+//   await analytics.init('e529d03be979b0a303052c6440bb3d02');
+//   await analytics.enableCoppaControl();
+//   await analytics.trackingSessionEvents(true);
+// }
