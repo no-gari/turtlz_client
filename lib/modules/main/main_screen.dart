@@ -32,8 +32,8 @@ class _MainScreenState extends State<MainScreen> {
   String notificationBody = 'No Body';
   String notificationData = 'No Data';
 
-  PageController pageController = PageController();
-  int pageIndex = 0;
+  PageController _pageController = PageController();
+  int _pageIndex = 0;
 
   @override
   void initState() {
@@ -45,17 +45,17 @@ class _MainScreenState extends State<MainScreen> {
     firebaseMessaging.bodyCtlr.stream.listen(_changeBody);
     firebaseMessaging.titleCtlr.stream.listen(_changeTitle);
 
-    pageController = PageController(initialPage: 2);
-    pageIndex = 2;
+    _pageController = PageController(initialPage: 2);
+    _pageIndex = 2;
   }
 
   _changeData(String msg) => setState(() => notificationData = msg);
   _changeBody(String msg) => setState(() => notificationBody = msg);
   _changeTitle(String msg) => setState(() => notificationTitle = msg);
 
-  void _onPageChanged(int index) => setState(() => pageIndex = index);
+  void _onPageChanged(int index) => setState(() => _pageIndex = index);
 
-  void _onItemTapped(int index) => pageController.jumpToPage(index);
+  void _onItemTapped(int index) => _pageController.jumpToPage(index);
 
   List<Widget> pageList = [
     MenuScreen(),
@@ -67,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void dispose() {
-    pageController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -80,28 +80,27 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
         body: PageView(
             children: pageList,
-            controller: pageController,
+            controller: _pageController,
             onPageChanged: _onPageChanged,
             physics: const NeverScrollableScrollPhysics()),
         bottomNavigationBar: Container(
-          decoration: const BoxDecoration(
-              border: Border(top: BorderSide(color: Colors.black, width: 1))),
-          child: BottomNavigationBar(
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              items: List.generate(
-                  MenuState.values.length,
-                  (index) => BottomNavigationBarItem(
-                      label: '',
-                      icon: ImageIcon(Svg(
-                          "assets/icons/${MenuState.values[index].name}.svg")))),
-              onTap: _onItemTapped,
-              selectedItemColor: Theme.of(context).primaryColor,
-              unselectedItemColor: const Color(0xFF979797),
-              currentIndex: pageIndex,
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Colors.white,
-              elevation: 0),
-        ));
+            decoration: const BoxDecoration(
+                border: Border(top: BorderSide(color: Colors.black, width: 1))),
+            child: BottomNavigationBar(
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                items: List.generate(
+                    MenuState.values.length,
+                    (index) => BottomNavigationBarItem(
+                        label: '',
+                        icon: ImageIcon(Svg(
+                            "assets/icons/${MenuState.values[index].name}.svg")))),
+                onTap: _onItemTapped,
+                selectedItemColor: Theme.of(context).primaryColor,
+                unselectedItemColor: const Color(0xFF979797),
+                currentIndex: _pageIndex,
+                type: BottomNavigationBarType.fixed,
+                backgroundColor: Colors.white,
+                elevation: 0)));
   }
 }

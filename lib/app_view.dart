@@ -1,4 +1,5 @@
 import 'modules/authentication/bloc/authentication_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_web_frame/flutter_web_frame.dart';
 import 'package:turtlz/support/networks/dio_client.dart';
 import 'package:turtlz/modules/main/main_screen.dart';
@@ -42,9 +43,7 @@ class _AppViewState extends State<AppView> {
   MultiBlocListener buildMultiBlocListener(Widget child) {
     return MultiBlocListener(listeners: [
       BlocListener<AuthenticationBloc, AuthenticationState>(
-          listener: (context, state) {
-        // context.vRouter.to(MainScreen.routeName, isReplacement: true);
-      })
+          listener: (context, state) {})
     ], child: child);
   }
 }

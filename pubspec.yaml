@@ -68,7 +68,7 @@ dependencies:
   flutter_svg_provider: ^0.1.11
   flutter_native_splash: ^1.3.3
   carousel_slider: ^4.1.1
-  extended_tabs: ^2.3.0
+  flutter_sizer: ^1.0.5
 
   # payment
   bootpay: ^4.2.1

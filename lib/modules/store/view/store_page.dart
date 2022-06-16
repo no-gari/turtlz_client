@@ -1,7 +1,7 @@
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as Svg;
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class StorePage extends StatefulWidget {
   @override
