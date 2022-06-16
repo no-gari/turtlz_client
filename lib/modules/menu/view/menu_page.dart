@@ -1,6 +1,5 @@
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:turtlz/modules/notification/view/notification_screen.dart';
-import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
@@ -48,11 +47,78 @@ class _NewsScreenState extends State<MenuPage> {
   // 카테고리, 브랜드 분기하는 탭바 부분
   Column storeMenuTabbarWidget() {
     return Column(children: [
-      SizedBox(height: 48),
+      const SizedBox(height: 48),
       Expanded(
           child: TabBarView(children: [
-        SingleChildScrollView(child: Column(children: [])),
-        Container()
+        SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(children: [
+              GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 1.5,
+                  children: [
+                    Container(height: 100, color: Colors.black),
+                    Container(height: 100, color: Colors.black),
+                    Container(height: 100, color: Colors.black),
+                    Container(height: 100, color: Colors.black),
+                  ])
+            ])),
+        SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(children: [
+              ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  onTap: () {},
+                  leading: Container(
+                      decoration: BoxDecoration(shape: BoxShape.circle),
+                      child: CircleAvatar(
+                          backgroundColor: Colors.black,
+                          // backgroundImage: NetworkImage(this.logo!),
+                          radius: 20)),
+                  title: Text('브랜드이름',
+                      style: Theme.of(context).textTheme.headline5),
+                  subtitle: Text('제목',
+                      style: Theme.of(context).textTheme.bodyText2,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis),
+                  isThreeLine: false),
+              ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  onTap: () {},
+                  leading: Container(
+                      decoration: BoxDecoration(shape: BoxShape.circle),
+                      child: CircleAvatar(
+                          backgroundColor: Colors.black,
+                          // backgroundImage: NetworkImage(this.logo!),
+                          radius: 20)),
+                  title: Text('브랜드이름',
+                      style: Theme.of(context).textTheme.headline5),
+                  subtitle: Text('제목',
+                      style: Theme.of(context).textTheme.bodyText2,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis),
+                  isThreeLine: false),
+              ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  onTap: () {},
+                  leading: Container(
+                      decoration: BoxDecoration(shape: BoxShape.circle),
+                      child: CircleAvatar(
+                          backgroundColor: Colors.black,
+                          // backgroundImage: NetworkImage(this.logo!),
+                          radius: 20)),
+                  title: Text('브랜드이름',
+                      style: Theme.of(context).textTheme.headline5),
+                  subtitle: Text('제목',
+                      style: Theme.of(context).textTheme.bodyText2,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis),
+                  isThreeLine: false)
+            ]))
       ]))
     ]);
   }
@@ -95,29 +161,28 @@ class TabBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-        child: Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-                padding: EdgeInsets.only(left: 20),
-                child: TabBar(
-                    labelColor: Colors.black,
-                    unselectedLabelColor: Colors.grey,
-                    labelStyle: Theme.of(context).textTheme.headline5,
-                    isScrollable: true,
-                    tabs: <Widget>[
-                      Padding(
-                          padding: EdgeInsets.only(right: 20),
-                          child: Text('products')),
-                      Padding(
-                          padding: EdgeInsets.only(right: 20),
-                          child: Text('brands'))
-                    ],
-                    indicator: UnderlineTabIndicator(
-                        borderSide: BorderSide(width: 2.0, color: Colors.black),
-                        insets: EdgeInsets.only(bottom: -6)),
-                    labelPadding: EdgeInsets.zero,
-                    indicatorPadding: EdgeInsets.only(right: 20)))));
+    return Align(
+        alignment: Alignment.centerLeft,
+        child: Container(
+            padding: const EdgeInsets.only(left: 20),
+            child: TabBar(
+                labelColor: Colors.black,
+                unselectedLabelColor: Colors.grey,
+                labelStyle: Theme.of(context).textTheme.headline5,
+                isScrollable: true,
+                tabs: const [
+                  Padding(
+                      padding: EdgeInsets.only(right: 20),
+                      child: Text('products')),
+                  Padding(
+                      padding: EdgeInsets.only(right: 20),
+                      child: Text('brands'))
+                ],
+                indicator: const UnderlineTabIndicator(
+                    borderSide: BorderSide(width: 2.0, color: Colors.black),
+                    insets: EdgeInsets.only(bottom: -6)),
+                labelPadding: EdgeInsets.zero,
+                indicatorPadding: const EdgeInsets.only(right: 20))));
   }
 
   @override

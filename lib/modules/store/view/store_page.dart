@@ -2,6 +2,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart' as Svg;
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:turtlz/support/style/format_unit.dart';
 
 class StorePage extends StatefulWidget {
   @override
@@ -30,11 +31,11 @@ class _StorePageState extends State<StorePage> {
                       ]),
                   SizedBox(height: 20),
                   Container(
-                      height: (MediaQuery.of(context).size.width - 40) *
-                          1131 /
-                          1252,
+                      height: (maxWidth(context) - 40) * 1131 / 1252,
                       width: double.maxFinite,
                       child: Swiper(
+                          autoplay: false,
+                          control: SwiperControl(color: Colors.white),
                           scrollDirection: Axis.horizontal,
                           onTap: (int index) {},
                           itemBuilder: (BuildContext context, int index) =>
@@ -48,29 +49,24 @@ class _StorePageState extends State<StorePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(children: [
-                          CircleAvatar(
-                              radius: MediaQuery.of(context).size.width * 0.07),
+                          CircleAvatar(radius: maxWidth(context) * 0.07),
                           Text('df')
                         ]),
                         Column(children: [
-                          CircleAvatar(
-                              radius: MediaQuery.of(context).size.width * 0.07),
+                          CircleAvatar(radius: maxWidth(context) * 0.07),
                           Text('df')
                         ]),
                         Column(children: [
-                          CircleAvatar(
-                              radius: MediaQuery.of(context).size.width * 0.07),
-                          Text('af')
+                          CircleAvatar(radius: maxWidth(context) * 0.07),
+                          Text('df')
                         ]),
                         Column(children: [
-                          CircleAvatar(
-                              radius: MediaQuery.of(context).size.width * 0.07),
-                          Text('asf')
+                          CircleAvatar(radius: maxWidth(context) * 0.07),
+                          Text('df')
                         ]),
                         Column(children: [
-                          CircleAvatar(
-                              radius: MediaQuery.of(context).size.width * 0.07),
-                          Text('adf')
+                          CircleAvatar(radius: maxWidth(context) * 0.07),
+                          Text('df')
                         ])
                       ]),
                   SizedBox(height: 20),
