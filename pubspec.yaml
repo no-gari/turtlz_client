@@ -71,6 +71,7 @@ dependencies:
 
   # payment
   bootpay: ^4.2.1
+  flutter_multi_formatter:
 
 dev_dependencies:
   flutter_test:
@@ -83,14 +84,13 @@ flutter:
   assets:
     - assets/
     - assets/icons/
-    - assets/icons/bottomNavigationBar/
     - assets/images/
 
 
 flutter_native_splash:
 
-  #  background_image: assets/images/splash_screen.png
-  #  web_image_mode: cover
+  background_image: assets/images/splash.png
+  web_image_mode: cover
   full_screen: true
   android: true
   ios: true

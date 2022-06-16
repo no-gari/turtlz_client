@@ -1,21 +1,22 @@
-import 'package:turtlz/modules/magazine/view/magazine_screen.dart';
+import 'package:turtlz/modules/search/search/view/search_screen.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:turtlz/modules/mypage/view/my_page_screen.dart';
 import 'package:turtlz/modules/store/view/store_screen.dart';
-import 'package:turtlz/modules/home/view/home_screen.dart';
+import 'package:turtlz/modules/cart/view/cart_screen.dart';
+import 'package:turtlz/modules/menu/view/menu_screen.dart';
 import 'package:turtlz/support/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-enum MenuState { home, magazine, store, my_page }
+enum MenuState { category, search, store, cart, my_page }
 
 extension MenuStateToString on MenuState {
   String get name {
-    return ["home", "magazine", "store", "my_page"][this.index];
+    return ["category", "search", "store", "cart", "my_page"][this.index];
   }
 
   String get nickName {
-    return ["홈", "매거진", "스토어", "내 계정"][this.index];
+    return ["카테고리", "검색", "홈", "카트", "내 계정"][this.index];
   }
 }
 
@@ -27,29 +28,26 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  // Noti noti = kIsWeb ? WebNoti() : AppNoti();
-
   String notificationTitle = 'No Title';
   String notificationBody = 'No Body';
   String notificationData = 'No Data';
 
   @override
   void initState() {
+    super.initState();
+
     final firebaseMessaging = FCM();
     firebaseMessaging.setNotifications();
     firebaseMessaging.streamCtlr.stream.listen(_changeData);
     firebaseMessaging.bodyCtlr.stream.listen(_changeBody);
     firebaseMessaging.titleCtlr.stream.listen(_changeTitle);
-    // Future(noti.init);
-
-    super.initState();
   }
 
   _changeData(String msg) => setState(() => notificationData = msg);
   _changeBody(String msg) => setState(() => notificationBody = msg);
   _changeTitle(String msg) => setState(() => notificationTitle = msg);
 
-  int pageIndex = 0;
+  int pageIndex = 2;
 
   PageController pageController = PageController();
 
@@ -58,9 +56,10 @@ class _MainScreenState extends State<MainScreen> {
   void _onItemTapped(int index) => pageController.jumpToPage(index);
 
   List<Widget> pageList = [
-    HomeScreen(),
-    MagazineScreen(),
+    MenuScreen(),
+    SearchScreen(),
     StoreScreen(),
+    CartScreen(),
     MyPageScreen()
   ];
 
@@ -83,12 +82,15 @@ class _MainScreenState extends State<MainScreen> {
             onPageChanged: _onPageChanged,
             physics: NeverScrollableScrollPhysics()),
         bottomNavigationBar: BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
             items: List.generate(
                 MenuState.values.length,
                 (index) => BottomNavigationBarItem(
+                    label: '',
                     icon: ImageIcon(Svg(
-                        "assets/icons/bottomNavigationBar/${MenuState.values[index].name}.svg")),
-                    label: "${MenuState.values[index].nickName}")),
+                      "assets/icons/${MenuState.values[index].name}.svg",
+                    )))),
             onTap: _onItemTapped,
             selectedItemColor: Colors.white,
             unselectedItemColor: Color(0xFF979797),
@@ -97,7 +99,7 @@ class _MainScreenState extends State<MainScreen> {
             currentIndex: pageIndex,
             selectedFontSize: 12,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.black,
+            backgroundColor: const Color(0xFF37521C),
             elevation: 0));
   }
 }

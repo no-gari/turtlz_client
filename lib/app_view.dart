@@ -1,6 +1,7 @@
 import 'modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/support/networks/dio_client.dart';
 import 'package:turtlz/modules/main/main_screen.dart';
+import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class _AppViewState extends State<AppView> {
   @override
   Widget build(BuildContext context) {
     return VRouter(
-        // theme: theme,
+        theme: theme,
         debugShowCheckedModeBanner: false,
         key: vRouterKey,
         mode: VRouterMode.history,

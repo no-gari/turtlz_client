@@ -1,5 +1,6 @@
 import 'package:turtlz/repositories/authentication_repository/src/authentication_repository.dart';
 import 'package:turtlz/repositories/notification_repository/src/notification_repository.dart';
+import 'package:turtlz/repositories/search_repository/src/search_repository.dart';
 import 'package:turtlz/repositories/user_repository/src/user_repository.dart';
 import 'modules/authentication/bloc/authentication_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
           RepositoryProvider(create: (context) => UserRepository(dioClient)),
           RepositoryProvider(
               create: (context) => NotificationRepository(dioClient)),
+          RepositoryProvider(create: (context) => SearchRepository(dioClient)),
         ],
         child: MultiBlocProvider(providers: [
           BlocProvider<AuthenticationBloc>(

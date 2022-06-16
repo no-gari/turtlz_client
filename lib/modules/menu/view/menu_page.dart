@@ -5,22 +5,23 @@ import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 import 'dart:math' as math;
 
-class HomePage extends StatefulWidget {
+class MenuPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _NewsScreenState();
 }
 
-class _NewsScreenState extends State<HomePage> {
+class _NewsScreenState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(children: [
-      Container(
-        child: Text('터틀즈가 처음이라면? 첫 구매 할인 쿠폰 받으세요'),
-      ),
-      Row(
-        children: [],
-      )
-    ]));
+        appBar: AppBar(),
+        body: SafeArea(
+          child: Column(children: [
+            Container(),
+            Row(
+              children: [],
+            )
+          ]),
+        ));
   }
 }
