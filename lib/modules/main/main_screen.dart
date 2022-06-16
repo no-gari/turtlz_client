@@ -32,6 +32,9 @@ class _MainScreenState extends State<MainScreen> {
   String notificationBody = 'No Body';
   String notificationData = 'No Data';
 
+  PageController pageController = PageController();
+  int pageIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -41,15 +44,14 @@ class _MainScreenState extends State<MainScreen> {
     firebaseMessaging.streamCtlr.stream.listen(_changeData);
     firebaseMessaging.bodyCtlr.stream.listen(_changeBody);
     firebaseMessaging.titleCtlr.stream.listen(_changeTitle);
+
+    pageController = PageController(initialPage: 2);
+    pageIndex = 2;
   }
 
   _changeData(String msg) => setState(() => notificationData = msg);
   _changeBody(String msg) => setState(() => notificationBody = msg);
   _changeTitle(String msg) => setState(() => notificationTitle = msg);
-
-  int pageIndex = 2;
-
-  PageController pageController = PageController();
 
   void _onPageChanged(int index) => setState(() => pageIndex = index);
 
@@ -83,8 +85,7 @@ class _MainScreenState extends State<MainScreen> {
             physics: const NeverScrollableScrollPhysics()),
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(
-              border:
-                  const Border(top: BorderSide(color: Colors.black, width: 1))),
+              border: Border(top: BorderSide(color: Colors.black, width: 1))),
           child: BottomNavigationBar(
               showSelectedLabels: false,
               showUnselectedLabels: false,
