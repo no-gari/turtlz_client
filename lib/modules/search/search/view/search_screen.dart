@@ -17,22 +17,22 @@ class _SearchScreenState extends State<SearchScreen> {
 
     return Scaffold(
         body: SafeArea(
-      child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('search.', style: Theme.of(context).textTheme.headline3),
-                IconButton(
-                    onPressed: () {},
-                    icon: ImageIcon(Svg("assets/icons/noti.svg")))
-              ],
-            ),
-            SizedBox(height: 20),
-            SearchPage()
-          ])),
-    ));
+            child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('search.',
+                                style: Theme.of(context).textTheme.headline3),
+                            IconButton(
+                                onPressed: () {},
+                                icon: ImageIcon(Svg("assets/icons/noti.svg")))
+                          ]),
+                      SizedBox(height: 20),
+                      SearchPage()
+                    ]))));
   }
 }

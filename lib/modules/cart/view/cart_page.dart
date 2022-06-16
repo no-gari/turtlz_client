@@ -12,7 +12,7 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(children: [
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

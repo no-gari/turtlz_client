@@ -12,11 +12,11 @@ enum MenuState { category, search, store, cart, my_page }
 
 extension MenuStateToString on MenuState {
   String get name {
-    return ["category", "search", "store", "cart", "my_page"][this.index];
+    return const ["category", "search", "store", "cart", "my_page"][this.index];
   }
 
   String get nickName {
-    return ["카테고리", "검색", "홈", "카트", "내 계정"][this.index];
+    return const ["카테고리", "검색", "홈", "카트", "내 계정"][this.index];
   }
 }
 
@@ -82,8 +82,9 @@ class _MainScreenState extends State<MainScreen> {
             onPageChanged: _onPageChanged,
             physics: const NeverScrollableScrollPhysics()),
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-              border: Border(top: BorderSide(color: Colors.black, width: 1))),
+          decoration: const BoxDecoration(
+              border:
+                  const Border(top: BorderSide(color: Colors.black, width: 1))),
           child: BottomNavigationBar(
               showSelectedLabels: false,
               showUnselectedLabels: false,

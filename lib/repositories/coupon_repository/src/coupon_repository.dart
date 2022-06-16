@@ -1,17 +1,17 @@
 import 'package:turtlz/support/networks/network_exceptions.dart';
-import 'package:turtlz/support/networks/page_response.dart';
 import 'package:turtlz/support/networks/api_result.dart';
 import 'package:turtlz/support/networks/dio_client.dart';
 
-class SearchRepository {
-  SearchRepository(this._dioClient);
+class CouponRepository {
+  CouponRepository(this._dioClient);
 
   final DioClient _dioClient;
 
-  Future<ApiResult<Map>> search(String keyword, int page) async {
+  Future<ApiResult<List>> getCouponList() async {
     try {
-      var response = await _dioClient
-          .get('/api/v1/commerce/search/${keyword}/?page=${page}');
+      var response =
+          await _dioClient.getWithAuth('/api/v1/commerce/coupon/list/');
+
       return ApiResult.success(data: response);
     } catch (e) {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));

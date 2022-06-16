@@ -18,6 +18,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       TextField(
+          textInputAction: TextInputAction.search,
           autofocus: true,
           controller: _textEditingController,
           decoration: InputDecoration(

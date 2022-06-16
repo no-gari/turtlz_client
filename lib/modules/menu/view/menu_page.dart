@@ -60,15 +60,9 @@ class _NewsScreenState extends State<MenuPage> {
 
 // 스토어 최상단 부분 (store, 검색)
 class storeAppBarWidget extends StatelessWidget {
-  const storeAppBarWidget({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-        expandedHeight: 68,
-        brightness: Brightness.light,
         centerTitle: false,
         pinned: false,
         floating: true,
@@ -82,7 +76,6 @@ class storeAppBarWidget extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: RichText(
                         text: TextSpan(children: [
-                      WidgetSpan(child: Container(height: 20)),
                       WidgetSpan(
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,7 +99,7 @@ class TabBarDelegate extends SliverPersistentHeaderDelegate {
         child: Align(
             alignment: Alignment.centerLeft,
             child: Container(
-                padding: EdgeInsets.only(left: 20, top: 20),
+                padding: EdgeInsets.only(left: 20),
                 child: TabBar(
                     labelColor: Colors.black,
                     unselectedLabelColor: Colors.grey,
