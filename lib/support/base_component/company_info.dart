@@ -22,40 +22,38 @@ class _CompanyInfoState extends State<CompanyInfo> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Image.asset('assets/images/aroundus.png',
-                      height: Adaptive.dp(13)),
-                  SizedBox(height: Adaptive.dp(10)),
+                  Image.asset('assets/images/aroundus.png', height: 15),
+                  SizedBox(height: 10),
                   Row(children: [
                     GestureDetector(
                         onTap: () => isWebRouter(context,
                             'https://www.instagram.com/ustain.official/'),
                         child: SvgPicture.asset('assets/icons/instagram.svg',
-                            height: Adaptive.dp(13))),
-                    SizedBox(width: sizeWidth(3)),
+                            height: 15)),
+                    SizedBox(width: 10),
                     GestureDetector(
                         onTap: () =>
                             isWebRouter(context, 'https://app.ustain.be/'),
                         child: SvgPicture.asset('assets/icons/website.svg',
-                            height: Adaptive.dp(13)))
+                            height: 15))
                   ])
                 ]),
                 GestureDetector(
                     onTap: () => setState(() => isOpened = !isOpened),
                     child: Wrap(children: [
                       Text('사업자 정보',
-                          style: TextStyle(
-                              color: Colors.white, fontSize: Adaptive.dp(13))),
+                          style: TextStyle(color: Colors.white, fontSize: 15)),
                       Icon(
                           isOpened == true
                               ? Icons.arrow_drop_up
                               : Icons.arrow_drop_down,
                           color: Colors.white,
-                          size: Adaptive.dp(13))
+                          size: 15)
                     ]))
               ]),
           if (isOpened == true)
             Column(children: [
-              SizedBox(height: Adaptive.h(3)),
+              SizedBox(height: 20),
               RichText(
                   text: TextSpan(
                       style: TextStyle(color: Colors.white, height: 1.5),
@@ -99,11 +97,13 @@ class _CompanyInfoState extends State<CompanyInfo> {
                     TextSpan(
                         text:
                             '어라운드어스는 통신판매 중개자로서 통신 판매의 당사자가 아니므로 개별 판매자가 등록한 상품 정보에 대해서 책임을 지지 않습니다.',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            color: Colors.grey, fontSize: Adaptive.dp(10)))
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: Colors.grey, fontSize: 10))
                   ]))
             ]),
-          SizedBox(height: Adaptive.h(3))
+          SizedBox(height: 20)
         ]));
   }
 }

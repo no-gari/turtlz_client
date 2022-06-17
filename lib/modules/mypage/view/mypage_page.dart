@@ -4,12 +4,9 @@ import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/modules/mypage/address/view/address_screen.dart';
 import 'package:turtlz/repositories/user_repository/models/user.dart';
 import 'package:turtlz/modules/store/coupon/view/coupon_screen.dart';
-import 'package:turtlz/support/base_component/company_info.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'components/menu_widgets.dart';
@@ -47,11 +44,7 @@ class _MyPageState extends State<MyPage> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
           padding: EdgeInsets.only(top: 5),
-          child: Text('My Page',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline3!
-                  .copyWith(color: Colors.white, fontWeight: FontWeight.w500))),
+          child: Text('My Page', style: Theme.of(context).textTheme.headline3)),
       if (is_authenticated) myPageInfo() else loginNeededProfile(),
       Container(
           color: Colors.white,
@@ -62,10 +55,10 @@ class _MyPageState extends State<MyPage> {
             helpcenterWire(context),
             SizedBox(height: 20),
             helpcenterWire2(context),
-            SizedBox(height: Adaptive.h(5)),
+            SizedBox(height: 29),
             if (is_authenticated) logOutMethod(context),
-            if (is_authenticated) SizedBox(height: Adaptive.h(5)),
-            CompanyInfo()
+            if (is_authenticated) SizedBox(height: 20),
+            // CompanyInfo()
           ]))
     ]);
   }
@@ -154,7 +147,7 @@ class _MyPageState extends State<MyPage> {
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
-                    .copyWith(color: Colors.black, fontSize: Adaptive.dp(14))),
+                    .copyWith(color: Colors.black, fontSize: 15)),
             trailing: Text('${_packageInfo.version}',
                 style: TextStyle(color: Colors.black)))
       ])
@@ -175,7 +168,7 @@ class _MyPageState extends State<MyPage> {
                     MaterialPageRoute(
                         builder: (_) => CouponScreen(isMypage: true)));
               } else {
-                showLoginNeededDialog(context);
+                showSocialLoginNeededDialog(context);
               }
             }),
         subMenuWidget(
@@ -187,7 +180,7 @@ class _MyPageState extends State<MyPage> {
                     MaterialPageRoute(
                         builder: (_) => AddressScreen(isOrdering: false)));
               } else {
-                showLoginNeededDialog(context);
+                showSocialLoginNeededDialog(context);
               }
             }),
         subMenuWidget(
@@ -197,7 +190,7 @@ class _MyPageState extends State<MyPage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => OrderFormListScreen()));
               } else {
-                showLoginNeededDialog(context);
+                showSocialLoginNeededDialog(context);
               }
             })
       ])
