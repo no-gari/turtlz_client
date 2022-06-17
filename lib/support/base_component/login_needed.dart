@@ -13,7 +13,7 @@ import 'dart:io';
 void showSocialLoginNeededDialog(BuildContext context) {
   showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25), topRight: Radius.circular(25))),
       builder: (context) => BlocProvider(
@@ -157,14 +157,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                   LoginButton(
                       backgroundColor: Colors.black,
                       icon: Icons.apple,
-                      onTap: () => _appleLoginButtonPressed()),
+                      onTap: () {
+                        _appleLoginButtonPressed();
+                        Navigator.pop(context);
+                      }),
                 if (_isIOS == true) SizedBox(width: 20),
                 LoginButton(
                     backgroundColor: Colors.amber,
                     icon: Icons.mode_comment_rounded,
-                    onTap: () => kIsWeb
-                        ? html.window.location.href = widget.connect()
-                        : _loginButtonPressed())
+                    onTap: () {
+                      if (kIsWeb) {
+                        html.window.location.href = widget.connect();
+                      } else {
+                        _loginButtonPressed();
+                        Navigator.pop(context);
+                      }
+                    })
               ])
             ]));
   }

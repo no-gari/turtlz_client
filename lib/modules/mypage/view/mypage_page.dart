@@ -50,7 +50,7 @@ class _MyPageState extends State<MyPage> {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('cart.',
+                              Text('my page.',
                                   style: Theme.of(context).textTheme.headline3),
                               IconButton(
                                   onPressed: () => state.status ==
