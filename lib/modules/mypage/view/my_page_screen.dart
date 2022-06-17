@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyPageScreen extends StatefulWidget {
-  static String routeName = '/home_screen';
+  static String routeName = '/mypage_screen';
 
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => MyPageScreen());
@@ -41,7 +41,7 @@ class _MyPageScreen extends State<MyPageScreen> {
       return Center(
           child: CupertinoButton(
               color: Colors.black,
-              onPressed: () => showLoginNeededDialog(context),
+              onPressed: () => showSocialLoginNeededDialog(context),
               child: Text('로그인')));
     });
   }

@@ -4,21 +4,21 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'mypage_page.dart';
 
-class MyPageScreen extends StatefulWidget {
+class MyMyPageScreen extends StatefulWidget {
   static String routeName = '/my_page_screen';
 
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => MyPageScreen());
+    return MaterialPageRoute<void>(builder: (_) => MyMyPageScreen());
   }
 
   @override
-  State<MyPageScreen> createState() => _MyPageScreen();
+  State<MyMyPageScreen> createState() => _MyMyPageScreen();
 }
 
-class _MyPageScreen extends State<MyPageScreen> {
+class _MyMyPageScreen extends State<MyMyPageScreen> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark));
 

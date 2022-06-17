@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:turtlz/env/.env.dart';
 import 'dart:io';
 
-void showLoginNeededDialog(BuildContext context) {
+void showSocialLoginNeededDialog(BuildContext context) {
   showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
@@ -40,9 +40,9 @@ class LoginButton extends StatelessWidget {
 }
 
 class LoginWidget extends StatefulWidget {
-  static String routeName = 'login/kakao/web';
-  final String reUrl = environment['kakaoUrl']!;
-  final String clientId = "5c014310672477f3dd4a2ba19eacc6ad";
+  static String? routeName = 'login/kakao/web';
+  final String? reUrl = environment['kakaoUrl'];
+  final String? clientId = "5c014310672477f3dd4a2ba19eacc6ad";
 
   String connect() =>
       "https://kauth.kakao.com/oauth/authorize?client_id=$clientId&redirect_uri=$reUrl&response_type=code";
