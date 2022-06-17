@@ -1,7 +1,10 @@
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
+import 'package:turtlz/modules/brands/brand_home/cubit/brand_cubit.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:turtlz/modules/store/cubit/store_cubit.dart';
+import 'package:turtlz/support/style/format_unit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
@@ -45,223 +48,114 @@ class _NewsScreenState extends State<MenuPage> {
                                   pinned: true, delegate: TabBarDelegate()))
                         ];
                       },
-                      body: storeMenuTabbarWidget()))));
+                      body: Column(children: [
+                        const SizedBox(height: 48),
+                        Expanded(
+                            child: TabBarView(children: [
+                          SingleChildScrollView(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Column(children: [
+                                BlocBuilder<StoreCubit, StoreState>(
+                                    builder: (storeContext, storeState) {
+                                  if (storeState.isLoaded &&
+                                      storeState.collections!.isNotEmpty) {
+                                    return Column(children: [
+                                      const SizedBox(height: 10),
+                                      GridView.count(
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          crossAxisCount: 2,
+                                          crossAxisSpacing: 10,
+                                          mainAxisSpacing: 10,
+                                          childAspectRatio: 1.2,
+                                          children: [
+                                            Stack(children: [
+                                              Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius
+                                                          .circular(20),
+                                                      image: DecorationImage(
+                                                          colorFilter:
+                                                              ColorFilter.mode(
+                                                                  Colors
+                                                                      .black
+                                                                      .withOpacity(
+                                                                          1.0),
+                                                                  BlendMode
+                                                                      .softLight),
+                                                          fit: BoxFit.cover,
+                                                          image: const NetworkImage(
+                                                              'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
+                                              Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text('TENT',
+                                                      style:
+                                                          Theme.of(storeContext)
+                                                              .textTheme
+                                                              .headline4!
+                                                              .copyWith(
+                                                                  color: Colors
+                                                                      .white)))
+                                            ])
+                                          ])
+                                    ]);
+                                  }
+                                  return Padding(
+                                      padding: EdgeInsets.only(
+                                          top: maxHeight(context) * 0.25),
+                                      child: Center(
+                                          child: Image.asset(
+                                              'assets/images/indicator.gif',
+                                              width: 100,
+                                              height: 100)));
+                                })
+                              ])),
+                          SingleChildScrollView(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: BlocBuilder<BrandCubit, BrandListState>(
+                                  builder: (brandContext, brandState) {
+                                if (brandState.isLoaded &&
+                                    brandState.brands!.isNotEmpty) {
+                                  return Column(children: [
+                                    ListTile(
+                                        contentPadding: EdgeInsets.zero,
+                                        onTap: () {},
+                                        leading: Container(
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle),
+                                            child: const CircleAvatar(
+                                                backgroundColor: Colors.black,
+                                                // backgroundImage: NetworkImage(this.logo!),
+                                                radius: 20)),
+                                        title: Text('브랜드이름',
+                                            style: Theme.of(brandContext)
+                                                .textTheme
+                                                .headline5),
+                                        subtitle: Text('제목',
+                                            style: Theme.of(brandContext)
+                                                .textTheme
+                                                .bodyText2,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis),
+                                        isThreeLine: false)
+                                  ]);
+                                }
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                      top: maxHeight(context) * 0.25),
+                                  child: Center(
+                                      child: Image.asset(
+                                          'assets/images/indicator.gif',
+                                          width: 100,
+                                          height: 100)),
+                                );
+                              }))
+                        ]))
+                      ])))));
     });
-  }
-
-  // 카테고리, 브랜드 분기하는 탭바 부분
-  Column storeMenuTabbarWidget() {
-    return Column(children: [
-      const SizedBox(height: 48),
-      Expanded(
-          child: TabBarView(children: [
-        SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(children: [
-              const SizedBox(height: 10),
-              GridView.count(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1.5,
-                  children: [
-                    Stack(children: [
-                      Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  colorFilter: new ColorFilter.mode(
-                                      Colors.black.withOpacity(1.0),
-                                      BlendMode.softLight),
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Text('TENT',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(color: Colors.white)))
-                    ]),
-                    Stack(children: [
-                      Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  colorFilter: ColorFilter.mode(
-                                      Colors.black.withOpacity(1.0),
-                                      BlendMode.softLight),
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Text('TENT',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(color: Colors.white)))
-                    ]),
-                    Stack(children: [
-                      Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  colorFilter: new ColorFilter.mode(
-                                      Colors.black.withOpacity(1.0),
-                                      BlendMode.softLight),
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Text('TENT',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(color: Colors.white)))
-                    ]),
-                    Stack(children: [
-                      Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  colorFilter: new ColorFilter.mode(
-                                      Colors.black.withOpacity(1.0),
-                                      BlendMode.softLight),
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Text('TENT',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(color: Colors.white)))
-                    ]),
-                    Stack(children: [
-                      Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  colorFilter: new ColorFilter.mode(
-                                      Colors.black.withOpacity(1.0),
-                                      BlendMode.softLight),
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Text('TENT',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(color: Colors.white)))
-                    ]),
-                    Stack(children: [
-                      Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  colorFilter: ColorFilter.mode(
-                                      Colors.black.withOpacity(1.0),
-                                      BlendMode.softLight),
-                                  fit: BoxFit.cover,
-                                  image: const NetworkImage(
-                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Text('TENT',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(color: Colors.white)))
-                    ]),
-                    Stack(children: [
-                      Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  colorFilter: ColorFilter.mode(
-                                      Colors.black.withOpacity(1.0),
-                                      BlendMode.softLight),
-                                  fit: BoxFit.cover,
-                                  image: const NetworkImage(
-                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Text('TENT',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(color: Colors.white)))
-                    ])
-                  ])
-            ])),
-        SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(children: [
-              ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  onTap: () {},
-                  leading: Container(
-                      decoration: const BoxDecoration(shape: BoxShape.circle),
-                      child: const CircleAvatar(
-                          backgroundColor: Colors.black,
-                          // backgroundImage: NetworkImage(this.logo!),
-                          radius: 20)),
-                  title: Text('브랜드이름',
-                      style: Theme.of(context).textTheme.headline5),
-                  subtitle: Text('제목',
-                      style: Theme.of(context).textTheme.bodyText2,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis),
-                  isThreeLine: false),
-              ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  onTap: () {},
-                  leading: Container(
-                      decoration: BoxDecoration(shape: BoxShape.circle),
-                      child: const CircleAvatar(
-                          backgroundColor: Colors.black,
-                          // backgroundImage: NetworkImage(this.logo!),
-                          radius: 20)),
-                  title: Text('브랜드이름',
-                      style: Theme.of(context).textTheme.headline5),
-                  subtitle: Text('제목',
-                      style: Theme.of(context).textTheme.bodyText2,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis),
-                  isThreeLine: false),
-              ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  onTap: () {},
-                  leading: Container(
-                      decoration: BoxDecoration(shape: BoxShape.circle),
-                      child: const CircleAvatar(
-                          backgroundColor: Colors.black,
-                          // backgroundImage: NetworkImage(this.logo!),
-                          radius: 20)),
-                  title: Text('브랜드이름',
-                      style: Theme.of(context).textTheme.headline5),
-                  subtitle: Text('제목',
-                      style: Theme.of(context).textTheme.bodyText2,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis))
-            ]))
-      ]))
-    ]);
   }
 }
 

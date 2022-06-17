@@ -11,3 +11,7 @@ double maxWidth(context) {
       ? 475
       : MediaQuery.of(context).size.width;
 }
+
+double maxHeight(context) {
+  return MediaQuery.of(context).size.height;
+}
