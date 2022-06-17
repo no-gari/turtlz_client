@@ -1,6 +1,6 @@
-import 'package:turtlz/repositories/order_repository/order_repository.dart';
-import 'package:turtlz/orderForm/view/orderForm_list_page.dart';
-import 'package:turtlz/orderForm/cubit/orderForm_cubit.dart';
+import 'package:turtlz/repositories/order_repository/src/order_repository.dart';
+import 'package:turtlz/modules/orderForm/view/orderForm_list_page.dart';
+import 'package:turtlz/modules/orderForm/cubit/orderForm_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

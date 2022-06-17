@@ -1,7 +1,7 @@
-import 'package:turtlz/orderForm/cubit/orderForm_cubit.dart';
+import 'package:turtlz/modules/orderForm/cubit/orderForm_cubit.dart';
 import 'package:turtlz/support/style/format_unit.dart';
-import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +104,7 @@ class _OrderFormListPageState extends State<OrderFormListPage> {
         },
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Container(
-              width: 200,
+              width: 300,
               child:
                   Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(

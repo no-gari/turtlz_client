@@ -1,5 +1,5 @@
-import 'package:turtlz/orderForm/cubit/orderForm_cubit.dart';
-import 'package:turtlz/repositories/order_repository/models/models.dart';
+import 'package:turtlz/repositories/order_repository/models/order_form.dart';
+import 'package:turtlz/modules/orderForm/cubit/orderForm_cubit.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
