@@ -1,5 +1,8 @@
+import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
+import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
+import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:turtlz/modules/notification/view/notification_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
@@ -11,7 +14,7 @@ class MenuPage extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<MenuPage> {
-  PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController(initialPage: 0);
 
   @override
   bool get wantKeepAlive => true;
@@ -24,24 +27,26 @@ class _NewsScreenState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: SafeArea(
-            child: DefaultTabController(
-                length: 2,
-                child: NestedScrollView(
-                    headerSliverBuilder: (context, innerBoxIsScrolled) {
-                      return [
-                        storeAppBarWidget(),
-                        SliverOverlapAbsorber(
-                            handle:
-                                NestedScrollView.sliverOverlapAbsorberHandleFor(
-                                    context),
-                            sliver: SliverPersistentHeader(
-                                pinned: true, delegate: TabBarDelegate()))
-                      ];
-                    },
-                    body: storeMenuTabbarWidget()))));
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+      return Material(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          child: SafeArea(
+              child: DefaultTabController(
+                  length: 2,
+                  child: NestedScrollView(
+                      headerSliverBuilder: (context, innerBoxIsScrolled) {
+                        return [
+                          storeAppBarWidget(state: state),
+                          SliverOverlapAbsorber(
+                              handle: NestedScrollView
+                                  .sliverOverlapAbsorberHandleFor(context),
+                              sliver: SliverPersistentHeader(
+                                  pinned: true, delegate: TabBarDelegate()))
+                        ];
+                      },
+                      body: storeMenuTabbarWidget()))));
+    });
   }
 
   // 카테고리, 브랜드 분기하는 탭바 부분
@@ -53,7 +58,7 @@ class _NewsScreenState extends State<MenuPage> {
         SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(children: [
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               GridView.count(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -88,7 +93,7 @@ class _NewsScreenState extends State<MenuPage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                  colorFilter: new ColorFilter.mode(
+                                  colorFilter: ColorFilter.mode(
                                       Colors.black.withOpacity(1.0),
                                       BlendMode.softLight),
                                   fit: BoxFit.cover,
@@ -168,11 +173,11 @@ class _NewsScreenState extends State<MenuPage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                  colorFilter: new ColorFilter.mode(
+                                  colorFilter: ColorFilter.mode(
                                       Colors.black.withOpacity(1.0),
                                       BlendMode.softLight),
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(
+                                  image: const NetworkImage(
                                       'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
                       Align(
                           alignment: Alignment.center,
@@ -188,11 +193,11 @@ class _NewsScreenState extends State<MenuPage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                  colorFilter: new ColorFilter.mode(
+                                  colorFilter: ColorFilter.mode(
                                       Colors.black.withOpacity(1.0),
                                       BlendMode.softLight),
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(
+                                  image: const NetworkImage(
                                       'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
                       Align(
                           alignment: Alignment.center,
@@ -201,7 +206,7 @@ class _NewsScreenState extends State<MenuPage> {
                                   .textTheme
                                   .headline4!
                                   .copyWith(color: Colors.white)))
-                    ]),
+                    ])
                   ])
             ])),
         SingleChildScrollView(
@@ -211,8 +216,8 @@ class _NewsScreenState extends State<MenuPage> {
                   contentPadding: EdgeInsets.zero,
                   onTap: () {},
                   leading: Container(
-                      decoration: BoxDecoration(shape: BoxShape.circle),
-                      child: CircleAvatar(
+                      decoration: const BoxDecoration(shape: BoxShape.circle),
+                      child: const CircleAvatar(
                           backgroundColor: Colors.black,
                           // backgroundImage: NetworkImage(this.logo!),
                           radius: 20)),
@@ -228,7 +233,7 @@ class _NewsScreenState extends State<MenuPage> {
                   onTap: () {},
                   leading: Container(
                       decoration: BoxDecoration(shape: BoxShape.circle),
-                      child: CircleAvatar(
+                      child: const CircleAvatar(
                           backgroundColor: Colors.black,
                           // backgroundImage: NetworkImage(this.logo!),
                           radius: 20)),
@@ -244,7 +249,7 @@ class _NewsScreenState extends State<MenuPage> {
                   onTap: () {},
                   leading: Container(
                       decoration: BoxDecoration(shape: BoxShape.circle),
-                      child: CircleAvatar(
+                      child: const CircleAvatar(
                           backgroundColor: Colors.black,
                           // backgroundImage: NetworkImage(this.logo!),
                           radius: 20)),
@@ -253,8 +258,7 @@ class _NewsScreenState extends State<MenuPage> {
                   subtitle: Text('제목',
                       style: Theme.of(context).textTheme.bodyText2,
                       maxLines: 2,
-                      overflow: TextOverflow.ellipsis),
-                  isThreeLine: false)
+                      overflow: TextOverflow.ellipsis))
             ]))
       ]))
     ]);
@@ -263,6 +267,10 @@ class _NewsScreenState extends State<MenuPage> {
 
 // 스토어 최상단 부분 (store, 검색)
 class storeAppBarWidget extends StatelessWidget {
+  final AuthenticationState? state;
+
+  storeAppBarWidget({@required this.state});
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -276,7 +284,7 @@ class storeAppBarWidget extends StatelessWidget {
             background: Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: RichText(
                         text: TextSpan(children: [
                       WidgetSpan(
@@ -287,8 +295,12 @@ class storeAppBarWidget extends StatelessWidget {
                             Text('category.',
                                 style: Theme.of(context).textTheme.headline3),
                             IconButton(
-                                onPressed: () {},
-                                icon: ImageIcon(Svg("assets/icons/noti.svg")))
+                                onPressed: () => state!.status ==
+                                        AuthenticationStatus.authenticated
+                                    ? context.vRouter.toNamed('/notification')
+                                    : showSocialLoginNeededDialog(context),
+                                icon: const ImageIcon(
+                                    Svg("assets/icons/noti.svg")))
                           ]))
                     ]))))));
   }

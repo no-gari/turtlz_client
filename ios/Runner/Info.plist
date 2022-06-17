@@ -33,6 +33,10 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSCameraUsageDescription</key>
+    <string>카메라는 상담에서 사용할 사진을 찍기 위해 사용됩니다.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>마이크는 상담에서 사용할 비디오를 녹화하기 위해 사용됩니다.</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>

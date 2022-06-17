@@ -21,6 +21,8 @@ class _NotificationScreen extends State<NotificationScreen> {
     return BlocProvider(
         create: (_) => NotificationCubit(
             RepositoryProvider.of<NotificationRepository>(context)),
-        child: Scaffold(body: SafeArea(child: NotificationPage())));
+        child: Scaffold(
+            appBar: AppBar(automaticallyImplyLeading: true),
+            body: SafeArea(child: NotificationPage())));
   }
 }

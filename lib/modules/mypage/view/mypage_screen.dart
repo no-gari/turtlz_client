@@ -18,11 +18,6 @@ class _MyPageScreen extends State<MyPageScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-        value: BlocProvider.of<AuthenticationBloc>(context),
-        child: Scaffold(
-            body: SafeArea(
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: MyPage()))));
+        value: BlocProvider.of<AuthenticationBloc>(context), child: MyPage());
   }
 }

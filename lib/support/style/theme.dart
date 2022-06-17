@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 final theme = ThemeData(
   appBarTheme: const AppBarTheme(
-      color: const Color(0xFF37521C),
-      foregroundColor: Colors.white,
-      elevation: 0),
+      color: Colors.white, foregroundColor: Colors.black, elevation: 0),
   dividerColor: Colors.black,
   fontFamily: '',
   bottomAppBarColor: const Color(0xFF37521C),
@@ -14,17 +12,18 @@ final theme = ThemeData(
   accentColor: const Color(0xFF37521C),
   primaryColor: const Color(0xFF37521C),
   inputDecorationTheme: InputDecorationTheme(
-    contentPadding: EdgeInsets.only(left: 11, bottom: 10, top: 10, right: 11),
+    contentPadding:
+        const EdgeInsets.only(left: 11, bottom: 10, top: 10, right: 11),
     labelStyle:
-        TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w300),
+        const TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w300),
     border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(width: 1)),
+        borderSide: const BorderSide(width: 1)),
     focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(width: 1, color: const Color(0xFF37521C))),
+        borderSide: const BorderSide(width: 1, color: Color(0xFF37521C))),
   ),
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
       headline1: TextStyle(
         fontFamily: 'Montserrat',
         fontSize: 35,
