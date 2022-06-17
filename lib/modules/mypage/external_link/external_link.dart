@@ -26,7 +26,7 @@ class _ExternalLinkState extends State<ExternalLink> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.black),
+        appBar: AppBar(automaticallyImplyLeading: true),
         body: SafeArea(
             child: Stack(children: <Widget>[
           WebView(
