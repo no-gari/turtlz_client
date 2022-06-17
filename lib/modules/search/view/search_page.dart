@@ -1,10 +1,12 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
+import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
+import 'dart:convert';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -13,6 +15,21 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final _textEditingController = TextEditingController();
+  late List<String>? list = null;
+
+  Future getSharedPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    list = prefs.getStringList('search');
+    setState(() {
+      prefs.setStringList('search', ['캠박', '오징어']);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getSharedPrefs();
+  }
 
   @override
   void dispose() {
@@ -49,7 +66,12 @@ class _SearchPageState extends State<SearchPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               TextField(
-                                  textInputAction: TextInputAction.search,
+                                  textInputAction: TextInputAction.go,
+                                  onSubmitted: (value) {
+                                    if (value.trim() == '') {
+                                      return null;
+                                    } else {}
+                                  },
                                   autofocus: true,
                                   controller: _textEditingController,
                                   decoration: InputDecoration(
@@ -64,28 +86,22 @@ class _SearchPageState extends State<SearchPage> {
                                               BorderSide(color: Colors.black)),
                                       hintText: '브랜드 혹은 상품을 검색하세요.',
                                       suffixIcon: IconButton(
-                                        icon: Icon(Icons.clear),
+                                        icon: const Icon(Icons.clear),
                                         color: Colors.black,
                                         onPressed: () =>
                                             _textEditingController.clear(),
                                       ))),
-                              SizedBox(height: 30),
-                              Text('최근 검색어',
+                              const SizedBox(height: 30),
+                              Text('추천 검색어',
                                   style: Theme.of(context).textTheme.headline4),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Column(children: [
-                                ListTile(
-                                    title: Text('캠박'),
-                                    trailing: Icon(Icons.clear)),
-                                ListTile(
-                                    title: Text('캠박'),
-                                    trailing: Icon(Icons.clear)),
-                                ListTile(
-                                    title: Text('캠박'),
-                                    trailing: Icon(Icons.clear)),
-                                ListTile(
-                                    title: Text('캠박'),
-                                    trailing: Icon(Icons.clear)),
+                                if (list != null && list!.isNotEmpty)
+                                  for (var item in list!)
+                                    ListTile(
+                                      leading: ,
+                                        title: Text(item),
+                                        trailing: Icon(Icons.clear))
                               ])
                             ])
                       ]))));

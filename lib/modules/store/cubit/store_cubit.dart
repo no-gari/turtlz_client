@@ -13,7 +13,7 @@ import 'package:flutter/cupertino.dart';
 part 'store_state.dart';
 
 class StoreCubit extends Cubit<StoreState> {
-  StoreCubit(this._storeRepository) : super(const StoreState());
+  StoreCubit(this._storeRepository) : super(StoreState(isLoaded: false));
 
   final StoreRepository _storeRepository;
 
@@ -30,6 +30,7 @@ class StoreCubit extends Cubit<StoreState> {
 
     apiResult.when(success: (List? listResponse) {
       emit(state.copyWith(
+          isLoaded: true,
           collections: listResponse!.map((e) => Menu.fromJson(e)).toList()));
     }, failure: (NetworkExceptions? error) {
       emit(state.copyWith(error: error));

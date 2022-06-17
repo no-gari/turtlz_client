@@ -45,7 +45,7 @@ class AuthenticationRepository {
 
   void signOut() async {
     try {
-      _dioClient.delete('/api/user/profile/').whenComplete(() async {
+      _dioClient.delete('/api/v1/user/profile/').whenComplete(() async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.remove("refresh");
         await prefs.remove("access").whenComplete(
@@ -72,7 +72,7 @@ class AuthenticationRepository {
       });
 
       var response =
-          await _dioClient.post('/api/user/social_login/', data: body);
+          await _dioClient.post('/api/v1/user/social_login/', data: body);
       return ApiResult.success(data: response);
     } catch (e) {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
@@ -92,7 +92,7 @@ class AuthenticationRepository {
       Map<String, dynamic> updateUserProfile) async {
     try {
       String body = json.encode(updateUserProfile);
-      var response = await _dioClient.put('/api/user/profile/', data: body);
+      var response = await _dioClient.put('/api/v1/user/profile/', data: body);
 
       return ApiResult.success(
         data: response,

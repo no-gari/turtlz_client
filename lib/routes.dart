@@ -1,6 +1,6 @@
 import 'package:turtlz/modules/notification/notification_detail/view/notification_detail_screen.dart';
 import 'package:turtlz/modules/notification/view/notification_screen.dart';
-import 'package:turtlz/modules/search/search/view/search_screen.dart';
+import 'package:turtlz/modules/search/view/search_screen.dart';
 import 'package:turtlz/modules/mypage/view/mypage_screen.dart';
 import 'package:turtlz/modules/store/view/store_screen.dart';
 import 'package:turtlz/modules/menu/view/menu_screen.dart';

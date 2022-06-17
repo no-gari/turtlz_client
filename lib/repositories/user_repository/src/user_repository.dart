@@ -14,7 +14,7 @@ class UserRepository {
     try {
       final prefs = await SharedPreferences.getInstance();
 
-      var response = await _dioClient.put('/api/user/profile/',
+      var response = await _dioClient.put('/api/v1/user/profile/',
           data: {'firebaseToken': prefs.get('firebaseToken')});
 
       return ApiResult.success(
@@ -30,7 +30,7 @@ class UserRepository {
 
   Future<ApiResult<User>> updateUser() async {
     try {
-      var response = await _dioClient.put('/api/user/profile/', data: {});
+      var response = await _dioClient.put('/api/v1/user/profile/', data: {});
 
       return ApiResult.success(
           data: User(

@@ -19,8 +19,20 @@ class MenuPage extends StatefulWidget {
 class _NewsScreenState extends State<MenuPage> {
   final PageController _pageController = PageController(initialPage: 0);
 
+  late StoreCubit _storeCubit;
+  late BrandCubit _brandCubit;
+
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+    _storeCubit = BlocProvider.of<StoreCubit>(context);
+    _brandCubit = BlocProvider.of<BrandCubit>(context);
+    _storeCubit.getCollections();
+    _brandCubit.getBrands();
+  }
 
   @override
   void dispose() {
@@ -57,9 +69,8 @@ class _NewsScreenState extends State<MenuPage> {
                                   const EdgeInsets.symmetric(horizontal: 20),
                               child: Column(children: [
                                 BlocBuilder<StoreCubit, StoreState>(
-                                    builder: (storeContext, storeState) {
-                                  if (storeState.isLoaded &&
-                                      storeState.collections!.isNotEmpty) {
+                                    builder: (context, state) {
+                                  if (state.isLoaded) {
                                     return Column(children: [
                                       const SizedBox(height: 10),
                                       GridView.count(
@@ -71,76 +82,76 @@ class _NewsScreenState extends State<MenuPage> {
                                           mainAxisSpacing: 10,
                                           childAspectRatio: 1.2,
                                           children: [
-                                            Stack(children: [
-                                              Container(
-                                                  decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius
-                                                          .circular(20),
-                                                      image: DecorationImage(
-                                                          colorFilter:
-                                                              ColorFilter.mode(
-                                                                  Colors
-                                                                      .black
-                                                                      .withOpacity(
-                                                                          1.0),
-                                                                  BlendMode
-                                                                      .softLight),
-                                                          fit: BoxFit.cover,
-                                                          image: const NetworkImage(
-                                                              'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
-                                              Align(
-                                                  alignment: Alignment.center,
-                                                  child: Text('TENT',
-                                                      style:
-                                                          Theme.of(storeContext)
-                                                              .textTheme
-                                                              .headline4!
-                                                              .copyWith(
-                                                                  color: Colors
-                                                                      .white)))
-                                            ])
+                                            for (var collection
+                                                in state.collections!)
+                                              Stack(children: [
+                                                Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
+                                                        image: DecorationImage(
+                                                            colorFilter: ColorFilter.mode(
+                                                                Colors.black
+                                                                    .withOpacity(
+                                                                        1.0),
+                                                                BlendMode
+                                                                    .softLight),
+                                                            fit: BoxFit.cover,
+                                                            image: const NetworkImage(
+                                                                'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
+                                                Align(
+                                                    alignment: Alignment.center,
+                                                    child: Text(collection.name,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .headline4!
+                                                            .copyWith(
+                                                                color: Colors
+                                                                    .white)))
+                                              ])
                                           ])
                                     ]);
+                                  } else {
+                                    return Padding(
+                                        padding: EdgeInsets.only(
+                                            top: maxHeight(context) * 0.25),
+                                        child: Center(
+                                            child: Image.asset(
+                                                'assets/images/indicator.gif',
+                                                width: 100,
+                                                height: 100)));
                                   }
-                                  return Padding(
-                                      padding: EdgeInsets.only(
-                                          top: maxHeight(context) * 0.25),
-                                      child: Center(
-                                          child: Image.asset(
-                                              'assets/images/indicator.gif',
-                                              width: 100,
-                                              height: 100)));
                                 })
                               ])),
                           SingleChildScrollView(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
                               child: BlocBuilder<BrandCubit, BrandListState>(
-                                  builder: (brandContext, brandState) {
-                                if (brandState.isLoaded &&
-                                    brandState.brands!.isNotEmpty) {
+                                  builder: (context, state) {
+                                if (state.isLoaded &&
+                                    state.brands!.isNotEmpty) {
                                   return Column(children: [
-                                    ListTile(
-                                        contentPadding: EdgeInsets.zero,
-                                        onTap: () {},
-                                        leading: Container(
-                                            decoration: const BoxDecoration(
-                                                shape: BoxShape.circle),
-                                            child: const CircleAvatar(
-                                                backgroundColor: Colors.black,
-                                                // backgroundImage: NetworkImage(this.logo!),
-                                                radius: 20)),
-                                        title: Text('브랜드이름',
-                                            style: Theme.of(brandContext)
-                                                .textTheme
-                                                .headline5),
-                                        subtitle: Text('제목',
-                                            style: Theme.of(brandContext)
-                                                .textTheme
-                                                .bodyText2,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis),
-                                        isThreeLine: false)
+                                    for (var brand in state.brands!)
+                                      ListTile(
+                                          contentPadding: EdgeInsets.zero,
+                                          onTap: () {},
+                                          leading: CircleAvatar(
+                                              backgroundColor: Colors.black,
+                                              backgroundImage:
+                                                  NetworkImage(brand.logo!),
+                                              radius: 20),
+                                          title: Text(brand.name!,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline5),
+                                          subtitle: Text(brand.description!,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis),
+                                          isThreeLine: false)
                                   ]);
                                 }
                                 return Padding(

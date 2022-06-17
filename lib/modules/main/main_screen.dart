@@ -1,4 +1,4 @@
-import 'package:turtlz/modules/search/search/view/search_screen.dart';
+import 'package:turtlz/modules/search/view/search_screen.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:turtlz/modules/mypage/view/mypage_screen.dart';
 import 'package:turtlz/modules/store/view/store_screen.dart';
