@@ -1,9 +1,10 @@
-import 'package:turtlz/modules/orderForm/view/orderForm_list_screen.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
+import 'package:turtlz/modules/orderForm/view/orderForm_list_screen.dart';
 import 'package:turtlz/modules/mypage/address/view/address_screen.dart';
 import 'package:turtlz/repositories/user_repository/models/user.dart';
 import 'package:turtlz/modules/store/coupon/view/coupon_screen.dart';
+import 'package:turtlz/support/base_component/company_info.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -44,7 +45,8 @@ class _MyPageState extends State<MyPage> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
           padding: EdgeInsets.only(top: 5),
-          child: Text('My Page', style: Theme.of(context).textTheme.headline3)),
+          child:
+              Text('my page.', style: Theme.of(context).textTheme.headline3)),
       if (is_authenticated) myPageInfo() else loginNeededProfile(),
       Container(
           color: Colors.white,
@@ -112,7 +114,7 @@ class _MyPageState extends State<MyPage> {
 
   Column helpcenterWire(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      menuWidget('Account'),
+      menuWidget('account.'),
       SizedBox(height: 10),
       Column(children: [
         subMenuWidget(
@@ -126,7 +128,7 @@ class _MyPageState extends State<MyPage> {
 
   Column helpcenterWire2(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      menuWidget('Service'),
+      menuWidget('service.'),
       SizedBox(height: 10),
       Column(children: [
         subMenuWidget(
@@ -143,11 +145,8 @@ class _MyPageState extends State<MyPage> {
         ListTile(
             contentPadding: EdgeInsets.all(0),
             dense: true,
-            leading: Text('버전 정보',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: Colors.black, fontSize: 15)),
+            leading:
+                Text('버전 정보', style: Theme.of(context).textTheme.headline5),
             trailing: Text('${_packageInfo.version}',
                 style: TextStyle(color: Colors.black)))
       ])
@@ -156,7 +155,7 @@ class _MyPageState extends State<MyPage> {
 
   Column shoppingWire(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      menuWidget('Shopping'),
+      menuWidget('shopping.'),
       SizedBox(height: 10),
       Column(children: [
         subMenuWidget(
@@ -198,22 +197,27 @@ class _MyPageState extends State<MyPage> {
   }
 
   Widget myPageInfo() {
-    return Container(
-        color: Colors.black,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 15),
-              Row(children: [
-                Text("${user.nickname}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5!
-                        .copyWith(color: Colors.white)),
-              ]),
-              SizedBox(height: 15)
-            ]));
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 30),
+          Text('WELCOME :)',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline3!
+                  .copyWith(color: Colors.black)),
+          const SizedBox(height: 10),
+          RichText(
+              text: TextSpan(
+                  style: Theme.of(context).textTheme.headline3,
+                  children: [
+                TextSpan(text: "${user.nickname}님"),
+                const TextSpan(
+                    text: " 반가워요!", style: TextStyle(color: Colors.black))
+              ])),
+          const SizedBox(height: 10)
+        ]);
   }
 
   Future<bool> requestCameraPermission(BuildContext context) async {
@@ -224,9 +228,9 @@ class _MyPageState extends State<MyPage> {
       showDialog(
           context: context,
           builder: (BuildContext context) {
-            return AlertDialog(content: Text("권한 설정을 확인해주세요."), actions: [
+            return AlertDialog(content: const Text("권한 설정을 확인해주세요."), actions: [
               MaterialButton(
-                  onPressed: () => openAppSettings(), child: Text('설정하기'))
+                  onPressed: () => openAppSettings(), child: const Text('설정하기'))
             ]);
           });
       return false;
@@ -238,42 +242,29 @@ class _MyPageState extends State<MyPage> {
 }
 
 class loginNeededProfile extends StatelessWidget {
-  const loginNeededProfile({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 175,
-        width: double.infinity,
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.info_outline, color: Colors.white),
-              SizedBox(height: 10),
-              Text('로그인이 필요한 서비스입니다.',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2!
-                      .copyWith(color: Colors.white)),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: MaterialButton(
-                      minWidth: 300,
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      child: Text('Login / Register',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6!
-                              .copyWith(color: Colors.white)),
-                      color: Colors.black,
-                      onPressed: () =>
-                          RepositoryProvider.of<AuthenticationRepository>(
-                                  context)
-                              .logOut()))
-            ]));
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 30),
+          Text('로그인이 필요한 서비스입니다.',
+              style: Theme.of(context).textTheme.headline4),
+          const SizedBox(height: 20),
+          Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(20)),
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: GestureDetector(
+                  child: Container(
+                      width: double.infinity,
+                      child: Center(
+                          child: Text('LOGIN / REGISTER',
+                              style: Theme.of(context).textTheme.headline4))),
+                  onTap: () => showSocialLoginNeededDialog(context))),
+          SizedBox(height: 10)
+        ]);
   }
 }

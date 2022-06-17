@@ -35,7 +35,14 @@ class _SearchPageState extends State<SearchPage> {
                 onPressed: () => _textEditingController.clear(),
               ))),
       SizedBox(height: 30),
-      Text('최근 검색어', style: Theme.of(context).textTheme.headline4)
+      Text('최근 검색어', style: Theme.of(context).textTheme.headline4),
+      SizedBox(height: 10),
+      Column(children: [
+        ListTile(title: Text('캠박'), trailing: Icon(Icons.clear)),
+        ListTile(title: Text('캠박'), trailing: Icon(Icons.clear)),
+        ListTile(title: Text('캠박'), trailing: Icon(Icons.clear)),
+        ListTile(title: Text('캠박'), trailing: Icon(Icons.clear)),
+      ])
     ]);
   }
 }

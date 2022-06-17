@@ -1,8 +1,7 @@
-import 'dart:io';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'dart:io';
 
 class ExternalLink extends StatefulWidget {
   ExternalLink({@required this.url});

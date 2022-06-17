@@ -53,6 +53,7 @@ class _NewsScreenState extends State<MenuPage> {
         SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(children: [
+              SizedBox(height: 10),
               GridView.count(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -61,10 +62,146 @@ class _NewsScreenState extends State<MenuPage> {
                   mainAxisSpacing: 10,
                   childAspectRatio: 1.5,
                   children: [
-                    Container(height: 100, color: Colors.black),
-                    Container(height: 100, color: Colors.black),
-                    Container(height: 100, color: Colors.black),
-                    Container(height: 100, color: Colors.black),
+                    Stack(children: [
+                      Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  colorFilter: new ColorFilter.mode(
+                                      Colors.black.withOpacity(1.0),
+                                      BlendMode.softLight),
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
+                      Align(
+                          alignment: Alignment.center,
+                          child: Text('TENT',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: Colors.white)))
+                    ]),
+                    Stack(children: [
+                      Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  colorFilter: new ColorFilter.mode(
+                                      Colors.black.withOpacity(1.0),
+                                      BlendMode.softLight),
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
+                      Align(
+                          alignment: Alignment.center,
+                          child: Text('TENT',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: Colors.white)))
+                    ]),
+                    Stack(children: [
+                      Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  colorFilter: new ColorFilter.mode(
+                                      Colors.black.withOpacity(1.0),
+                                      BlendMode.softLight),
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
+                      Align(
+                          alignment: Alignment.center,
+                          child: Text('TENT',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: Colors.white)))
+                    ]),
+                    Stack(children: [
+                      Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  colorFilter: new ColorFilter.mode(
+                                      Colors.black.withOpacity(1.0),
+                                      BlendMode.softLight),
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
+                      Align(
+                          alignment: Alignment.center,
+                          child: Text('TENT',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: Colors.white)))
+                    ]),
+                    Stack(children: [
+                      Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  colorFilter: new ColorFilter.mode(
+                                      Colors.black.withOpacity(1.0),
+                                      BlendMode.softLight),
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
+                      Align(
+                          alignment: Alignment.center,
+                          child: Text('TENT',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: Colors.white)))
+                    ]),
+                    Stack(children: [
+                      Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  colorFilter: new ColorFilter.mode(
+                                      Colors.black.withOpacity(1.0),
+                                      BlendMode.softLight),
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
+                      Align(
+                          alignment: Alignment.center,
+                          child: Text('TENT',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: Colors.white)))
+                    ]),
+                    Stack(children: [
+                      Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  colorFilter: new ColorFilter.mode(
+                                      Colors.black.withOpacity(1.0),
+                                      BlendMode.softLight),
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
+                      Align(
+                          alignment: Alignment.center,
+                          child: Text('TENT',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: Colors.white)))
+                    ]),
                   ])
             ])),
         SingleChildScrollView(

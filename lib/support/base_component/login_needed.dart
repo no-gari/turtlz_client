@@ -146,13 +146,11 @@ class _LoginWidgetState extends State<LoginWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Login / Register',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5!
-                      .copyWith(color: Colors.black)),
-              SizedBox(height: 5),
-              Text('로그인이 필요한 서비스입니다.'),
-              Text('1분만에 회원가입!'),
+                  style: Theme.of(context).textTheme.headline4),
+              SizedBox(height: 15),
+              Text('로그인이 필요한 서비스입니다.',
+                  style: Theme.of(context).textTheme.headline5),
+              Text('1분만에 회원가입!', style: Theme.of(context).textTheme.headline5),
               SizedBox(height: 15),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 if (_isIOS == true)
