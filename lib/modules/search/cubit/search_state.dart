@@ -1,7 +1,7 @@
 part of 'search_cubit.dart';
 
-class BrandListState extends Equatable {
-  const BrandListState(
+class SearchState extends Equatable {
+  const SearchState(
       {this.keywords,
       this.count,
       this.next,
@@ -35,7 +35,7 @@ class BrandListState extends Equatable {
         page,
       ];
 
-  BrandListState copyWith({
+  SearchState copyWith({
     List<RecommendedKeyword>? keywords,
     int? count,
     String? next,
@@ -46,7 +46,7 @@ class BrandListState extends Equatable {
     bool? isLoaded,
     int? page,
   }) {
-    return BrandListState(
+    return SearchState(
         keywords: keywords ?? this.keywords,
         count: count ?? this.count,
         next: next ?? this.next,

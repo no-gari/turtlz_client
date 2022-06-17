@@ -29,8 +29,8 @@ class SearchCubit extends Cubit<SearchState> {
           .toList();
 
       emit(state.copyWith(
-          keywords: state.brands != null
-              ? state.brands! + newKeywordList!
+          keywords: state.keywords != null
+              ? state.keywords! + newKeywordList!
               : newKeywordList!,
           count: pageResponse.count,
           page: state.page + 1,
