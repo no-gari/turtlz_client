@@ -8,7 +8,8 @@ part of 'recommended_keyword.dart';
 
 RecommendedKeyword _$RecommendedKeywordFromJson(Map<String, dynamic> json) {
   return RecommendedKeyword(
-    json['keyword'] as int?,
+    json['keywords'] as String?,
+    json['order'] as int?,
     json['id'] as int?,
   );
 }
@@ -16,5 +17,6 @@ RecommendedKeyword _$RecommendedKeywordFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$RecommendedKeywordToJson(RecommendedKeyword instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'keyword': instance.keyword,
+      'order': instance.order,
+      'keywords': instance.keywords,
     };

@@ -1,8 +1,8 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:turtlz/modules/search/cubit/search_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
@@ -15,20 +15,14 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final _textEditingController = TextEditingController();
-  late List<String>? list = null;
 
-  Future getSharedPrefs() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    list = prefs.getStringList('search');
-    setState(() {
-      prefs.setStringList('search', ['캠박', '오징어']);
-    });
-  }
+  late SearchCubit _searchCubit;
 
   @override
   void initState() {
     super.initState();
-    getSharedPrefs();
+    _searchCubit = BlocProvider.of<SearchCubit>(context);
+    _searchCubit.getKeywords();
   }
 
   @override
@@ -95,14 +89,30 @@ class _SearchPageState extends State<SearchPage> {
                               Text('추천 검색어',
                                   style: Theme.of(context).textTheme.headline4),
                               const SizedBox(height: 10),
-                              Column(children: [
-                                if (list != null && list!.isNotEmpty)
-                                  for (var item in list!)
-                                    ListTile(
-                                      leading: ,
-                                        title: Text(item),
-                                        trailing: Icon(Icons.clear))
-                              ])
+                              BlocBuilder<SearchCubit, SearchState>(
+                                  builder: (context, state) {
+                                if (state.isLoaded == true) {
+                                  return Column(children: [
+                                    if (state.keywords != null &&
+                                        state.keywords!.isNotEmpty)
+                                      for (var i = 0;
+                                          i < state.keywords!.length;
+                                          i++)
+                                        ListTile(
+                                            onTap: () {},
+                                            leading: Text((i + 1).toString(),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline4),
+                                            title: Text(
+                                                state.keywords![i].keywords!,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline5))
+                                  ]);
+                                }
+                                return Container(color: Colors.transparent);
+                              })
                             ])
                       ]))));
     });
