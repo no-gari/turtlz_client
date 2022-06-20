@@ -72,7 +72,7 @@ class AuthenticationRepository {
       });
 
       var response =
-          await _dioClient.post('/api/v1/user/social_login/', data: body);
+          await _dioClient.signinPost('/api/v1/user/social_login/', data: body);
       return ApiResult.success(data: response);
     } catch (e) {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));

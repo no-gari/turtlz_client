@@ -102,6 +102,34 @@ class DioClient {
     }
   }
 
+  Future<dynamic> signinPost(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      var response = await _dio.post(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return response.data;
+    } on DioError catch (dioError) {
+      _handleDioError(dioError);
+    } catch (e) {
+      _handleError(e);
+    }
+  }
+
   Future<dynamic> post(
     String uri, {
     data,
