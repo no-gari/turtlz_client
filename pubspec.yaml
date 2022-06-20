@@ -21,7 +21,7 @@ dependencies:
   package_info:
   json_annotation:
   shared_preferences:
-  json_serializable: ^4.1.0
+  json_serializable:
 
   formz: ^0.4.0
   logger: ^1.1.0
@@ -72,7 +72,8 @@ dependencies:
   kpostal: ^0.4.2
 
   # payment
-  bootpay: ^4.2.1
+#  bootpay: ^4.2.1
+  iamport_flutter: ^0.10.1+3
   flutter_multi_formatter:
 
 dev_dependencies:

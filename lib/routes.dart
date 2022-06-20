@@ -1,4 +1,8 @@
 import 'package:turtlz/modules/notification/notification_detail/view/notification_detail_screen.dart';
+import 'package:turtlz/modules/store/product/product_detail/view/product_detail_screen.dart';
+import 'package:turtlz/modules/search/search_result/view/search_result_screen.dart';
+import 'package:turtlz/modules/search/product_search/product_search_screen.dart';
+import 'package:turtlz/modules/search/brand_search/brand_search_screen.dart';
 import 'package:turtlz/modules/notification/view/notification_screen.dart';
 import 'package:turtlz/modules/search/view/search_screen.dart';
 import 'package:turtlz/modules/mypage/view/mypage_screen.dart';
@@ -16,6 +20,10 @@ final routes = [
     VWidget(path: MyPageScreen.routeName, widget: MyPageScreen()),
     VWidget(path: SearchScreen.routeName, widget: SearchScreen()),
     VWidget(
+        path: 'product/:productId',
+        widget: ProductDetailScreen(),
+        name: '/productDetail'),
+    VWidget(
         path: NotificationScreen.routeName,
         widget: NotificationScreen(),
         name: '/notification',
@@ -24,7 +32,21 @@ final routes = [
               path: ':id',
               widget: NotificationDetailScreen(),
               name: '/notificationDetail')
-        ])
+        ]),
+    VWidget(
+        path: 'search/:keyword',
+        widget: SearchResultScreen(),
+        name: '/search_result',
+        stackedRoutes: [
+          VWidget(
+              path: 'product/:keyword',
+              widget: ProductSearchScreen(),
+              name: '/search_product_result'),
+          VWidget(
+              path: 'brand/:keyword',
+              widget: BrandSearchScreen(),
+              name: '/search_brand_result'),
+        ]),
   ]),
   VWidget(path: '*', widget: MainScreen())
 ];

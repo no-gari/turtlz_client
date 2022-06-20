@@ -1,3 +1,4 @@
+import 'package:iamport_flutter/model/payment_data.dart';
 import 'package:turtlz/modules/store/order/view/order_cancel_page.dart';
 import 'package:turtlz/modules/store/order/cubit/payment_cubit.dart';
 import 'package:turtlz/modules/store/order/cubit/order_cubit.dart';
@@ -7,11 +8,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 /* 아임포트 결제 모듈을 불러옵니다. */
+import 'package:iamport_flutter/model/payment_data.dart';
 import 'package:iamport_flutter/iamport_payment.dart';
 import 'order_result_page.dart';
 
 /* 아임포트 결제 데이터 모델을 불러옵니다. */
-// import 'package:iamport_flutter/model/payment_data.dart' as \;
 
 class OrderPaymentPage extends StatefulWidget {
   OrderPaymentPage({@required this.method});
@@ -133,7 +134,7 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
                   buyerPostcode:
                       '${_orderCubit.state.orderTemp!.address!.postalCode}',
                   // 구매자 우편번호
-                  appScheme: 'aroundus', // 앱 URL scheme
+                  appScheme: 'turtlz', // 앱 URL scheme
                 ),
                 /* [필수입력] 콜백 함수 */
                 callback: (Map<String, String> result) {

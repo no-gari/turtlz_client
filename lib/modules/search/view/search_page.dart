@@ -6,7 +6,6 @@ import 'package:turtlz/modules/search/cubit/search_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
-import 'dart:convert';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -62,9 +61,14 @@ class _SearchPageState extends State<SearchPage> {
                               TextField(
                                   textInputAction: TextInputAction.go,
                                   onSubmitted: (value) {
-                                    if (value.trim() == '') {
-                                      return null;
-                                    } else {}
+                                    if (value.trim() != '') {
+                                      context.vRouter.toNamed('/search_result',
+                                          pathParameters: {
+                                            'keyword':
+                                                _textEditingController.text
+                                          });
+                                      _textEditingController.clear();
+                                    }
                                   },
                                   autofocus: true,
                                   controller: _textEditingController,
@@ -99,7 +103,14 @@ class _SearchPageState extends State<SearchPage> {
                                           i < state.keywords!.length;
                                           i++)
                                         ListTile(
-                                            onTap: () {},
+                                            onTap: () {
+                                              context.vRouter.toNamed(
+                                                  '/search_result',
+                                                  pathParameters: {
+                                                    'keyword': state
+                                                        .keywords![i].keywords!
+                                                  });
+                                            },
                                             leading: Text((i + 1).toString(),
                                                 style: Theme.of(context)
                                                     .textTheme

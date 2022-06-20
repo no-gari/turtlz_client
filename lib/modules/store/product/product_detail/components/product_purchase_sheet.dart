@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:turtlz/repositories/product_repository/models/product.dart';
 import 'package:turtlz/repositories/product_repository/models/models.dart';
 import 'package:turtlz/repositories/cart_repository/models/cart_temp.dart';
@@ -7,12 +5,12 @@ import 'package:turtlz/modules/store/product/cubit/product_cubit.dart';
 import 'package:turtlz/repositories/cart_repository/models/cart.dart';
 import 'package:turtlz/modules/store/order/view/order_screen.dart';
 import 'package:turtlz/support/style/format_unit.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class ProductPurchaseSheet extends StatefulWidget {
   @override
@@ -63,9 +61,9 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
           .contains(false);
 
       return Container(
-          height: Adaptive.h(modalHeight),
-          padding: EdgeInsets.only(top: Adaptive.h(5)),
-          decoration: BoxDecoration(
+          height: 500,
+          padding: const EdgeInsets.only(top: 30),
+          decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(25), topRight: Radius.circular(25))),
           child: Column(
@@ -74,68 +72,75 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
                 hasCart
                     ? GestureDetector(
                         onTap: () {
-                          print(selectedOptions);
-
                           setState(() {
                             selectedOptions = List.generate(
-                                _product.options!.length,
-                                (index) => TypeGroup(
-                                    option: Option(
-                                        Id: _product.options![index].Id,
-                                        name: _product.options![index].name)));
+                                _product.options!.length, (index) {
+                              return TypeGroup(
+                                  option: Option(
+                                      Id: _product.options![index].Id,
+                                      name: _product.options![index].name));
+                            });
                           });
                         },
-                        child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 10),
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                color: Colors.white),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("옵션을 선택해주세요",
-                                      style:
-                                          TextStyle(color: Colors.grey[600])),
-                                  Icon(Icons.keyboard_arrow_down_sharp)
-                                ])))
-                    : Wrap(
-                        runSpacing: 5,
-                        children: optionPurchase(_product.options!)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 10),
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 1, color: Colors.grey),
+                                  color: Colors.white),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("옵션을 선택해주세요",
+                                        style:
+                                            TextStyle(color: Colors.grey[600])),
+                                    const Icon(Icons.keyboard_arrow_down_sharp)
+                                  ])),
+                        ))
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Wrap(
+                            runSpacing: 5,
+                            children: optionPurchase(_product.options!))),
                 hasCart
                     ? Expanded(
                         child: ListView.separated(
                             itemBuilder: (context, index) {
-                              return ListTile(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(color: Colors.grey),
-                                  ),
-                                  minVerticalPadding: 15,
-                                  title: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                            child: Text(
-                                                "${cartTempList[index].variants!.variantName}",
-                                                style:
-                                                    theme.textTheme.bodyText2,
-                                                maxLines: 1,
-                                                overflow:
-                                                    TextOverflow.ellipsis)),
-                                        IconButton(
-                                            padding: EdgeInsets.zero,
-                                            alignment: Alignment.centerRight,
-                                            icon: Icon(Icons.clear),
-                                            onPressed: () {
-                                              if (index == 0 &&
-                                                  cartTempList.length == 1) {
-                                                setState(() {
-                                                  cartTempList = [];
-                                                  selectedOptions =
-                                                      List.generate(
+                              return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: ListTile(
+                                      shape: const RoundedRectangleBorder(
+                                          side: BorderSide(color: Colors.grey)),
+                                      minVerticalPadding: 5,
+                                      title: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                                child: Text(
+                                                    "${cartTempList[index].variants!.variantName}",
+                                                    style: theme
+                                                        .textTheme.headline5,
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis)),
+                                            IconButton(
+                                                padding: EdgeInsets.zero,
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                icon: const Icon(Icons.clear),
+                                                onPressed: () {
+                                                  if (index == 0 &&
+                                                      cartTempList.length ==
+                                                          1) {
+                                                    setState(() {
+                                                      cartTempList = [];
+                                                      selectedOptions = List.generate(
                                                           _product
                                                               .options!.length,
                                                           (index) => TypeGroup(
@@ -148,93 +153,104 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
                                                                       .options![
                                                                           index]
                                                                       .name)));
-                                                });
-                                              } else {
-                                                setState(() {
-                                                  cartTempList.removeAt(index);
-                                                });
-                                              }
-                                            })
-                                      ]),
-                                  subtitle: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                            height: Adaptive.h(5),
-                                            margin: EdgeInsets.only(top: 5),
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    width: 1,
-                                                    color: Colors.grey),
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  IconButton(
-                                                      icon: Icon(Icons.remove),
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          if (cartTempList[
-                                                                      index]
-                                                                  .quantity! >
-                                                              1) {
-                                                            cartTempList[
-                                                                index] = cartTempList[
-                                                                    index]
-                                                                .copyWith(
-                                                                    quantity:
-                                                                        cartTempList[index].quantity! -
-                                                                            1);
-                                                          }
-                                                        });
-                                                      }),
-                                                  Text(
-                                                      "${cartTempList[index].quantity}"),
-                                                  IconButton(
-                                                      icon: Icon(Icons.add),
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          if (cartTempList[
-                                                                      index]
-                                                                  .quantity! <
-                                                              100) {
-                                                            cartTempList[
-                                                                index] = cartTempList[
-                                                                    index]
-                                                                .copyWith(
-                                                                    quantity:
-                                                                        cartTempList[index].quantity! +
-                                                                            1);
-                                                          }
-                                                        });
-                                                      })
-                                                ])),
-                                        Text(
-                                            "${currencyFromString((cartTempList[index].variants!.discountPrice! * cartTempList[index].quantity!).toString())}",
-                                            style: theme.textTheme.bodyText1!
-                                                .copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold))
-                                      ]));
+                                                    });
+                                                  } else {
+                                                    setState(() {
+                                                      cartTempList
+                                                          .removeAt(index);
+                                                    });
+                                                  }
+                                                })
+                                          ]),
+                                      subtitle: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                                height: 30,
+                                                margin: const EdgeInsets.only(
+                                                    top: 5),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        width: 1,
+                                                        color: Colors.grey),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      IconButton(
+                                                          iconSize: 15,
+                                                          icon: const Icon(
+                                                              Icons.remove),
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              if (cartTempList[
+                                                                          index]
+                                                                      .quantity! >
+                                                                  1) {
+                                                                cartTempList[
+                                                                    index] = cartTempList[
+                                                                        index]
+                                                                    .copyWith(
+                                                                        quantity:
+                                                                            cartTempList[index].quantity! -
+                                                                                1);
+                                                              }
+                                                            });
+                                                          }),
+                                                      Text(
+                                                          "${cartTempList[index].quantity}"),
+                                                      IconButton(
+                                                          iconSize: 15,
+                                                          icon: const Icon(
+                                                              Icons.add),
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              if (cartTempList[
+                                                                          index]
+                                                                      .quantity! <
+                                                                  100) {
+                                                                cartTempList[
+                                                                    index] = cartTempList[
+                                                                        index]
+                                                                    .copyWith(
+                                                                        quantity:
+                                                                            cartTempList[index].quantity! +
+                                                                                1);
+                                                              }
+                                                            });
+                                                          })
+                                                    ])),
+                                            Text(
+                                                currencyFromString(
+                                                    (cartTempList[index]
+                                                                .variants!
+                                                                .discountPrice! *
+                                                            cartTempList[index]
+                                                                .quantity!)
+                                                        .toString()),
+                                                style:
+                                                    theme.textTheme.headline5)
+                                          ])));
                             },
                             itemCount: cartTempList.length,
                             separatorBuilder:
                                 (BuildContext context, int index) =>
                                     const SizedBox(height: 10)))
-                    : SizedBox(height: 0),
-                cartTempList.length > 0
-                    ? purchaseSummary()
-                    : SizedBox(height: 0),
-                Container(
-                    height: 80,
+                    : const SizedBox(height: 0),
+                if (cartTempList.isNotEmpty) purchaseSummary(),
+                SizedBox(
+                    height: 70,
                     child: Row(children: [
                       GestureDetector(
                           onTap: () {
-                            if (cartTempList.length > 0) {
+                            if (cartTempList.isNotEmpty) {
                               _productCubit.createCard(_product, cartTempList);
                               showDialog(
                                   context: context,
@@ -255,14 +271,16 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
                             }
                           },
                           child: Container(
-                              width: 200,
+                              width: maxWidth(context) / 2,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 1, color: Colors.black),
+                                  border: Border(
+                                      top: BorderSide(
+                                          color: theme.primaryColor, width: 1)),
                                   color: Colors.white),
                               child: Text("장바구니 담기",
-                                  style: theme.textTheme.button))),
+                                  style: theme.textTheme.headline5!
+                                      .copyWith(color: theme.primaryColor)))),
                       GestureDetector(
                           onTap: () {
                             List<Cart> carts = cartTempList
@@ -278,7 +296,7 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
                                     ))
                                 .toList();
 
-                            if (cartTempList.length > 0) {
+                            if (cartTempList.isNotEmpty) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -289,8 +307,8 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
                             }
                           },
                           child: Container(
-                              color: Colors.black,
-                              width: 200,
+                              color: theme.primaryColor,
+                              width: maxWidth(context) / 2,
                               alignment: Alignment.center,
                               child: Text("구매하기",
                                   style: theme.textTheme.button!
@@ -304,12 +322,10 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
     showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(title: Text("상품을 선택해주세요."), actions: [
+          return AlertDialog(title: const Text("상품을 선택해주세요."), actions: [
             MaterialButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text("확인"))
+                onPressed: () => Navigator.pop(context),
+                child: const Text("확인"))
           ]);
         });
   }
@@ -322,11 +338,12 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
                   key: GlobalKey(),
                   title: RichText(
                       text:
-                          TextSpan(style: theme.textTheme.bodyText2, children: [
-                    TextSpan(text: "${options[i].name} "),
+                          TextSpan(style: theme.textTheme.headline5, children: [
+                    TextSpan(text: "${options[i].name}"),
                     TextSpan(
-                        text:
-                            "${selectedOptions[i].variation == null ? "" : selectedOptions[i].variation!.value}")
+                        text: selectedOptions[i].variation == null
+                            ? ""
+                            : selectedOptions[i].variation!.value)
                   ])),
                   // maintainState: true,
                   initiallyExpanded: i == selected,
@@ -351,7 +368,7 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
 
                         return ListTile(
                             title: available
-                                ? Text("${options[i].variations![index].value}")
+                                ? Text(options[i].variations![index].value)
                                 : Text(
                                     "${options[i].variations![index].value} (품절)",
                                     style: TextStyle(color: Colors.grey)),
@@ -414,10 +431,9 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
                                           title: Text("품절된 옵션입니다."),
                                           actions: [
                                             MaterialButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text("확인"))
+                                                onPressed: () =>
+                                                    Navigator.pop(context),
+                                                child: const Text("확인"))
                                           ]);
                                     });
                               }
@@ -427,7 +443,6 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
   }
 
   Widget purchaseSummary() {
-    print(cartTempList);
     num total = cartTempList.fold(
         0,
         (pre, cartTemp) =>
@@ -444,8 +459,8 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text("총 ${cartTempList.length}개의 상품"),
           RichText(
-              text: TextSpan(style: theme.textTheme.bodyText2, children: [
-            TextSpan(text: "총 금액 "),
+              text: TextSpan(style: theme.textTheme.bodyText1, children: [
+            const TextSpan(text: "총 금액 "),
             TextSpan(
                 text: "${currencyFromString(total.toString())}",
                 style:
@@ -457,12 +472,9 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
   List<Widget> productQuantity() {
     return [
       Card(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text("수량",
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: Adaptive.sp(15)))
-      ]))
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [Text("수량")]))
     ];
   }
 }

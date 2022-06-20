@@ -13,6 +13,7 @@ import 'package:dio/dio.dart';
 import 'bloc_observer.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   await firebaseInit();
   // await amplitudeInit();
