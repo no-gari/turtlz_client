@@ -51,8 +51,8 @@ class _SearchPageState extends State<SearchPage> {
                                           AuthenticationStatus.authenticated
                                       ? context.vRouter.toNamed('/notification')
                                       : showSocialLoginNeededDialog(context),
-                                  icon: const ImageIcon(
-                                      Svg("assets/icons/noti.svg")))
+                                  icon: ImageIcon(Svg("assets/icons/noti.svg"),
+                                      color: Theme.of(context).primaryColor))
                             ]),
                         const SizedBox(height: 20),
                         Column(

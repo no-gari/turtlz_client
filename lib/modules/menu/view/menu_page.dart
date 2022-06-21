@@ -8,6 +8,7 @@ import 'package:turtlz/support/style/format_unit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
+import 'package:turtlz/support/style/theme.dart';
 import 'package:vrouter/vrouter.dart';
 import 'dart:math' as math;
 
@@ -204,8 +205,8 @@ class storeAppBarWidget extends StatelessWidget {
                                         AuthenticationStatus.authenticated
                                     ? context.vRouter.toNamed('/notification')
                                     : showSocialLoginNeededDialog(context),
-                                icon: const ImageIcon(
-                                    Svg("assets/icons/noti.svg")))
+                                icon: ImageIcon(Svg("assets/icons/noti.svg"),
+                                    color: theme.primaryColor))
                           ]))
                     ]))))));
   }

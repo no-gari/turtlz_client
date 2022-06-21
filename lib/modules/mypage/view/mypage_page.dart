@@ -10,6 +10,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:turtlz/support/style/theme.dart';
 import 'package:vrouter/vrouter.dart';
 import 'components/menu_widgets.dart';
 
@@ -57,8 +58,8 @@ class _MyPageState extends State<MyPage> {
                                           AuthenticationStatus.authenticated
                                       ? context.vRouter.toNamed('/notification')
                                       : showSocialLoginNeededDialog(context),
-                                  icon: const ImageIcon(
-                                      Svg("assets/icons/noti.svg")))
+                                  icon: ImageIcon(Svg("assets/icons/noti.svg"),
+                                      color: theme.primaryColor))
                             ]),
                         if (state.status == AuthenticationStatus.authenticated)
                           Column(
