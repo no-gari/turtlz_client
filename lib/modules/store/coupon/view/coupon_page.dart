@@ -1,12 +1,11 @@
-import 'package:turtlz/modules/store/coupon/cubit/coupon_cubit.dart';
 import 'package:turtlz/repositories/coupon_repository/models/coupon.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:turtlz/modules/store/coupon/cubit/coupon_cubit.dart';
+import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter/material.dart';
-
 import 'components/coupon_tile_widget.dart';
+import 'package:flutter/material.dart';
 
 class CouponPage extends StatefulWidget {
   final bool? isMypage;
@@ -39,41 +38,52 @@ class _CouponPage extends State<CouponPage> {
               if (coupons != null && coupons.isNotEmpty) {
                 return Stack(children: [
                   Column(children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("COUPON", style: theme.textTheme.headline4)
-                        ]),
+                    Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("coupons.", style: theme.textTheme.headline3)
+                            ])),
                     SingleChildScrollView(
-                        padding: EdgeInsets.symmetric(vertical: 30),
-                        child: Column(
-                            children: List.generate(
-                                coupons.length,
-                                (index) => GestureDetector(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 30),
+                        child: Column(children: [
+                          Column(
+                              children: List.generate(
+                                  coupons.length,
+                                  (index) => GestureDetector(
                                       onTap: () {
-                                        setState(() {
-                                          selected = index;
-                                        });
+                                        setState(() => selected = index);
                                       },
-                                      child: couponTile(_couponCubit,
-                                          coupons[index]!, selected == index),
-                                    ))))
+                                      child: couponTile(
+                                          _couponCubit,
+                                          coupons[index]!,
+                                          selected == index,
+                                          widget.isMypage!,
+                                          context)))),
+                          const SizedBox(height: 20),
+                          if (widget.isMypage == false)
+                            GestureDetector(
+                                onTap: () async {
+                                  Navigator.pop(
+                                      context, coupons[selected]!.Id!);
+                                },
+                                child: Container(
+                                    height: 60,
+                                    width: maxWidth(context),
+                                    decoration: BoxDecoration(
+                                        color: theme.primaryColor,
+                                        border: Border.all(
+                                            color: theme.primaryColor),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    alignment: Alignment.center,
+                                    child: Text("설정완료",
+                                        style: theme.textTheme.headline5!
+                                            .copyWith(color: Colors.white))))
+                        ]))
                   ]),
-                  if (widget.isMypage == false)
-                    Align(
-                        alignment: Alignment.bottomCenter,
-                        child: GestureDetector(
-                            onTap: () async {
-                              Navigator.pop(context, coupons[selected]!.Id!);
-                            },
-                            child: Container(
-                                height: Adaptive.h(10),
-                                width: 300,
-                                color: Colors.black,
-                                alignment: Alignment.center,
-                                child: Text("설정완료",
-                                    style: theme.textTheme.button!
-                                        .copyWith(color: Colors.white)))))
                 ]);
               } else {
                 return Center(
@@ -82,14 +92,9 @@ class _CouponPage extends State<CouponPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                       Container(
-                        child: SvgPicture.asset(
-                          'assets/images/empty_cart.svg',
-                          height: 80,
-                          color: theme.accentColor,
-                        ),
-                      ),
-                      Text("아무것도 없어요!",
-                          style: theme.textTheme.headline2!.copyWith(height: 2))
+                          child: Center(
+                              child: Text('no coupons :(',
+                                  style: theme.textTheme.headline3))),
                     ]));
               }
             });

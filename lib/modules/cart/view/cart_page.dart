@@ -146,9 +146,7 @@ class _CartPageState extends State<CartPage> {
                                               width: maxWidth(context),
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color:
-                                                          theme.primaryColor),
+                                                  color: theme.primaryColor,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           20)),
@@ -157,8 +155,8 @@ class _CartPageState extends State<CartPage> {
                                                       style: theme
                                                           .textTheme.headline5!
                                                           .copyWith(
-                                                              color: theme
-                                                                  .primaryColor)))))
+                                                              color: Colors
+                                                                  .white)))))
                                     ]);
                               } else {
                                 return Center(

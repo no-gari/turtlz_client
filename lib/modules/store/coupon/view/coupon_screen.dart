@@ -2,8 +2,6 @@ import 'package:turtlz/repositories/coupon_repository/src/coupon_repository.dart
 import 'package:turtlz/modules/store/coupon/cubit/coupon_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'coupon_page.dart';
 
 class CouponScreen extends StatefulWidget {
@@ -23,19 +21,11 @@ class CouponScreen extends StatefulWidget {
 class _CouponScreen extends State<CouponScreen> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
-      ),
-      body: BlocProvider<CouponCubit>(
-        create: (context) =>
-            CouponCubit(RepositoryProvider.of<CouponRepository>(context)),
-        child: CouponPage(isMypage: widget.isMypage),
-      ),
-    );
+        appBar: AppBar(automaticallyImplyLeading: true),
+        body: BlocProvider<CouponCubit>(
+            create: (context) =>
+                CouponCubit(RepositoryProvider.of<CouponRepository>(context)),
+            child: CouponPage(isMypage: widget.isMypage)));
   }
 }

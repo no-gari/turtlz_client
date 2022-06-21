@@ -2,6 +2,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart' as Svg;
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:turtlz/support/base_component/company_info.dart';
 import 'package:turtlz/support/style/format_unit.dart';
 
 class StorePage extends StatefulWidget {
@@ -157,7 +158,8 @@ class _StorePageState extends State<StorePage> {
                         TextSpan(text: '지금 캠퍼들은?\n'),
                         TextSpan(text: '이런 상품들을 보고 있어요')
                       ])),
-                  Text('고민될 땐, 다른 캠퍼들이 탐내는 상품을 살펴보아요.')
+                  Text('고민될 땐, 다른 캠퍼들이 탐내는 상품을 살펴보아요.'),
+                  CompanyInfo()
                 ]))));
   }
 }

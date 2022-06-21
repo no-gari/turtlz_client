@@ -116,13 +116,9 @@ class _AddressPage extends State<AddressPage>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                       Container(
-                          child: SvgPicture.asset(
-                              'assets/images/empty_cart.svg',
-                              height: 80,
-                              color: theme.accentColor)),
-                      Text("아무것도 없어요!",
-                          style:
-                              theme.textTheme.headline2!.copyWith(height: 2)),
+                          child: Text("no address :(",
+                              style: theme.textTheme.headline2!
+                                  .copyWith(height: 2))),
                       GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -133,7 +129,7 @@ class _AddressPage extends State<AddressPage>
                                             value: _addressCubit,
                                             child: AddressFormPage())));
                           },
-                          child: Text("배송지 추가",
+                          child: Text("배송지를 추가해 주세요.",
                               style: theme.textTheme.headline5!.copyWith(
                                   decoration: TextDecoration.underline)))
                     ]));

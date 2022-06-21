@@ -156,13 +156,12 @@ class _OrderPageState extends State<OrderPage> {
                               width: maxWidth(context),
                               height: 60,
                               decoration: BoxDecoration(
-                                  border: Border.all(color: theme.primaryColor),
+                                  color: theme.primaryColor,
                                   borderRadius: BorderRadius.circular(20)),
                               child: Center(
                                   child: Text("결제하기",
                                       style: theme.textTheme.headline5!
-                                          .copyWith(
-                                              color: theme.primaryColor)))))
+                                          .copyWith(color: Colors.white)))))
                     ])
                   ]));
             });

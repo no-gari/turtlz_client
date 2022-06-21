@@ -1,5 +1,6 @@
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
+import 'package:turtlz/support/base_component/company_info.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:turtlz/modules/search/cubit/search_cubit.dart';
