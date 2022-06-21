@@ -29,13 +29,27 @@ class _StorePageState extends State<StorePage> {
                             icon: ImageIcon(Svg.Svg("assets/icons/noti.svg"),
                                 color: Theme.of(context).primaryColor))
                       ]),
-                  SizedBox(height: 20),
-                  Container(
+                  const SizedBox(height: 10),
+                  // Text('events.',
+                  //     style: Theme.of(context)
+                  //         .textTheme
+                  //         .headline4!
+                  //         .copyWith(color: Theme.of(context).primaryColor)),
+                  // const Text('어디에도 없는 터틀즈 만의 혜택'),
+                  const SizedBox(height: 10),
+                  SizedBox(
                       height: (maxWidth(context) - 40) * 1131 / 1252,
                       width: double.maxFinite,
                       child: Swiper(
                           autoplay: false,
-                          control: SwiperControl(color: Colors.white),
+                          pagination: SwiperPagination(
+                              alignment: Alignment.bottomCenter,
+                              builder: DotSwiperPaginationBuilder(
+                                  color: Colors.grey,
+                                  activeColor: Theme.of(context).primaryColor)),
+                          // control: new SwiperControl(
+                          //   color: Color(0xff38547C),
+                          // ),
                           scrollDirection: Axis.horizontal,
                           onTap: (int index) {},
                           itemBuilder: (BuildContext context, int index) =>
@@ -44,7 +58,7 @@ class _StorePageState extends State<StorePage> {
                                       borderRadius: BorderRadius.circular(20),
                                       color: Colors.grey)),
                           itemCount: 5)),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

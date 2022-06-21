@@ -39,12 +39,12 @@ dependencies:
   firebase_messaging_platform_interface:
 
   # web
-  url_strategy: ^0.2.0
-  vrouter: ^1.2.0+21
   firebase_core_web:
+  vrouter: ^1.2.0+21
+  url_strategy: ^0.2.0
   universal_html: ^2.0.8
+  url_launcher_web: ^2.0.6
   firebase_messaging_web: ^2.4.0
-  url_launcher_web: 2.0.6
 
   # bloc
   bloc: ^7.2.1

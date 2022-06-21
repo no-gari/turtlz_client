@@ -15,7 +15,7 @@ class BrandDetailScreen extends StatefulWidget {
 class _BrandDetailScreenState extends State<BrandDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    final Id = context.vRouter.pathParameters['Id'];
+    final brandId = context.vRouter.pathParameters['brandId'];
 
     return MultiBlocProvider(
         providers: [
@@ -25,6 +25,6 @@ class _BrandDetailScreenState extends State<BrandDetailScreen> {
         ],
         child: Scaffold(
             appBar: AppBar(automaticallyImplyLeading: true),
-            body: BrandDetailPage(Id: Id)));
+            body: BrandDetailPage(Id: brandId)));
   }
 }

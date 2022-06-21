@@ -1,3 +1,5 @@
+import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_page.dart';
+import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_screen.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/modules/brands/brand_home/cubit/brand_cubit.dart';
@@ -136,7 +138,13 @@ class _NewsScreenState extends State<MenuPage> {
                                     for (var brand in state.brands!)
                                       ListTile(
                                           contentPadding: EdgeInsets.zero,
-                                          onTap: () {},
+                                          onTap: () {
+                                            context.vRouter.toNamed(
+                                                BrandDetailScreen.routeName,
+                                                pathParameters: {
+                                                  'brandId': brand.Id!
+                                                });
+                                          },
                                           leading: CircleAvatar(
                                               backgroundColor: Colors.black,
                                               backgroundImage:
@@ -205,7 +213,8 @@ class storeAppBarWidget extends StatelessWidget {
                                         AuthenticationStatus.authenticated
                                     ? context.vRouter.toNamed('/notification')
                                     : showSocialLoginNeededDialog(context),
-                                icon: ImageIcon(Svg("assets/icons/noti.svg"),
+                                icon: ImageIcon(
+                                    const Svg("assets/icons/noti.svg"),
                                     color: theme.primaryColor))
                           ]))
                     ]))))));

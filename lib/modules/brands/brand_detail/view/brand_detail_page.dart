@@ -55,30 +55,30 @@ class _BrandDetailPageState extends State<BrandDetailPage> {
                       CircleAvatar(
                           backgroundImage: NetworkImage(state.logo!),
                           radius: 20),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(state.name!,
                           style: Theme.of(context).textTheme.headline5)
                     ]),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(state.description!),
-                    Divider(height: Adaptive.h(5))
+                    const SizedBox(height: 20)
                   ])),
           Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('PRODUCTS',
-                        style: Theme.of(context).textTheme.headline5),
-                    SizedBox(height: 20),
+                    // Text('products',
+                    //     style: Theme.of(context).textTheme.headline4),
+                    const SizedBox(height: 20),
                     productList.length != 0
                         ? GridView.count(
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             crossAxisCount: 2,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 15,
-                            childAspectRatio: (4 / 7.5),
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 0,
+                            childAspectRatio: (4 / 7),
                             children: List.generate(
                                 state.products!.length,
                                 (index) =>

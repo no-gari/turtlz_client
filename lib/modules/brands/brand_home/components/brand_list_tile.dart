@@ -1,5 +1,6 @@
 import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:vrouter/vrouter.dart';
 
 class BrandListTile extends StatelessWidget {
   BrandListTile(
@@ -14,8 +15,8 @@ class BrandListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
         contentPadding: EdgeInsets.zero,
-        onTap: () => Navigator.pushNamed(context, BrandDetailScreen.routeName,
-            arguments: {'Id': this.Id}),
+        onTap: () => context.vRouter.toNamed(BrandDetailScreen.routeName,
+            pathParameters: {'brandId': this.Id!}),
         leading: Container(
             decoration: BoxDecoration(shape: BoxShape.circle),
             child: CircleAvatar(

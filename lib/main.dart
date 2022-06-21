@@ -41,11 +41,3 @@ Future firebaseInit() async {
     KakaoSdk.init(nativeAppKey: 'a0c154bbdfaa3783d0e6cb554030e621');
   }
 }
-//
-// Future amplitudeInit() async {
-//   final Amplitude analytics =
-//       Amplitude.getInstance(instanceName: "aroundus-ustain");
-//   await analytics.init('e529d03be979b0a303052c6440bb3d02');
-//   await analytics.enableCoppaControl();
-//   await analytics.trackingSessionEvents(true);
-// }
