@@ -1,18 +1,18 @@
-import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_screen.dart';
 import 'package:turtlz/modules/notification/notification_detail/view/notification_detail_screen.dart';
-import 'package:turtlz/modules/store/coupon/view/coupon_screen.dart';
 import 'package:turtlz/modules/store/product/product_detail/view/product_detail_screen.dart';
 import 'package:turtlz/modules/search/search_result/view/search_result_screen.dart';
+import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_screen.dart';
 import 'package:turtlz/modules/search/product_search/product_search_screen.dart';
 import 'package:turtlz/modules/search/brand_search/brand_search_screen.dart';
 import 'package:turtlz/modules/notification/view/notification_screen.dart';
+import 'package:turtlz/modules/productList/view/product_list_screen.dart';
+import 'package:turtlz/modules/store/coupon/view/coupon_screen.dart';
 import 'package:turtlz/modules/search/view/search_screen.dart';
 import 'package:turtlz/modules/mypage/view/mypage_screen.dart';
 import 'package:turtlz/modules/store/view/store_screen.dart';
 import 'package:turtlz/modules/menu/view/menu_screen.dart';
 import 'package:turtlz/modules/cart/view/cart_screen.dart';
 import 'package:turtlz/modules/main/main_screen.dart';
-import 'package:turtlz/repositories/coupon_repository/models/coupon.dart';
 import 'package:vrouter/vrouter.dart';
 
 final routes = [
@@ -23,6 +23,7 @@ final routes = [
     VWidget(path: CartScreen.routeName, widget: CartScreen()),
     VWidget(path: MyPageScreen.routeName, widget: MyPageScreen()),
     VWidget(path: SearchScreen.routeName, widget: SearchScreen()),
+    VWidget(path: ProductListScreen.routeName, widget: ProductListScreen()),
     VWidget(
         path: 'product/:productId',
         widget: ProductDetailScreen(),
@@ -49,7 +50,7 @@ final routes = [
           VWidget(
               path: 'brand/:keyword',
               widget: BrandSearchScreen(),
-              name: '/search_brand_result'),
+              name: '/search_brand_result')
         ]),
   ]),
   VWidget(
