@@ -28,9 +28,7 @@ Widget orderFormOrderItemsWidget(List<OrderItem> orderItems) {
                           children: [
                         Text("${orderItems.first.productName}",
                             style: theme.textTheme.headline5),
-                        Text("${orderItems[index].variantName}",
-                            style: theme.textTheme.subtitle2!
-                                .copyWith(fontSize: Adaptive.dp(10))),
+                        Text("${orderItems[index].variantName}"),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

@@ -1,6 +1,5 @@
 import 'modules/authentication/bloc/authentication_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_web_frame/flutter_web_frame.dart';
 import 'package:turtlz/support/networks/dio_client.dart';
 import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:turtlz/support/style/theme.dart';
@@ -20,24 +19,20 @@ class AppView extends StatefulWidget {
 class _AppViewState extends State<AppView> {
   @override
   Widget build(BuildContext context) {
-    return FlutterWebFrame(
-        maximumSize: const Size(475, 812),
-        builder: (context) {
-          return VRouter(
-              theme: theme,
-              debugShowCheckedModeBanner: false,
-              key: vRouterKey,
-              mode: VRouterMode.history,
-              builder: (context, child) {
-                DioClient.authenticationBloc =
-                    BlocProvider.of<AuthenticationBloc>(context);
-                return MediaQuery(
-                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                    child: buildMultiBlocListener(child));
-              },
-              initialUrl: MainScreen.routeName,
-              routes: routes);
-        });
+    return VRouter(
+        theme: theme,
+        debugShowCheckedModeBanner: false,
+        key: vRouterKey,
+        mode: VRouterMode.history,
+        builder: (context, child) {
+          DioClient.authenticationBloc =
+              BlocProvider.of<AuthenticationBloc>(context);
+          return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: buildMultiBlocListener(child));
+        },
+        initialUrl: MainScreen.routeName,
+        routes: routes);
   }
 
   MultiBlocListener buildMultiBlocListener(Widget child) {

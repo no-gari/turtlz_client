@@ -7,9 +7,7 @@ String currencyFromString(String value) {
 }
 
 double maxWidth(context) {
-  return MediaQuery.of(context).size.width > 475
-      ? 475
-      : MediaQuery.of(context).size.width;
+  return MediaQuery.of(context).size.width;
 }
 
 double maxHeight(context) {

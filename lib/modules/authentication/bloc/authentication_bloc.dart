@@ -62,7 +62,7 @@ class AuthenticationBloc
   Future<AuthenticationState?> _tryGetUser() async {
     try {
       AuthenticationState authenticationState =
-          AuthenticationState.unknown(User.empty);
+          const AuthenticationState.unknown(User.empty);
       ApiResult<User> apiResult = await _userRepository.getUser();
       apiResult.when(success: (User? user) {
         authenticationState = AuthenticationState.authenticated(user!);

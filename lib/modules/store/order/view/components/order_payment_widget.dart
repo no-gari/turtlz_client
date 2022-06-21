@@ -22,59 +22,52 @@ Widget orderPayment(
 
   return Wrap(runSpacing: 15, children: [
     Container(
-        width: 300,
-        margin: EdgeInsets.symmetric(vertical: 15),
+        width: maxWidth(context),
+        margin: const EdgeInsets.symmetric(vertical: 15),
         color: Colors.white,
         child: Column(children: [
           summaryOutline(
               title: "총 상품 금액",
-              content: "${currencyFromString(totalPrice.toString())}",
-              titleStyle: TextStyle(
-                  height: 1.6,
+              content: currencyFromString(totalPrice.toString()),
+              titleStyle: const TextStyle(
+                  height: 1.6, fontWeight: FontWeight.w500, fontSize: 15),
+              contentStyle: const TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: Adaptive.dp(14)),
-              contentStyle: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: Adaptive.sp(14),
+                  fontSize: 15,
                   letterSpacing: -1)),
           summaryOutline(
               title: "총 배송비",
               content: "전 상품 무료배송",
-              titleStyle: TextStyle(
-                  height: 1.6,
+              titleStyle: const TextStyle(
+                  height: 1.6, fontWeight: FontWeight.w500, fontSize: 15),
+              contentStyle: const TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: Adaptive.dp(14)),
-              contentStyle: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: Adaptive.dp(14),
+                  fontSize: 15,
                   letterSpacing: -1)),
           summaryOutline(
               title: "쿠폰 할인 금액",
               content:
                   "${currencyFromString(orderCubit.state.orderTemp!.coupon!.discount.toString())}",
-              titleStyle: TextStyle(
-                  height: 1.6,
-                  fontWeight: FontWeight.w700,
-                  fontSize: Adaptive.dp(14)),
+              titleStyle: theme.textTheme.headline5!
+                  .copyWith(color: theme.primaryColor),
               contentStyle: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: Adaptive.sp(14),
+                  color: theme.accentColor,
+                  fontSize: 18,
                   letterSpacing: -1)),
-          Divider(color: Colors.black12),
+          const Divider(color: Colors.black12),
           summaryOutline(
               title: "총 결제 예정 금액",
               content:
                   "${currencyFromString(calculatePaymentPrice(totalPrice, orderCubit.state.orderTemp!.coupon!.discount))}",
-              titleStyle: TextStyle(
-                  height: 1.6,
-                  color: theme.accentColor,
-                  fontWeight: FontWeight.w700,
-                  fontSize: Adaptive.dp(16)),
+              titleStyle: theme.textTheme.headline5!
+                  .copyWith(color: theme.primaryColor),
               contentStyle: TextStyle(
                   fontWeight: FontWeight.w700,
                   color: theme.accentColor,
-                  fontSize: Adaptive.dp(16),
+                  fontSize: 18,
                   letterSpacing: -1))
-        ]))
+        ])),
+    const Padding(padding: EdgeInsets.only(bottom: 20), child: Divider())
   ]);
 }

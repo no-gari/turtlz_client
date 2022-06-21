@@ -7,42 +7,56 @@ import 'package:flutter/material.dart';
 
 Widget orderCoupon(BuildContext context, Coupon? coupon,
     CouponCubit couponCubit, OrderCubit orderCubit) {
-  return Wrap(runSpacing: 15, children: [
-    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Text("쿠폰 할인가"),
-      RichText(
-          text: TextSpan(style: theme.textTheme.bodyText1, children: [
-        TextSpan(
-            text: "${coupon!.discount == null ? 0 : coupon.discount}",
-            style: TextStyle(
-                color: theme.accentColor, fontWeight: FontWeight.w700)),
-        TextSpan(text: "원")
-      ]))
-    ]),
-    Row(children: [
-      Container(
-        height: 30,
-        width: 250,
-        alignment: Alignment.center,
-        margin: EdgeInsets.only(right: 15),
-        decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-        child: Text("${coupon.name == null ? "" : coupon.name}"),
-      ),
-      Expanded(
-          child: GestureDetector(
+  return Column(
+    children: [
+      const SizedBox(height: 10),
+      Wrap(runSpacing: 15, children: [
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Text("쿠폰 할인가", style: Theme.of(context).textTheme.headline5),
+          RichText(
+              text: TextSpan(
+                  style: theme.textTheme.headline5!
+                      .copyWith(color: theme.primaryColor),
+                  children: [
+                TextSpan(
+                    text: "${coupon!.discount == null ? 0 : coupon.discount}"),
+                const TextSpan(text: "원")
+              ]))
+        ]),
+        Row(children: [
+          Expanded(
+            child: Container(
+              height: 30,
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(right: 15),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          width: 2, color: Theme.of(context).primaryColor))),
+              child: Text("${coupon.name == null ? "" : coupon.name}"),
+            ),
+          ),
+          GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, CouponScreen.routeName)
                     .then((onValue) async {
-                  print("쿠폰 선택해라");
                   orderCubit.getCoupon(onValue);
                 });
               },
               child: Container(
                   height: 30,
-                  color: Colors.black,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: theme.primaryColor),
+                      borderRadius: BorderRadius.circular(20)),
                   alignment: Alignment.center,
-                  child:
-                      Text("쿠폰 선택하기", style: TextStyle(color: Colors.white)))))
-    ])
-  ]);
+                  child: Text("쿠폰 선택",
+                      style: theme.textTheme.headline5!
+                          .copyWith(color: theme.primaryColor))))
+        ])
+      ]),
+      const Padding(
+          padding: EdgeInsets.symmetric(vertical: 20), child: Divider())
+    ],
+  );
 }

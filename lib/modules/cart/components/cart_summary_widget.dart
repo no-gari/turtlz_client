@@ -10,10 +10,9 @@ Widget cartSummary(List<Cart> carts, context) {
       0, (pre, cart) => pre + (cart.quantity! * cart.salePrice!));
 
   return Container(
-    width: maxWidth(context),
-    color: Colors.white,
-    child: Column(
-      children: [
+      width: maxWidth(context),
+      color: Colors.white,
+      child: Column(children: [
         Divider(color: theme.primaryColor, thickness: 2),
         summaryOutline(
             title: "총 상품 금액",
@@ -39,10 +38,8 @@ Widget cartSummary(List<Cart> carts, context) {
                 fontWeight: FontWeight.w700,
                 color: theme.accentColor,
                 fontSize: 18,
-                letterSpacing: -1)),
-      ],
-    ),
-  );
+                letterSpacing: -1))
+      ]));
 }
 
 Widget summaryOutline({
@@ -51,14 +48,8 @@ Widget summaryOutline({
   TextStyle? titleStyle,
   TextStyle? contentStyle,
 }) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Text(
-        "$title",
-        style: titleStyle,
-      ),
-      Text("$content", style: contentStyle)
-    ],
-  );
+  return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+    Text("$title", style: titleStyle),
+    Text("$content", style: contentStyle)
+  ]);
 }

@@ -72,7 +72,6 @@ class _OrderFormListPageState extends State<OrderFormListPage> {
                                 },
                                 child: Container(
                                     child: Center(child: Text('주문 확정')),
-                                    height: Adaptive.h(5),
                                     decoration: BoxDecoration(
                                         border:
                                             Border.all(color: Colors.black)))),

@@ -7,53 +7,91 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter/material.dart';
 
 Widget orderItemTile(OrderCubit orderCubit, OrderItem orderItem) {
-  return Column(children: [
-    Card(
-        color: Colors.transparent,
-        shadowColor: Colors.transparent,
-        child: Wrap(runSpacing: Adaptive.h(1), children: [
-          Text("${orderItem.brand}",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: Adaptive.dp(12))),
-          // 상품 정보
-          Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                    margin: EdgeInsets.only(right: 5, bottom: 5),
-                    child: Image.network("${orderItem.productThumbnail}",
-                        height: 100, width: 100, fit: BoxFit.cover)),
-                Flexible(
-                    child: Container(
-                        height: 100,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${orderItem.productName}",
-                                  maxLines: 1, overflow: TextOverflow.ellipsis),
-                              Text("${orderItem.variantName}",
-                                  maxLines: 1, overflow: TextOverflow.ellipsis),
-                              Container(
-                                  alignment: Alignment.bottomRight,
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "수량 : ${orderItem.quantity}개",
-                                          style: theme.textTheme.subtitle2,
-                                        ),
-                                        Text(
-                                            "${currencyFromString((orderItem.salePrice! * orderItem.quantity!).toString())}",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: Adaptive.sp(14)))
-                                      ]))
-                            ])))
-              ])
-        ]))
+  return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+    Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      // Flexible(
+      //     child:
+      //         CircleAvatar(radius: 5, backgroundImage: NetworkImage('${cart.}'),)
+      //         GestureDetector(
+      //             onTap: () {
+      //               cartCubit.selectedCart(cart);
+      //             },
+      //             child: cart.isChecked!
+      //                 ? Icon(Icons.check_box_rounded)
+      //                 : Icon(Icons.check_box_outline_blank_rounded))),
+      // 브랜드 정보
+      Flexible(
+          flex: 8,
+          child: Wrap(runSpacing: 10, children: [
+            // Row(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Text("${cart.brand}",
+            //           style: TextStyle(
+            //               fontWeight: FontWeight.bold, fontSize: 15)),
+            //       GestureDetector(
+            //           onTap: () {
+            //             cartCubit.deleteCart([cart]);
+            //           },
+            //           child: Icon(Icons.clear))
+            //     ]),
+            // 상품 정보
+            Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network("${orderItem.productThumbnail}",
+                          height: 110, width: 110, fit: BoxFit.cover)),
+                  const SizedBox(width: 10),
+                  Flexible(
+                      child: Container(
+                          height: 110,
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text("${orderItem.brand}",
+                                          style: theme.textTheme.headline6!
+                                              .copyWith(fontSize: 13))
+                                    ]),
+                                Text(
+                                  "${orderItem.productName}",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: theme.textTheme.headline5,
+                                ),
+                                Text("${orderItem.variantName}",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                                Container(
+                                    alignment: Alignment.bottomRight,
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("수량 : ${orderItem.quantity}개",
+                                              style: theme.textTheme.headline5),
+                                          Text(
+                                              "${currencyFromString((orderItem.salePrice! * orderItem.quantity!).toString())}",
+                                              style: theme.textTheme.headline5!
+                                                  .copyWith(
+                                                      color:
+                                                          theme.primaryColor))
+                                        ]))
+                              ])))
+                ])
+          ]))
+    ]),
+    const SizedBox(height: 15),
   ]);
 }

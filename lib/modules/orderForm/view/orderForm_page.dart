@@ -71,10 +71,8 @@ class _OrderFormPageState extends State<OrderFormPage>
                     Text("${orderForm.orderDate}",
                         style: theme.textTheme.bodyText1!
                             .copyWith(fontWeight: FontWeight.w700)),
-                    Text(
-                      "주문번호 ${orderForm.Id}",
-                      style: TextStyle(color: Color(0xFF606060)),
-                    ),
+                    Text("주문번호 ${orderForm.Id}",
+                        style: TextStyle(color: Color(0xFF606060))),
                     Container(
                         height: 1,
                         width: double.maxFinite,
