@@ -79,15 +79,15 @@ class _OrderPageState extends State<OrderPage> {
                         title: "결제 정보",
                         child: orderPayment(
                             context, orderTemp.products!, _orderCubit)),
-                    orderCompose(
-                        title: "결제 방식",
-                        child: Column(children: [
-                          Row(children: [
-                            payMethodContainer(context, '카드 결제', 'card'),
-                            const SizedBox(width: 10),
-                            payMethodContainer(context, '계좌 이체', 'trans')
-                          ])
-                        ])),
+                    // orderCompose(
+                    //     title: "결제 방식",
+                    //     child: Column(children: [
+                    //       Row(children: [
+                    //         payMethodContainer(context, '카드 결제', 'card'),
+                    //         const SizedBox(width: 10),
+                    //         payMethodContainer(context, '계좌 이체', 'trans')
+                    //       ])
+                    //     ])),
                     Column(children: [
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

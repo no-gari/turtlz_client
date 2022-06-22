@@ -6,6 +6,7 @@ import 'package:turtlz/modules/search/product_search/product_search_screen.dart'
 import 'package:turtlz/modules/search/brand_search/brand_search_screen.dart';
 import 'package:turtlz/modules/notification/view/notification_screen.dart';
 import 'package:turtlz/modules/productList/view/product_list_screen.dart';
+import 'package:turtlz/modules/store/order/view/order_cancel_page.dart';
 import 'package:turtlz/modules/store/coupon/view/coupon_screen.dart';
 import 'package:turtlz/modules/search/view/search_screen.dart';
 import 'package:turtlz/modules/mypage/view/mypage_screen.dart';
@@ -16,6 +17,7 @@ import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:vrouter/vrouter.dart';
 
 final routes = [
+  VWidget(path: OrderCancelPage.routeName, widget: OrderCancelPage()),
   VWidget(path: MainScreen.routeName, widget: MainScreen(), stackedRoutes: [
     VWidget(path: CouponScreen.routeName, widget: CouponScreen()),
     VWidget(path: MenuScreen.routeName, widget: MenuScreen()),

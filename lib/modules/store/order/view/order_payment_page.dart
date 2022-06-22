@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 /* 아임포트 결제 모듈을 불러옵니다. */
 import 'package:iamport_flutter/iamport_payment.dart';
+import 'package:vrouter/vrouter.dart';
 import 'order_result_page.dart';
 
 /* 아임포트 결제 데이터 모델을 불러옵니다. */
@@ -82,13 +83,9 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
                                             _orderCubit.cancelOrder(
                                                 state.order!.merchantUid,
                                                 '...');
-                                            Navigator.of(context)
-                                                .pushAndRemoveUntil(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            OrderCancelPage()),
-                                                    (Route<dynamic> route) =>
-                                                        false);
+                                            context.vRouter.to(
+                                                OrderCancelPage.routeName,
+                                                isReplacement: true);
                                           },
                                           child: const Text("확인")),
                                       MaterialButton(
