@@ -118,7 +118,7 @@ class _OrderPageState extends State<OrderPage> {
                             if (state.agreed &&
                                 state.selectedShippingRequest != null &&
                                 state.orderTemp!.address!.id != null) {
-                              Navigator.pushAndRemoveUntil(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (_) => MultiBlocProvider(
@@ -132,8 +132,7 @@ class _OrderPageState extends State<OrderPage> {
                                                             context)))
                                               ],
                                               child: OrderPaymentPage(
-                                                  method: payMethod))),
-                                  (route) => false);
+                                                  method: payMethod))));
                               // OrderResultPage
                             } else {
                               showDialog(

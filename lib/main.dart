@@ -3,7 +3,6 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:turtlz/support/networks/dio_client.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:amplitude_flutter/amplitude.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   await firebaseInit();
-  // await amplitudeInit();
   Bloc.observer = MyBlocObserver();
   DioClient dioClient = DioClient(Dio());
   runApp(MyApp(

@@ -96,7 +96,7 @@ class _AddressFormPage extends State<AddressFormPage> {
                                           borderSide: BorderSide(
                                               color: Theme.of(context)
                                                   .primaryColor)),
-                                      hintText: '성함을 입력해 주세요.'),
+                                      hintText: '번호를010 입력해 주세요.'),
                                   inputFormatters: [
                                     MaskedInputFormatter('000-0000-0000',
                                         allowedCharMatcher: RegExp('[0-9]'))

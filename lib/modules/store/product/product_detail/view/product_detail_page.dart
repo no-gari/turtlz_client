@@ -45,26 +45,25 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
       return Scaffold(
-          bottomNavigationBar: productSaleBottomNavigator(
-              context,
-              _productCubit,
-              state.status == AuthenticationStatus.authenticated),
-          body: BlocBuilder<ProductCubit, ProductState>(
-              builder: (context, state) {
-            if (state.isLoaded == true) {
-              return bodyWidget(context);
-            } else {
-              return Container();
-            }
-          }),
-          floatingActionButton: FloatingActionButton(
-              backgroundColor: theme.primaryColor,
-              child: SvgPicture.asset("assets/icons/cart.svg",
-                  color: Colors.white),
-              onPressed: () =>
-                  state.status == AuthenticationStatus.authenticated
-                      ? Navigator.pushNamed(context, CartScreen.routeName)
-                      : showSocialLoginNeededDialog(context)));
+        bottomNavigationBar: productSaleBottomNavigator(context, _productCubit,
+            state.status == AuthenticationStatus.authenticated),
+        body:
+            BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
+          if (state.isLoaded == true) {
+            return bodyWidget(context);
+          } else {
+            return Container();
+          }
+        }),
+        // floatingActionButton: FloatingActionButton(
+        //     backgroundColor: theme.primaryColor,
+        //     child: SvgPicture.asset("assets/icons/cart.svg",
+        //         color: Colors.white),
+        //     onPressed: () =>
+        //         state.status == AuthenticationStatus.authenticated
+        //             ? Navigator.pushNamed(context, CartScreen.routeName)
+        //             : showSocialLoginNeededDialog(context))
+      );
     });
   }
 

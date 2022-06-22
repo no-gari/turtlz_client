@@ -1,14 +1,13 @@
-import 'package:iamport_flutter/model/payment_data.dart';
 import 'package:turtlz/modules/store/order/view/order_cancel_page.dart';
 import 'package:turtlz/modules/store/order/cubit/payment_cubit.dart';
 import 'package:turtlz/modules/store/order/cubit/order_cubit.dart';
+import 'package:iamport_flutter/model/payment_data.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 /* 아임포트 결제 모듈을 불러옵니다. */
-import 'package:iamport_flutter/model/payment_data.dart';
 import 'package:iamport_flutter/iamport_payment.dart';
 import 'order_result_page.dart';
 
@@ -83,28 +82,32 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
                                             _orderCubit.cancelOrder(
                                                 state.order!.merchantUid,
                                                 '...');
-                                            Navigator.pushNamedAndRemoveUntil(
-                                                context,
-                                                OrderCancelPage.routeName,
-                                                (route) => false);
+                                            Navigator.of(context)
+                                                .pushAndRemoveUntil(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            OrderCancelPage()),
+                                                    (Route<dynamic> route) =>
+                                                        false);
                                           },
-                                          child: Text("확인")),
+                                          child: const Text("확인")),
                                       MaterialButton(
                                           onPressed: () =>
                                               Navigator.pop(context),
-                                          child: Text("취소"))
+                                          child: const Text("취소"))
                                     ]);
                               });
                         },
-                        icon: Icon(Icons.arrow_back_ios_rounded))),
+                        icon: const Icon(Icons.arrow_back_ios_rounded))),
                 initialChild: Container(
                     child: Center(
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                       Container(
-                          padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-                          child: Text('잠시만 기다려주세요...',
+                          padding:
+                              const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                          child: const Text('잠시만 기다려주세요...',
                               style: TextStyle(fontSize: 20.0)))
                     ]))),
                 userCode: 'imp03489525',

@@ -159,22 +159,24 @@ class _CartPageState extends State<CartPage> {
                                                                   .white)))))
                                     ]);
                               } else {
-                                return Center(
-                                    child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                      Text("no contents :(",
-                                          style: theme.textTheme.headline3!)
-                                    ]));
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                      top: MediaQuery.of(context).size.height *
+                                          0.35),
+                                  child: Center(
+                                      child: Text("no contents :(",
+                                          style: theme.textTheme.headline3!)),
+                                );
                               }
                             });
                       } else {
-                        return Center(
-                            child: Image.asset('assets/images/indicator.gif',
-                                width: 100, height: 100));
+                        return Padding(
+                          padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * 0.35),
+                          child: Center(
+                              child: Image.asset('assets/images/indicator.gif',
+                                  width: 100, height: 100)),
+                        );
                       }
                     })
                   ]))));

@@ -2,7 +2,7 @@ import 'package:turtlz/modules/mypage/address/view/components/address_tile_widge
 import 'package:turtlz/repositories/address_repository/models/address.dart';
 import 'package:turtlz/modules/mypage/address/view/address_form_page.dart';
 import 'package:turtlz/modules/mypage/address/cubit/address_cubit.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -41,12 +41,14 @@ class _AddressPage extends State<AddressPage>
             selector: (state) => state.addresses!,
             builder: (context, addresses) {
               if (addresses != null && addresses.isNotEmpty) {
-                return Stack(children: [
-                  Column(children: [
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(children: [
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("ADDRESS", style: theme.textTheme.headline4),
+                          Text("address.", style: theme.textTheme.headline3),
                           GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -54,61 +56,49 @@ class _AddressPage extends State<AddressPage>
                                     MaterialPageRoute(
                                         builder: (_) =>
                                             BlocProvider<AddressCubit>.value(
-                                              value: _addressCubit,
-                                              child: AddressFormPage(),
-                                            )));
+                                                value: _addressCubit,
+                                                child: AddressFormPage())));
                               },
                               child: Text("배송지 추가",
                                   style: theme.textTheme.headline5!.copyWith(
                                       decoration: TextDecoration.underline)))
                         ]),
-                    SingleChildScrollView(
-                        padding: EdgeInsets.symmetric(vertical: 30),
-                        child: Column(
-                            children: List.generate(
-                                addresses.length,
-                                (index) => GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        selected = index;
-                                      });
-                                    },
-                                    child: addressTile(
-                                        _addressCubit,
-                                        addresses[index]!,
-                                        selected == index)))))
-                  ]),
-                  Align(
-                      alignment: Alignment.bottomCenter,
-                      child: isOrdering
-                          ? GestureDetector(
-                              // 결제 페이지인 경우
-                              onTap: () {
-                                Navigator.pop(
-                                    context, state.addresses![selected]);
-                              },
-                              child: Container(
-                                  height: Adaptive.h(10),
-                                  width: 300,
-                                  color: Colors.black,
-                                  alignment: Alignment.center,
-                                  child: Text("선택하기",
-                                      style: theme.textTheme.button!
-                                          .copyWith(color: Colors.white))))
-                          : GestureDetector(
-                              onTap: () {
-                                _addressCubit.updateDefaultAddress(
-                                    state.addresses![selected].id!);
-                              },
-                              child: Container(
-                                  height: Adaptive.h(10),
-                                  width: 300,
-                                  color: Colors.black,
-                                  alignment: Alignment.center,
-                                  child: Text("설정완료",
-                                      style: theme.textTheme.button!
+                    Column(children: [
+                      Column(
+                          children: List.generate(
+                              addresses.length,
+                              (index) => GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selected = index;
+                                    });
+                                  },
+                                  child: addressTile(_addressCubit,
+                                      addresses[index]!, selected == index)))),
+                      const SizedBox(height: 20),
+                      GestureDetector(
+                          onTap: () {
+                            if (isOrdering) {
+                              Navigator.pop(
+                                  context, state.addresses![selected]);
+                            } else {
+                              _addressCubit.updateDefaultAddress(
+                                  state.addresses![selected].id!);
+                            }
+                          },
+                          child: Container(
+                              width: maxWidth(context),
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  color: theme.primaryColor,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Center(
+                                  child: Text(isOrdering ? "선택하기" : "설정 완료",
+                                      style: theme.textTheme.headline5!
                                           .copyWith(color: Colors.white)))))
-                ]);
+                    ])
+                  ]),
+                );
               } else {
                 return Center(
                     child: Column(
