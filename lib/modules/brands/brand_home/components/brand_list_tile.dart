@@ -14,7 +14,7 @@ class BrandListTile extends StatelessWidget {
         onTap: () => context.vRouter.toNamed(BrandDetailScreen.routeName,
             pathParameters: {'brandId': this.Id!}),
         leading: Container(
-            decoration: BoxDecoration(shape: BoxShape.circle),
+            decoration: const BoxDecoration(shape: BoxShape.circle),
             child: CircleAvatar(
                 backgroundColor: Colors.white,
                 backgroundImage: NetworkImage(this.logo!),
@@ -23,6 +23,8 @@ class BrandListTile extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodyText2!
-                .copyWith(fontWeight: FontWeight.w700)));
+                .copyWith(fontWeight: FontWeight.w700)),
+        trailing:
+            const Icon(Icons.arrow_forward_ios, color: Colors.black, size: 15));
   }
 }

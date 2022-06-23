@@ -81,7 +81,7 @@ class StoreCubit extends Cubit<StoreState> {
     apiResult.when(success: (List? listResponse) {
       emit(state.copyWith(
           isLoaded: true,
-          subCollections: [Collection('', "전체보기")] +
+          subCollections: [Collection('', "전체보기", '')] +
               listResponse!.map((e) => Collection.fromJson(e)).toList()));
     }, failure: (NetworkExceptions? error) {
       emit(state.copyWith(error: error));

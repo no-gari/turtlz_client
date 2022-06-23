@@ -105,17 +105,20 @@ class _NewsScreenState extends State<MenuPage> {
             return Column(children: [
               for (var brand in state.brands!)
                 ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    onTap: () {
-                      context.vRouter.toNamed(BrandDetailScreen.routeName,
-                          pathParameters: {'brandId': brand.Id!});
-                    },
-                    leading: CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        backgroundImage: NetworkImage(brand.logo!),
-                        radius: 20),
-                    title: Text(brand.name!,
-                        style: Theme.of(context).textTheme.headline5))
+                  contentPadding: EdgeInsets.zero,
+                  onTap: () {
+                    context.vRouter.toNamed(BrandDetailScreen.routeName,
+                        pathParameters: {'brandId': brand.Id!});
+                  },
+                  leading: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: NetworkImage(brand.logo!),
+                      radius: 20),
+                  title: Text(brand.name!,
+                      style: Theme.of(context).textTheme.headline5),
+                  trailing: const Icon(Icons.arrow_forward_ios,
+                      size: 15, color: Colors.black),
+                )
             ]);
           }
           return Padding(
@@ -151,13 +154,14 @@ class GridMenu extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => ProductListScreen(
                               collectionId: collection.Id,
-                              collectionName: collection.name)));
+                              collectionName: collection.name,
+                              thumbnail: collection.thumbnail)));
                 },
                 child: Column(children: [
-                  const CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      backgroundImage: NetworkImage(
-                          'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')),
+                  CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: NetworkImage(collection.thumbnail),
+                  ),
                   const SizedBox(height: 5),
                   Text(collection.name,
                       style: Theme.of(context)

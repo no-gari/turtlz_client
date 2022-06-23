@@ -220,7 +220,8 @@ class _MyPageState extends State<MyPage> {
                                               'https://aroundusprivacypolicy.oopy.io/')),
                                       ListTile(
                                           leading: const Icon(
-                                              Icons.approval_outlined),
+                                              Icons.approval_outlined,
+                                              color: Colors.black),
                                           contentPadding:
                                               const EdgeInsets.all(0),
                                           dense: true,

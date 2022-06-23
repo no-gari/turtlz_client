@@ -5,10 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 class ProductListPage extends StatefulWidget {
-  ProductListPage({this.collectionId, this.collectionName});
+  ProductListPage({this.collectionId, this.collectionName, this.thumbnail});
 
   final String? collectionId;
   final String? collectionName;
+  final String? thumbnail;
 
   @override
   _ProductListPageState createState() => _ProductListPageState();
@@ -27,10 +28,10 @@ class _ProductListPageState extends State<ProductListPage> {
     super.initState();
     _storeCubit = BlocProvider.of<StoreCubit>(context);
     if (widget.collectionId == null) {
-      _selectedCollection = Collection('', '전체보기');
+      _selectedCollection = Collection('', '전체보기', '');
     } else {
-      _selectedCollection =
-          Collection(widget.collectionId!, widget.collectionName!);
+      _selectedCollection = Collection(
+          widget.collectionId!, widget.collectionName!, widget.thumbnail!);
       print(_selectedCollection.Id);
     }
     _storeCubit.getSubCollection();

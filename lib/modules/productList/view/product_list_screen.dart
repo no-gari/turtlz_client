@@ -8,10 +8,11 @@ import 'package:flutter/material.dart';
 class ProductListScreen extends StatefulWidget {
   static String routeName = '/product_list_screen';
 
-  ProductListScreen({this.collectionId, this.collectionName});
+  ProductListScreen({this.collectionId, this.collectionName, this.thumbnail});
 
   final String? collectionId;
   final String? collectionName;
+  final String? thumbnail;
 
   @override
   _ProductListScreenState createState() => _ProductListScreenState();
@@ -22,10 +23,15 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return BlocProvider.value(
         value: BlocProvider.of<AuthenticationBloc>(context),
-        child: MultiBlocProvider(providers: [
-          BlocProvider<StoreCubit>(
-              create: (_) =>
-                  StoreCubit(RepositoryProvider.of<StoreRepository>(context))),
-        ], child: ProductListPage(collectionId: widget.collectionId, collectionName: widget.collectionName)));
+        child: MultiBlocProvider(
+            providers: [
+              BlocProvider<StoreCubit>(
+                  create: (_) => StoreCubit(
+                      RepositoryProvider.of<StoreRepository>(context))),
+            ],
+            child: ProductListPage(
+                collectionId: widget.collectionId,
+                collectionName: widget.collectionName,
+                thumbnail: widget.thumbnail)));
   }
 }
