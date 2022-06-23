@@ -1,9 +1,12 @@
+import 'package:turtlz/modules/productList/view/product_list_screen.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as Svg;
+import 'package:turtlz/support/base_component/company_info.dart';
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
+import 'package:turtlz/modules/store/cubit/store_cubit.dart';
+import 'package:turtlz/support/style/format_unit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:turtlz/support/base_component/company_info.dart';
-import 'package:turtlz/support/style/format_unit.dart';
 
 class StorePage extends StatefulWidget {
   @override
@@ -11,11 +14,20 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
+  late StoreCubit _storeCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _storeCubit = BlocProvider.of<StoreCubit>(context);
+    _storeCubit.getCollections();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SafeArea(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +58,7 @@ class _StorePageState extends State<StorePage> {
                           pagination: SwiperPagination(
                               alignment: Alignment.bottomCenter,
                               builder: DotSwiperPaginationBuilder(
-                                  color: Colors.grey,
+                                  color: Colors.black54,
                                   activeColor: Theme.of(context).primaryColor)),
                           // control: new SwiperControl(
                           //   color: Color(0xff38547C),
@@ -61,28 +73,81 @@ class _StorePageState extends State<StorePage> {
                           itemCount: 5)),
                   const SizedBox(height: 20),
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(children: [
-                          CircleAvatar(radius: maxWidth(context) * 0.07),
-                          Text('df')
+                          GestureDetector(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProductListScreen(
+                                          collectionId: '',
+                                          collectionName: '전체보기',
+                                          thumbnail: ''))),
+                              child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  radius: maxWidth(context) * 0.08,
+                                  child: Image.asset(
+                                      'assets/images/new_products.png'))),
+                          SizedBox(height: 5),
+                          Text('#NEW')
                         ]),
                         Column(children: [
-                          CircleAvatar(radius: maxWidth(context) * 0.07),
-                          Text('df')
+                          GestureDetector(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductListScreen(
+                                        collectionId: 'CSQMZK7U8WGE',
+                                        collectionName: '화로/스토브',
+                                        thumbnail:
+                                            'https://cdn.clayful.io/stores/ZCJ4P8CZH2UR.GZ5QLVHQY5XQ/images/2VAYYENZ27FT/v1/Ellipse_63.png'))),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              radius: maxWidth(context) * 0.08,
+                              child: Image.asset('assets/images/fire.png'),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Text('#불멍')
                         ]),
-                        Column(children: [
-                          CircleAvatar(radius: maxWidth(context) * 0.07),
-                          Text('df')
-                        ]),
-                        Column(children: [
-                          CircleAvatar(radius: maxWidth(context) * 0.07),
-                          Text('df')
-                        ]),
-                        Column(children: [
-                          CircleAvatar(radius: maxWidth(context) * 0.07),
-                          Text('df')
-                        ])
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductListScreen(
+                                      collectionId: 'VWLAH5XCDFSY',
+                                      collectionName: '캠핑소품',
+                                      thumbnail:
+                                          'https://cdn.clayful.io/stores/ZCJ4P8CZH2UR.GZ5QLVHQY5XQ/images/G2DQQG53PD3G/v1/Ellipse_61.png'))),
+                          child: Column(children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              radius: maxWidth(context) * 0.08,
+                              child: Image.asset('assets/images/sensible.png'),
+                            ),
+                            SizedBox(height: 5),
+                            Text('#감성캠핑')
+                          ]),
+                        ),
+                        GestureDetector(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductListScreen(
+                                        collectionId: '',
+                                        collectionName: '전체보기',
+                                        thumbnail: ''))),
+                            child: Column(children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                radius: maxWidth(context) * 0.08,
+                                child:
+                                    Image.asset('assets/images/shipping.png'),
+                              ),
+                              SizedBox(height: 5),
+                              Text('#무료배송')
+                            ]))
                       ]),
                   SizedBox(height: 20),
                   Text('실시간 BEST 10',

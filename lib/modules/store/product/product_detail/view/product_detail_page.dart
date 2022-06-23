@@ -4,15 +4,12 @@ import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_screen.dart
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/repositories/product_repository/models/product.dart';
 import 'package:turtlz/modules/store/product/cubit/product_cubit.dart';
-import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
-import 'package:turtlz/modules/cart/view/cart_screen.dart';
 import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ProductDetailPage extends StatefulWidget {
   ProductDetailPage({this.productId});

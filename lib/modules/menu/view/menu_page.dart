@@ -82,8 +82,97 @@ class _NewsScreenState extends State<MenuPage> {
             if (state.isLoaded) {
               return Column(children: [
                 const SizedBox(height: 10),
-                GridMenu(state: state)
-                // 이벤트 들어갈 자리.
+                GridMenu(state: state),
+                // 배너 들어갈 곳
+                const SizedBox(height: 30),
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductListScreen(
+                              collectionId: '',
+                              collectionName: '전체보기',
+                              thumbnail: ''))),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset('assets/images/new_products_banner.png',
+                            width: maxWidth(context)),
+                        SizedBox(height: 5),
+                        Text('터틀즈가 입수한 신상 캠핑용품!',
+                            style: theme.textTheme.headline5!
+                                .copyWith(color: theme.primaryColor))
+                      ]),
+                ),
+                SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductListScreen(
+                              collectionId: 'CSQMZK7U8WGE',
+                              collectionName: '화로/스토브',
+                              thumbnail:
+                                  'https://cdn.clayful.io/stores/ZCJ4P8CZH2UR.GZ5QLVHQY5XQ/images/2VAYYENZ27FT/v1/Ellipse_63.png'))),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset('assets/images/fire_banner.png',
+                            width: maxWidth(context)),
+                        SizedBox(height: 5),
+                        Text('불멍하기 딱 좋은 요즘 날씨!',
+                            style: theme.textTheme.headline5!
+                                .copyWith(color: theme.primaryColor))
+                      ]),
+                ),
+                SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductListScreen(
+                              collectionId: 'VWLAH5XCDFSY',
+                              collectionName: '캠핑소품',
+                              thumbnail:
+                                  'https://cdn.clayful.io/stores/ZCJ4P8CZH2UR.GZ5QLVHQY5XQ/images/G2DQQG53PD3G/v1/Ellipse_61.png'))),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset('assets/images/sensible_banner.png',
+                            width: maxWidth(context)),
+                        SizedBox(height: 5),
+                        Text('감성캠핑에 빠질 수 없는 필수품 모음!',
+                            style: theme.textTheme.headline5!
+                                .copyWith(color: theme.primaryColor))
+                      ]),
+                ),
+                SizedBox(height: 20),
+                GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProductListScreen(
+                                collectionId: '',
+                                collectionName: '전체보기',
+                                thumbnail: ''))),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset('assets/images/shipping_banner.png',
+                              width: maxWidth(context)),
+                          SizedBox(height: 5),
+                          Text('터틀즈는 전 상품 무료배송 진행 중!',
+                              style: theme.textTheme.headline5!
+                                  .copyWith(color: theme.primaryColor))
+                        ])),
+                SizedBox(height: 30),
+                //
+                // Image.asset('assets/images/fire_banner.png',
+                //     width: maxWidth(context)),
+                // Image.asset('assets/images/sensible_banner.png',
+                //     width: maxWidth(context)),
+                // Image.asset('assets/images/shipping_banner.png',
+                //     width: maxWidth(context)),
               ]);
             } else {
               return Padding(
@@ -118,7 +207,7 @@ class _NewsScreenState extends State<MenuPage> {
                       style: Theme.of(context).textTheme.headline5),
                   trailing: const Icon(Icons.arrow_forward_ios,
                       size: 15, color: Colors.black),
-                )
+                ),
             ]);
           }
           return Padding(
