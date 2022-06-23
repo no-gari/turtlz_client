@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 final theme = ThemeData(
     appBarTheme: const AppBarTheme(
-        color: Colors.white, foregroundColor: Colors.black, elevation: 0),
+        color: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Color(0xFF37521C))),
     dividerColor: Colors.black,
     fontFamily: '',
     bottomAppBarColor: const Color(0xFF37521C),

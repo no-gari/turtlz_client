@@ -6,12 +6,10 @@ part of 'variation.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Variation _$VariationFromJson(Map<String, dynamic> json) {
-  return Variation(
-    json['value'] as String,
-    json['Id'] as String,
-  );
-}
+Variation _$VariationFromJson(Map<String, dynamic> json) => Variation(
+      json['value'] as String,
+      json['Id'] as String,
+    );
 
 Map<String, dynamic> _$VariationToJson(Variation instance) => <String, dynamic>{
       'Id': instance.Id,

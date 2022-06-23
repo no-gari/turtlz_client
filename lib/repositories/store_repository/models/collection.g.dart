@@ -6,12 +6,10 @@ part of 'collection.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Collection _$CollectionFromJson(Map<String, dynamic> json) {
-  return Collection(
-    json['Id'] as String,
-    json['name'] as String,
-  );
-}
+Collection _$CollectionFromJson(Map<String, dynamic> json) => Collection(
+      json['Id'] as String,
+      json['name'] as String,
+    );
 
 Map<String, dynamic> _$CollectionToJson(Collection instance) =>
     <String, dynamic>{

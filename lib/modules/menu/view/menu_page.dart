@@ -1,16 +1,16 @@
-import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_page.dart';
-import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_screen.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
+import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_screen.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
+import 'package:turtlz/modules/productList/view/product_list_screen.dart';
 import 'package:turtlz/modules/brands/brand_home/cubit/brand_cubit.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:turtlz/modules/store/cubit/store_cubit.dart';
 import 'package:turtlz/support/style/format_unit.dart';
+import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
-import 'package:turtlz/support/style/theme.dart';
 import 'package:vrouter/vrouter.dart';
 import 'dart:math' as math;
 
@@ -67,115 +67,105 @@ class _NewsScreenState extends State<MenuPage> {
                         const SizedBox(height: 48),
                         Expanded(
                             child: TabBarView(children: [
-                          SingleChildScrollView(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Column(children: [
-                                BlocBuilder<StoreCubit, StoreState>(
-                                    builder: (context, state) {
-                                  if (state.isLoaded) {
-                                    return Column(children: [
-                                      const SizedBox(height: 10),
-                                      GridView.count(
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          shrinkWrap: true,
-                                          crossAxisCount: 2,
-                                          crossAxisSpacing: 10,
-                                          mainAxisSpacing: 10,
-                                          childAspectRatio: 1.2,
-                                          children: [
-                                            for (var collection
-                                                in state.collections!)
-                                              Stack(children: [
-                                                Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
-                                                        image: DecorationImage(
-                                                            colorFilter: ColorFilter.mode(
-                                                                Colors.black
-                                                                    .withOpacity(
-                                                                        1.0),
-                                                                BlendMode
-                                                                    .softLight),
-                                                            fit: BoxFit.cover,
-                                                            image: const NetworkImage(
-                                                                'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')))),
-                                                Align(
-                                                    alignment: Alignment.center,
-                                                    child: Text(collection.name,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headline4!
-                                                            .copyWith(
-                                                                color: Colors
-                                                                    .white)))
-                                              ])
-                                          ])
-                                    ]);
-                                  } else {
-                                    return Padding(
-                                        padding: EdgeInsets.only(
-                                            top: maxHeight(context) * 0.25),
-                                        child: Center(
-                                            child: Image.asset(
-                                                'assets/images/indicator.gif',
-                                                width: 100,
-                                                height: 100)));
-                                  }
-                                })
-                              ])),
-                          SingleChildScrollView(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: BlocBuilder<BrandCubit, BrandListState>(
-                                  builder: (context, state) {
-                                if (state.isLoaded &&
-                                    state.brands!.isNotEmpty) {
-                                  return Column(children: [
-                                    for (var brand in state.brands!)
-                                      ListTile(
-                                          contentPadding: EdgeInsets.zero,
-                                          onTap: () {
-                                            context.vRouter.toNamed(
-                                                BrandDetailScreen.routeName,
-                                                pathParameters: {
-                                                  'brandId': brand.Id!
-                                                });
-                                          },
-                                          leading: CircleAvatar(
-                                              backgroundColor: Colors.black,
-                                              backgroundImage:
-                                                  NetworkImage(brand.logo!),
-                                              radius: 20),
-                                          title: Text(brand.name!,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline5),
-                                          subtitle: Text(brand.description!,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis),
-                                          isThreeLine: false)
-                                  ]);
-                                }
-                                return Padding(
-                                  padding: EdgeInsets.only(
-                                      top: maxHeight(context) * 0.25),
-                                  child: Center(
-                                      child: Image.asset(
-                                          'assets/images/indicator.gif',
-                                          width: 100,
-                                          height: 100)),
-                                );
-                              }))
+                          buildFirstPage(),
+                          buildSecondPage()
                         ]))
                       ])))));
     });
+  }
+
+  SingleChildScrollView buildFirstPage() {
+    return SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(children: [
+          BlocBuilder<StoreCubit, StoreState>(builder: (context, state) {
+            if (state.isLoaded) {
+              return Column(children: [
+                const SizedBox(height: 10),
+                GridMenu(state: state)
+                // 이벤트 들어갈 자리.
+              ]);
+            } else {
+              return Padding(
+                  padding: EdgeInsets.only(top: maxHeight(context) * 0.25),
+                  child: Center(
+                      child: Image.asset('assets/images/indicator.gif',
+                          width: 100, height: 100)));
+            }
+          })
+        ]));
+  }
+
+  SingleChildScrollView buildSecondPage() {
+    return SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child:
+            BlocBuilder<BrandCubit, BrandListState>(builder: (context, state) {
+          if (state.isLoaded && state.brands!.isNotEmpty) {
+            return Column(children: [
+              for (var brand in state.brands!)
+                ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: () {
+                      context.vRouter.toNamed(BrandDetailScreen.routeName,
+                          pathParameters: {'brandId': brand.Id!});
+                    },
+                    leading: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        backgroundImage: NetworkImage(brand.logo!),
+                        radius: 20),
+                    title: Text(brand.name!,
+                        style: Theme.of(context).textTheme.headline5))
+            ]);
+          }
+          return Padding(
+            padding: EdgeInsets.only(top: maxHeight(context) * 0.25),
+            child: Center(
+                child: Image.asset('assets/images/indicator.gif',
+                    width: 100, height: 100)),
+          );
+        }));
+  }
+}
+
+class GridMenu extends StatelessWidget {
+  const GridMenu({this.state});
+
+  final StoreState? state;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        crossAxisCount: 4,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 1.2,
+        children: [
+          for (var collection in state!.collections!)
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductListScreen(
+                              collectionId: collection.Id,
+                              collectionName: collection.name)));
+                },
+                child: Column(children: [
+                  const CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: NetworkImage(
+                          'https://turtlz.co/wp-content/uploads/2022/05/164914909505337189-860x860.jpg')),
+                  const SizedBox(height: 5),
+                  Text(collection.name,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: Colors.black))
+                ]))
+        ]);
   }
 }
 

@@ -1,8 +1,7 @@
 import 'package:turtlz/modules/brands/brand_detail/cubit/brand_detail_cubit.dart';
+import 'package:turtlz/repositories/product_repository/models/product.dart';
 import 'package:turtlz/modules/store/components/store_product_widget.dart';
 import 'package:turtlz/repositories/product_repository/models/brand.dart';
-import 'package:turtlz/repositories/product_repository/models/product.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +45,7 @@ class _BrandDetailPageState extends State<BrandDetailPage> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-              padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -71,7 +70,7 @@ class _BrandDetailPageState extends State<BrandDetailPage> {
                     // Text('products',
                     //     style: Theme.of(context).textTheme.headline4),
                     const SizedBox(height: 20),
-                    productList.length != 0
+                    productList.isNotEmpty
                         ? GridView.count(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
@@ -85,8 +84,9 @@ class _BrandDetailPageState extends State<BrandDetailPage> {
                                     storeProduct(context, productList[index])))
                         : Container(
                             color: Colors.white,
-                            height: Adaptive.h(20),
-                            child: Center(child: Text('아직 등록된 상품이 없습니다.')))
+                            height: MediaQuery.of(context).size.height * 0.1,
+                            child:
+                                const Center(child: Text('아직 등록된 상품이 없습니다.')))
                   ]))
         ]));
       }

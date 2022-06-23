@@ -78,7 +78,8 @@ class _OrderFormListPageState extends State<OrderFormListPage> {
                         ])),
                 itemCount: state.orderForm!.length);
           } else {
-            return Center(child: Text("주문상품이 없습니다."));
+            return Center(
+                child: Text("no orders :(", style: theme.textTheme.headline3));
           }
         } else {
           return Center(

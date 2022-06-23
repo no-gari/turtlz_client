@@ -10,13 +10,14 @@ Widget menuWidget(title) {
           .copyWith(letterSpacing: -0.5, color: theme.primaryColor));
 }
 
-Widget subMenuWidget({String? title, Function()? tapped}) {
+Widget subMenuWidget({String? title, Function()? tapped, Widget? icon}) {
   return ListTile(
-      contentPadding: EdgeInsets.all(0),
+      contentPadding: const EdgeInsets.all(0),
       dense: true,
       onTap: tapped,
-      trailing: Icon(Icons.arrow_forward_ios_rounded, size: 15),
-      leading: Text("$title", style: theme.textTheme.headline5));
+      trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 15),
+      title: Text("$title", style: theme.textTheme.headline5),
+      leading: icon);
 }
 
 Future<dynamic> isWebRouter(BuildContext context, String url) {

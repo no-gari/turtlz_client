@@ -6,13 +6,11 @@ part of 'search_result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SearchResult _$SearchResultFromJson(Map<String, dynamic> json) {
-  return SearchResult(
-    json['keyword'] as String?,
-    json['brands'] as List<dynamic>?,
-    json['products'] as List<dynamic>?,
-  );
-}
+SearchResult _$SearchResultFromJson(Map<String, dynamic> json) => SearchResult(
+      json['keyword'] as String?,
+      json['brands'] as List<dynamic>?,
+      json['products'] as List<dynamic>?,
+    );
 
 Map<String, dynamic> _$SearchResultToJson(SearchResult instance) =>
     <String, dynamic>{

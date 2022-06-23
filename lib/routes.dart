@@ -19,13 +19,18 @@ import 'package:vrouter/vrouter.dart';
 final routes = [
   VWidget(path: OrderCancelPage.routeName, widget: OrderCancelPage()),
   VWidget(path: MainScreen.routeName, widget: MainScreen(), stackedRoutes: [
+    VWidget(
+        path: '/brand/:brandId',
+        widget: BrandDetailScreen(),
+        name: BrandDetailScreen.routeName),
+    VWidget(path: ProductListScreen.routeName, widget: ProductListScreen()),
+    VWidget(path: ProductListScreen.routeName, widget: ProductListScreen()),
     VWidget(path: CouponScreen.routeName, widget: CouponScreen()),
-    VWidget(path: MenuScreen.routeName, widget: MenuScreen()),
-    VWidget(path: StoreScreen.routeName, widget: StoreScreen()),
-    VWidget(path: CartScreen.routeName, widget: CartScreen()),
     VWidget(path: MyPageScreen.routeName, widget: MyPageScreen()),
     VWidget(path: SearchScreen.routeName, widget: SearchScreen()),
-    VWidget(path: ProductListScreen.routeName, widget: ProductListScreen()),
+    VWidget(path: StoreScreen.routeName, widget: StoreScreen()),
+    VWidget(path: MenuScreen.routeName, widget: MenuScreen()),
+    VWidget(path: CartScreen.routeName, widget: CartScreen()),
     VWidget(
         path: 'product/:productId',
         widget: ProductDetailScreen(),
@@ -55,9 +60,5 @@ final routes = [
               name: '/search_brand_result')
         ]),
   ]),
-  VWidget(
-      path: '/brand/:brandId',
-      widget: BrandDetailScreen(),
-      name: BrandDetailScreen.routeName),
   VWidget(path: '*', widget: MainScreen())
 ];

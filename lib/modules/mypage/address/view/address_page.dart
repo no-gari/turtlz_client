@@ -102,13 +102,14 @@ class _AddressPage extends State<AddressPage>
               } else {
                 return Center(
                     child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                      Container(
-                          child: Text("no address :(",
-                              style: theme.textTheme.headline2!
-                                  .copyWith(height: 2))),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.35),
+                      Text("no address :(",
+                          style:
+                              theme.textTheme.headline2!.copyWith(height: 2)),
                       GestureDetector(
                           onTap: () {
                             Navigator.push(

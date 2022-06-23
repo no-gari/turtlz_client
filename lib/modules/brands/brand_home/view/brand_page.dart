@@ -43,11 +43,7 @@ class _BrandPageState extends State<BrandPage> {
         if (state.isLoaded == true) {
           return Column(children: [
             for (var brand in state.brands!)
-              BrandListTile(
-                  Id: brand.Id,
-                  name: brand.name,
-                  description: brand.description,
-                  logo: brand.logo)
+              BrandListTile(Id: brand.Id, name: brand.name, logo: brand.logo)
           ]);
         }
         return Padding(

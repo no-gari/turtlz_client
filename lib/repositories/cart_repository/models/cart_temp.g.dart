@@ -6,14 +6,12 @@ part of 'cart_temp.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CartTemp _$CartTempFromJson(Map<String, dynamic> json) {
-  return CartTemp(
-    variants: json['variants'] == null
-        ? null
-        : Variants.fromJson(json['variants'] as Map<String, dynamic>),
-    quantity: json['quantity'] as num?,
-  );
-}
+CartTemp _$CartTempFromJson(Map<String, dynamic> json) => CartTemp(
+      variants: json['variants'] == null
+          ? null
+          : Variants.fromJson(json['variants'] as Map<String, dynamic>),
+      quantity: json['quantity'] as num?,
+    );
 
 Map<String, dynamic> _$CartTempToJson(CartTemp instance) => <String, dynamic>{
       'variants': instance.variants,

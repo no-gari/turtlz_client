@@ -1,3 +1,4 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/modules/orderForm/view/orderForm_list_screen.dart';
@@ -5,7 +6,7 @@ import 'package:turtlz/modules/mypage/address/view/address_screen.dart';
 import 'package:turtlz/modules/store/coupon/view/coupon_screen.dart';
 import 'package:turtlz/support/base_component/company_info.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as Svg;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +59,8 @@ class _MyPageState extends State<MyPage> {
                                           AuthenticationStatus.authenticated
                                       ? context.vRouter.toNamed('/notification')
                                       : showSocialLoginNeededDialog(context),
-                                  icon: ImageIcon(Svg("assets/icons/noti.svg"),
+                                  icon: ImageIcon(
+                                      Svg.Svg("assets/icons/noti.svg"),
                                       color: theme.primaryColor))
                             ]),
                         if (state.status == AuthenticationStatus.authenticated)
@@ -99,6 +101,10 @@ class _MyPageState extends State<MyPage> {
                                     const SizedBox(height: 10),
                                     Column(children: [
                                       subMenuWidget(
+                                          icon: SvgPicture.asset(
+                                              "assets/icons/coupon.svg",
+                                              color: Colors.black,
+                                              height: 16),
                                           title: "내 쿠폰",
                                           tapped: () {
                                             if (state.status ==
@@ -116,6 +122,10 @@ class _MyPageState extends State<MyPage> {
                                             }
                                           }),
                                       subMenuWidget(
+                                          icon: SvgPicture.asset(
+                                              "assets/icons/shipping.svg",
+                                              color: Colors.black,
+                                              height: 20),
                                           title: "배송지 관리",
                                           tapped: () {
                                             if (state.status ==
@@ -134,6 +144,15 @@ class _MyPageState extends State<MyPage> {
                                             }
                                           }),
                                       subMenuWidget(
+                                          icon: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 3),
+                                            child: SvgPicture.asset(
+                                              'assets/icons/_invoice.svg',
+                                              color: Colors.black,
+                                              height: 24,
+                                            ),
+                                          ),
                                           title: "주문 내역",
                                           tapped: () {
                                             if (state.status ==
@@ -159,6 +178,14 @@ class _MyPageState extends State<MyPage> {
                                     const SizedBox(height: 10),
                                     Column(children: [
                                       subMenuWidget(
+                                          icon: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 3),
+                                            child: SvgPicture.asset(
+                                                "assets/icons/1_1.svg",
+                                                height: 20,
+                                                color: Colors.black),
+                                          ),
                                           title: "1:1 문의하기",
                                           tapped: () {
                                             requestCameraPermission(context);
@@ -173,21 +200,31 @@ class _MyPageState extends State<MyPage> {
                                     const SizedBox(height: 10),
                                     Column(children: [
                                       subMenuWidget(
+                                          icon: const Icon(Icons.check,
+                                              color: Colors.black),
                                           title: "개인정보 처리방침",
                                           tapped: () => isWebRouter(context,
                                               'https://aroundusprivacypolicy.oopy.io/')),
                                       subMenuWidget(
+                                          icon: const Icon(Icons.list,
+                                              color: Colors.black),
                                           title: "서비스 이용약관",
                                           tapped: () => isWebRouter(context,
                                               'https://arounduspp2.oopy.io/')),
                                       subMenuWidget(
+                                          icon: const Icon(
+                                              Icons.account_circle_outlined,
+                                              color: Colors.black),
                                           title: "개인정보 수집, 이용 방침",
                                           tapped: () => isWebRouter(context,
                                               'https://aroundusprivacypolicy.oopy.io/')),
                                       ListTile(
-                                          contentPadding: EdgeInsets.all(0),
+                                          leading: const Icon(
+                                              Icons.approval_outlined),
+                                          contentPadding:
+                                              const EdgeInsets.all(0),
                                           dense: true,
-                                          leading: Text('버전 정보',
+                                          title: Text('버전 정보',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline5),

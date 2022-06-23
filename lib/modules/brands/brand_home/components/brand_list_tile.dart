@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
 class BrandListTile extends StatelessWidget {
-  BrandListTile(
-      {@required this.Id,
-      @required this.name,
-      @required this.description,
-      @required this.logo});
+  BrandListTile({@required this.Id, @required this.name, @required this.logo});
 
-  final String? Id, name, description, logo;
+  final String? Id, name, logo;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +23,6 @@ class BrandListTile extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodyText2!
-                .copyWith(fontWeight: FontWeight.w700)),
-        subtitle: Text(this.description!,
-            style: Theme.of(context).textTheme.bodyText2,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis),
-        isThreeLine: true);
+                .copyWith(fontWeight: FontWeight.w700)));
   }
 }

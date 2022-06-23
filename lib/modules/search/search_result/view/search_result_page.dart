@@ -31,7 +31,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: BlocBuilder<SearchResultCubit, SearchResultState>(
             builder: (context, state) {
           if (state.isLoaded == true) {
@@ -50,8 +50,8 @@ class _SearchResultPageState extends State<SearchResultPage> {
                     brand: Brand(name: model['brand']))));
 
             List<BrandList> brandList = List<BrandList>.from(brands.map(
-                (model) => BrandList(model['Id'], model['name'],
-                    model['description'], model['logo'])));
+                (model) =>
+                    BrandList(model['Id'], model['name'], model['logo'])));
 
             return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +86,6 @@ class _SearchResultPageState extends State<SearchResultPage> {
                             BrandListTile(
                                 Id: brand.Id,
                                 name: brand.name,
-                                description: brand.description,
                                 logo: brand.logo),
                         if (brandList.isEmpty)
                           Container(
@@ -138,7 +137,8 @@ class _SearchResultPageState extends State<SearchResultPage> {
                             : Container(
                                 color: Colors.white,
                                 height: 100,
-                                child: Center(child: Text('검색된 상품이 없습니다.')))
+                                child:
+                                    const Center(child: Text('검색된 상품이 없습니다.')))
                       ])
                 ]);
           } else {

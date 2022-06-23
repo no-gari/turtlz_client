@@ -6,12 +6,11 @@ part of 'shipping_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ShippingRequest _$ShippingRequestFromJson(Map<String, dynamic> json) {
-  return ShippingRequest(
-    json['id'] as int,
-    json['content'] as String,
-  );
-}
+ShippingRequest _$ShippingRequestFromJson(Map<String, dynamic> json) =>
+    ShippingRequest(
+      json['id'] as int,
+      json['content'] as String,
+    );
 
 Map<String, dynamic> _$ShippingRequestToJson(ShippingRequest instance) =>
     <String, dynamic>{

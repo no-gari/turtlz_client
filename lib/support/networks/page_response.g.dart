@@ -6,14 +6,12 @@ part of 'page_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PageResponse _$PageResponseFromJson(Map<String, dynamic> json) {
-  return PageResponse(
-    count: json['count'] as int?,
-    next: json['next'] as String?,
-    previous: json['previous'] as String?,
-    results: json['results'] as List<dynamic>?,
-  );
-}
+PageResponse _$PageResponseFromJson(Map<String, dynamic> json) => PageResponse(
+      count: json['count'] as int?,
+      next: json['next'] as String?,
+      previous: json['previous'] as String?,
+      results: json['results'] as List<dynamic>?,
+    );
 
 Map<String, dynamic> _$PageResponseToJson(PageResponse instance) =>
     <String, dynamic>{

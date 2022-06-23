@@ -21,27 +21,22 @@ class StoreRepository {
   }
 
   Future<ApiResult<PageResponse>> getProductsByCollection(
-      Collection collection, String sort, int page) async {
+      String collection, String sort, int page) async {
     try {
-      String collectionName = collection.Id == null ? "" : collection.Id + "/";
-
       var response = await _dioClient.get(
-          '/api/v1/commerce/product/${collectionName}list?page=$page&sort=$sort');
-
+          '/api/v1/commerce/product/${collection}/list?page=$page&sort=$sort');
       return ApiResult.success(data: PageResponse.fromJson(response));
     } catch (e) {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
 
-  Future<ApiResult<List>> getSubCollection(Collection collection) async {
+  Future<ApiResult<List>> getSubCollection() async {
     try {
-      var response =
-          await _dioClient.get('/api/v1/commerce/collection/${collection.Id}/');
-
+      var response = await _dioClient.get('/api/v1/commerce/collection/');
       return ApiResult.success(data: response);
-    } catch (e) {
-      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    } on Exception {
+      throw CollectionGetFailure();
     }
   }
 }

@@ -6,16 +6,12 @@ part of 'menu.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Menu _$MenuFromJson(Map<String, dynamic> json) {
-  return Menu(
-    json['name'] as String,
-    (json['collection'] as List<dynamic>)
-        .map((e) => Collection.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+Menu _$MenuFromJson(Map<String, dynamic> json) => Menu(
+      json['name'] as String,
+      json['Id'] as String,
+    );
 
 Map<String, dynamic> _$MenuToJson(Menu instance) => <String, dynamic>{
       'name': instance.name,
-      'collection': instance.collection,
+      'Id': instance.Id,
     };

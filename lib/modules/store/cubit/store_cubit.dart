@@ -8,7 +8,6 @@ import 'package:turtlz/support/networks/page_response.dart';
 import 'package:turtlz/support/networks/api_result.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
 part 'store_state.dart';
 
@@ -38,7 +37,7 @@ class StoreCubit extends Cubit<StoreState> {
   }
 
   Future<void> getProductsByCollection(
-      Collection collection, String sort, int page) async {
+      String collection, String sort, int page) async {
     ApiResult<PageResponse> apiResult =
         await _storeRepository.getProductsByCollection(collection, sort, page);
 
@@ -62,6 +61,7 @@ class StoreCubit extends Cubit<StoreState> {
 
       emit(
         state.copyWith(
+          isLoaded: true,
           products: page == 1 ? newProducts : state.products! + newProducts,
           next: pageResponse.next,
           previous: pageResponse.previous,
@@ -76,12 +76,12 @@ class StoreCubit extends Cubit<StoreState> {
   }
 
   Future<void> getSubCollection() async {
-    ApiResult<List> apiResult =
-        await _storeRepository.getSubCollection(state.selectedMenu!);
+    ApiResult<List> apiResult = await _storeRepository.getSubCollection();
 
     apiResult.when(success: (List? listResponse) {
       emit(state.copyWith(
-          subCollections: [Collection(state.selectedMenu!.Id, "전체보기")] +
+          isLoaded: true,
+          subCollections: [Collection('', "전체보기")] +
               listResponse!.map((e) => Collection.fromJson(e)).toList()));
     }, failure: (NetworkExceptions? error) {
       emit(state.copyWith(error: error));

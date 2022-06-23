@@ -86,16 +86,16 @@ class _CouponPage extends State<CouponPage> {
                   ]),
                 ]);
               } else {
-                return Center(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                      Container(
-                          child: Center(
-                              child: Text('no coupons :(',
-                                  style: theme.textTheme.headline3))),
-                    ]));
+                return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.4),
+                      Center(
+                          child: Text('no coupons :(',
+                              style: theme.textTheme.headline3))
+                    ]);
               }
             });
       } else {

@@ -6,17 +6,15 @@ part of 'order.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Order _$OrderFromJson(Map<String, dynamic> json) {
-  return Order(
-    merchantUid: json['merchantUid'] as String?,
-    name: json['name'] as String?,
-    amount: json['amount'] as int?,
-    currency: json['currency'] as String?,
-    buyerName: json['buyerName'] as String?,
-    buyerTel: json['buyerTel'] as String?,
-    buyerEmail: json['buyerEmail'] as String?,
-  );
-}
+Order _$OrderFromJson(Map<String, dynamic> json) => Order(
+      merchantUid: json['merchantUid'] as String?,
+      name: json['name'] as String?,
+      amount: json['amount'] as int?,
+      currency: json['currency'] as String?,
+      buyerName: json['buyerName'] as String?,
+      buyerTel: json['buyerTel'] as String?,
+      buyerEmail: json['buyerEmail'] as String?,
+    );
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'merchantUid': instance.merchantUid,
