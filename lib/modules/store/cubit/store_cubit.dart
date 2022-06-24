@@ -1,3 +1,5 @@
+import 'package:turtlz/repositories/store_repository/models/banner_collection.dart';
+import 'package:turtlz/repositories/store_repository/models/main_collection.dart';
 import 'package:turtlz/repositories/store_repository/src/store_repository.dart';
 import 'package:turtlz/repositories/store_repository/models/collection.dart';
 import 'package:turtlz/repositories/product_repository/models/product.dart';
@@ -75,8 +77,8 @@ class StoreCubit extends Cubit<StoreState> {
     });
   }
 
-  Future<void> getSubCollection() async {
-    ApiResult<List> apiResult = await _storeRepository.getSubCollection();
+  Future<void> getMainCollection() async {
+    ApiResult<List> apiResult = await _storeRepository.getMainCollection();
 
     apiResult.when(success: (List? listResponse) {
       emit(state.copyWith(

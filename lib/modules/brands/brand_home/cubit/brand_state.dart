@@ -7,7 +7,7 @@ class BrandListState extends Equatable {
       this.next,
       this.previous,
       this.error,
-      required this.page,
+      this.page,
       required this.maxIndex,
       required this.isLoaded,
       required this.isLoading});
@@ -17,7 +17,7 @@ class BrandListState extends Equatable {
   final String? next;
   final String? previous;
   final NetworkExceptions? error;
-  final int page;
+  final int? page;
   final bool maxIndex;
   final bool isLoaded;
   final bool isLoading;

@@ -19,7 +19,7 @@ class BrandSearchCubit extends Cubit<BrandSearchState> {
 
   final SearchRepository _searchRepository;
 
-  Future<void> brandSearch(String keyword, int page) async {
+  Future<void> brandSearch(String keyword) async {
     ApiResult<Map> apiResult =
         await _searchRepository.brandSearch(keyword, state.page);
 

@@ -16,5 +16,5 @@ Map<String, dynamic> _$CollectionToJson(Collection instance) =>
     <String, dynamic>{
       'Id': instance.Id,
       'name': instance.name,
-      'thumbnail': instance.name,
+      'thumbnail': instance.thumbnail,
     };

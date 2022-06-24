@@ -1,4 +1,3 @@
-import 'package:turtlz/repositories/store_repository/models/collection.dart';
 import 'package:turtlz/support/networks/network_exceptions.dart';
 import 'package:turtlz/support/networks/page_response.dart';
 import 'package:turtlz/support/networks/api_result.dart';
@@ -31,12 +30,21 @@ class StoreRepository {
     }
   }
 
-  Future<ApiResult<List>> getSubCollection() async {
+  Future<ApiResult<List>> getMainCollection() async {
     try {
-      var response = await _dioClient.get('/api/v1/commerce/collection/');
+      var response = await _dioClient.get('/api/v1/commerce/collection/main/');
       return ApiResult.success(data: response);
-    } on Exception {
-      throw CollectionGetFailure();
+    } catch (e) {
+      throw ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
+
+  // Future<ApiResult<List>> getSubCollection() async {
+  //   try {
+  //     var response = await _dioClient.get('/api/v1/commerce/collection/');
+  //     return ApiResult.success(data: response);
+  //   } catch (e) {
+  //     throw ApiResult.failure(error: NetworkExceptions.getDioException(e));
+  //   }
+  // }
 }

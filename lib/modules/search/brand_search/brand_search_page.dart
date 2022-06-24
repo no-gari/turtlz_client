@@ -15,13 +15,28 @@ class BrandSearchPage extends StatefulWidget {
 
 class _BrandSearchPageState extends State<BrandSearchPage> {
   late BrandSearchCubit _brandSearchCubit;
-  int _page = 1;
+  final _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _brandSearchCubit = BlocProvider.of<BrandSearchCubit>(context);
-    _brandSearchCubit.brandSearch(widget.keyword!, _page);
+    _brandSearchCubit.brandSearch(widget.keyword!);
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+    if (currentScroll == maxScroll) {
+      _brandSearchCubit.brandSearch(widget.keyword!);
+    }
   }
 
   @override
@@ -33,13 +48,14 @@ class _BrandSearchPageState extends State<BrandSearchPage> {
                 style: Theme.of(context).textTheme.headline5)),
         body: SafeArea(
             child: SingleChildScrollView(
+                controller: _scrollController,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: BlocBuilder<BrandSearchCubit, BrandSearchState>(
                     builder: (context, state) {
                   if (state.isLoaded) {
-                    List<BrandList> brandList = List<BrandList>.from(
-                        state.brands!.map((model) => BrandList(
-                            model['Id'], model['name'], model['logo'])));
+                    List<BrandList> brandList = List<BrandList>.from(state
+                        .brands!
+                        .map((model) => BrandList(model['Id'], model['name'])));
 
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,10 +63,7 @@ class _BrandSearchPageState extends State<BrandSearchPage> {
                           if (state.brands!.isNotEmpty) Container(height: 20),
                           if (state.brands!.isNotEmpty)
                             for (var brand in brandList)
-                              BrandListTile(
-                                  Id: brand.Id,
-                                  name: brand.name,
-                                  logo: brand.logo)
+                              BrandListTile(Id: brand.Id, name: brand.name)
                         ]);
                   }
                   return Center(

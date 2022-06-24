@@ -132,7 +132,7 @@ class _ProductListPageState extends State<ProductListPage> {
 
   Container subCategoryWidget(StoreState state) {
     return Container(
-        padding: EdgeInsets.only(left: 10),
+        padding: const EdgeInsets.only(left: 10),
         height: 50,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -154,8 +154,13 @@ class _ProductListPageState extends State<ProductListPage> {
                                       width: 2))
                               : Border()),
                       alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
+                      padding: EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                          bottom: _selectedCollection ==
+                                  state.subCollections![index]
+                              ? 3
+                              : 5),
                       child: Text("${state.subCollections![index].name}",
                           style: Theme.of(context)
                               .textTheme

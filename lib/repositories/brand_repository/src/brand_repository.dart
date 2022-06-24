@@ -1,4 +1,3 @@
-import 'package:turtlz/repositories/brand_repository/models/brand_detail.dart';
 import 'package:turtlz/support/networks/network_exceptions.dart';
 import 'package:turtlz/support/networks/page_response.dart';
 import 'package:turtlz/support/networks/api_result.dart';
@@ -9,7 +8,7 @@ class BrandRepository {
 
   final DioClient _dioClient;
 
-  Future<ApiResult<PageResponse>> getBrandList(int page) async {
+  Future<ApiResult<PageResponse>> getBrandList(int page, int limit) async {
     try {
       var response = await _dioClient
           .get('/api/v1/commerce/brand/brands/list/?page=${page}');

@@ -3,6 +3,8 @@ part of 'store_cubit.dart';
 class StoreState extends Equatable {
   const StoreState({
     this.products,
+    this.mainCollections,
+    this.bannerCollections,
     this.selectedMenu,
     this.collections,
     this.subCollections,
@@ -17,6 +19,8 @@ class StoreState extends Equatable {
   });
 
   final List<Product>? products;
+  final List<MainCollection>? mainCollections;
+  final List<BannerCollection>? bannerCollections;
   final Collection? selectedMenu;
   final List<Menu>? collections;
   final List<Collection>? subCollections;
@@ -32,6 +36,8 @@ class StoreState extends Equatable {
   @override
   List<Object?> get props => [
         products,
+        mainCollections,
+        bannerCollections,
         selectedMenu,
         collections,
         subCollections,
@@ -47,6 +53,8 @@ class StoreState extends Equatable {
 
   StoreState copyWith({
     List<Product>? products,
+    List<MainCollection>? mainCollections,
+    List<BannerCollection>? bannerCollections,
     Collection? selectedMenu,
     List<Menu>? collections,
     List<Collection>? subCollections,
@@ -61,6 +69,8 @@ class StoreState extends Equatable {
   }) {
     return StoreState(
       products: products ?? this.products,
+      mainCollections: mainCollections ?? this.mainCollections,
+      bannerCollections: bannerCollections ?? this.bannerCollections,
       selectedMenu: selectedMenu ?? this.selectedMenu,
       collections: collections ?? this.collections,
       subCollections: subCollections ?? this.subCollections,

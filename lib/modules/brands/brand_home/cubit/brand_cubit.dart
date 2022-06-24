@@ -18,9 +18,9 @@ class BrandCubit extends Cubit<BrandListState> {
 
   final BrandRepository _brandRepository;
 
-  Future<void> getBrands() async {
+  Future<void> getBrands(int limit) async {
     ApiResult<PageResponse> apiResult =
-        await _brandRepository.getBrandList(state.page);
+        await _brandRepository.getBrandList(state.page!, limit);
 
     apiResult.when(success: (PageResponse? pageResponse) {
       List<BrandList>? newBrandList =
@@ -31,7 +31,7 @@ class BrandCubit extends Cubit<BrandListState> {
               ? state.brands! + newBrandList!
               : newBrandList!,
           count: pageResponse.count,
-          page: state.page + 1,
+          page: state.page! + 1,
           next: pageResponse.next,
           previous: pageResponse.previous,
           maxIndex: pageResponse.next == null ? true : false,

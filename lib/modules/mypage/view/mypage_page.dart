@@ -204,20 +204,13 @@ class _MyPageState extends State<MyPage> {
                                               color: Colors.black),
                                           title: "개인정보 처리방침",
                                           tapped: () => isWebRouter(context,
-                                              'https://aroundusprivacypolicy.oopy.io/')),
+                                              'https://turtlz.co/personal_policy/')),
                                       subMenuWidget(
                                           icon: const Icon(Icons.list,
                                               color: Colors.black),
                                           title: "서비스 이용약관",
                                           tapped: () => isWebRouter(context,
-                                              'https://arounduspp2.oopy.io/')),
-                                      subMenuWidget(
-                                          icon: const Icon(
-                                              Icons.account_circle_outlined,
-                                              color: Colors.black),
-                                          title: "개인정보 수집, 이용 방침",
-                                          tapped: () => isWebRouter(context,
-                                              'https://aroundusprivacypolicy.oopy.io/')),
+                                              'https://turtlz.co/agreement/')),
                                       ListTile(
                                           leading: const Icon(
                                               Icons.approval_outlined,

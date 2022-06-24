@@ -49,9 +49,8 @@ class _SearchResultPageState extends State<SearchResultPage> {
                     thumbnail: model['thumbnail'],
                     brand: Brand(name: model['brand']))));
 
-            List<BrandList> brandList = List<BrandList>.from(brands.map(
-                (model) =>
-                    BrandList(model['Id'], model['name'], model['logo'])));
+            List<BrandList> brandList = List<BrandList>.from(
+                brands.map((model) => BrandList(model['Id'], model['name'])));
 
             return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,10 +82,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                       children: [
                         if (brandList.isNotEmpty)
                           for (var brand in brandList)
-                            BrandListTile(
-                                Id: brand.Id,
-                                name: brand.name,
-                                logo: brand.logo),
+                            BrandListTile(Id: brand.Id, name: brand.name),
                         if (brandList.isEmpty)
                           Container(
                               color: Colors.white,

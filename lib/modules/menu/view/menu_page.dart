@@ -21,6 +21,7 @@ class MenuPage extends StatefulWidget {
 
 class _NewsScreenState extends State<MenuPage> {
   final PageController _pageController = PageController(initialPage: 0);
+  final ScrollController _brandScrollController = ScrollController();
 
   late StoreCubit _storeCubit;
   late BrandCubit _brandCubit;
@@ -34,12 +35,23 @@ class _NewsScreenState extends State<MenuPage> {
     _storeCubit = BlocProvider.of<StoreCubit>(context);
     _brandCubit = BlocProvider.of<BrandCubit>(context);
     _storeCubit.getCollections();
-    _brandCubit.getBrands();
+    _brandCubit.getBrands(40);
+
+    _brandScrollController.addListener(_brandOnScroll);
+  }
+
+  void _brandOnScroll() async {
+    final maxScroll = _brandScrollController.position.maxScrollExtent;
+    final currentScroll = _brandScrollController.position.pixels;
+    if (currentScroll == maxScroll) {
+      _brandCubit.getBrands(40);
+    }
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _brandScrollController.dispose();
     super.dispose();
   }
 
@@ -100,8 +112,7 @@ class _NewsScreenState extends State<MenuPage> {
                             width: maxWidth(context)),
                         SizedBox(height: 5),
                         Text('터틀즈가 입수한 신상 캠핑용품!',
-                            style: theme.textTheme.headline5!
-                                .copyWith(color: theme.primaryColor))
+                            style: theme.textTheme.headline5)
                       ]),
                 ),
                 SizedBox(height: 20),
@@ -121,8 +132,7 @@ class _NewsScreenState extends State<MenuPage> {
                             width: maxWidth(context)),
                         SizedBox(height: 5),
                         Text('불멍하기 딱 좋은 요즘 날씨!',
-                            style: theme.textTheme.headline5!
-                                .copyWith(color: theme.primaryColor))
+                            style: theme.textTheme.headline5!)
                       ]),
                 ),
                 SizedBox(height: 20),
@@ -142,8 +152,7 @@ class _NewsScreenState extends State<MenuPage> {
                             width: maxWidth(context)),
                         SizedBox(height: 5),
                         Text('감성캠핑에 빠질 수 없는 필수품 모음!',
-                            style: theme.textTheme.headline5!
-                                .copyWith(color: theme.primaryColor))
+                            style: theme.textTheme.headline5)
                       ]),
                 ),
                 SizedBox(height: 20),
@@ -160,19 +169,11 @@ class _NewsScreenState extends State<MenuPage> {
                         children: [
                           Image.asset('assets/images/shipping_banner.png',
                               width: maxWidth(context)),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Text('터틀즈는 전 상품 무료배송 진행 중!',
-                              style: theme.textTheme.headline5!
-                                  .copyWith(color: theme.primaryColor))
+                              style: theme.textTheme.headline5)
                         ])),
-                SizedBox(height: 30),
-                //
-                // Image.asset('assets/images/fire_banner.png',
-                //     width: maxWidth(context)),
-                // Image.asset('assets/images/sensible_banner.png',
-                //     width: maxWidth(context)),
-                // Image.asset('assets/images/shipping_banner.png',
-                //     width: maxWidth(context)),
+                const SizedBox(height: 30),
               ]);
             } else {
               return Padding(
@@ -187,6 +188,7 @@ class _NewsScreenState extends State<MenuPage> {
 
   SingleChildScrollView buildSecondPage() {
     return SingleChildScrollView(
+        controller: _brandScrollController,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child:
             BlocBuilder<BrandCubit, BrandListState>(builder: (context, state) {
@@ -199,10 +201,6 @@ class _NewsScreenState extends State<MenuPage> {
                     context.vRouter.toNamed(BrandDetailScreen.routeName,
                         pathParameters: {'brandId': brand.Id!});
                   },
-                  leading: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      backgroundImage: NetworkImage(brand.logo!),
-                      radius: 20),
                   title: Text(brand.name!,
                       style: Theme.of(context).textTheme.headline5),
                   trailing: const Icon(Icons.arrow_forward_ios,
@@ -313,7 +311,7 @@ class TabBarDelegate extends SliverPersistentHeaderDelegate {
         child: Container(
             padding: const EdgeInsets.only(left: 20),
             child: TabBar(
-                labelColor: Colors.black,
+                labelColor: theme.primaryColor,
                 unselectedLabelColor: Colors.grey,
                 labelStyle: Theme.of(context).textTheme.headline5,
                 isScrollable: true,
@@ -325,9 +323,10 @@ class TabBarDelegate extends SliverPersistentHeaderDelegate {
                       padding: EdgeInsets.only(right: 20),
                       child: Text('brands'))
                 ],
-                indicator: const UnderlineTabIndicator(
-                    borderSide: BorderSide(width: 2.0, color: Colors.black),
-                    insets: EdgeInsets.only(bottom: -6)),
+                indicator: UnderlineTabIndicator(
+                    borderSide:
+                        BorderSide(width: 2.0, color: theme.primaryColor),
+                    insets: const EdgeInsets.only(bottom: -6)),
                 labelPadding: EdgeInsets.zero,
                 indicatorPadding: const EdgeInsets.only(right: 20))));
   }

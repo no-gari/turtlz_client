@@ -17,7 +17,7 @@ class _BrandPageState extends State<BrandPage> {
   void initState() {
     super.initState();
     _brandCubit = BlocProvider.of<BrandCubit>(context);
-    _brandCubit.getBrands();
+    _brandCubit.getBrands(40);
     _scrollController.addListener(_onScroll);
   }
 
@@ -30,29 +30,30 @@ class _BrandPageState extends State<BrandPage> {
   void _onScroll() {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.position.pixels;
-    if (maxScroll - currentScroll == 0 && _brandCubit.state.next != null) {
-      _brandCubit.getBrands();
+    if (currentScroll == maxScroll) {
+      _brandCubit.getBrands(40);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+        controller: _scrollController,
         child: Column(children: [
-      BlocBuilder<BrandCubit, BrandListState>(builder: (context, state) {
-        if (state.isLoaded == true) {
-          return Column(children: [
-            for (var brand in state.brands!)
-              BrandListTile(Id: brand.Id, name: brand.name, logo: brand.logo)
-          ]);
-        }
-        return Padding(
-            padding: EdgeInsets.only(top: Adaptive.h(20)),
-            child: Center(
-                child: Image.asset('assets/images/indicator.gif',
-                    width: 100, height: 100)));
-      }),
-      SizedBox(height: Adaptive.h(5))
-    ]));
+          BlocBuilder<BrandCubit, BrandListState>(builder: (context, state) {
+            if (state.isLoaded == true) {
+              return Column(children: [
+                for (var brand in state.brands!)
+                  BrandListTile(Id: brand.Id, name: brand.name)
+              ]);
+            }
+            return Padding(
+                padding: EdgeInsets.only(top: Adaptive.h(20)),
+                child: Center(
+                    child: Image.asset('assets/images/indicator.gif',
+                        width: 100, height: 100)));
+          }),
+          SizedBox(height: Adaptive.h(5))
+        ]));
   }
 }

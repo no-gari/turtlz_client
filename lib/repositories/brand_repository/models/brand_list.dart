@@ -4,11 +4,10 @@ part 'brand_list.g.dart';
 
 @JsonSerializable()
 class BrandList extends Equatable {
-  const BrandList(this.Id, this.name, this.logo);
+  const BrandList(this.Id, this.name);
 
   final String? Id;
   final String? name;
-  final String? logo;
 
   factory BrandList.fromJson(Map<String, dynamic> json) =>
       _$BrandListFromJson(json);
@@ -16,5 +15,5 @@ class BrandList extends Equatable {
   Map<String, dynamic> toJson() => _$BrandListToJson(this);
 
   @override
-  List<Object?> get props => [Id, name, logo];
+  List<Object?> get props => [Id, name];
 }

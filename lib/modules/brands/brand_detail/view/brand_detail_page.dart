@@ -45,22 +45,22 @@ class _BrandDetailPageState extends State<BrandDetailPage> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      CircleAvatar(
-                          backgroundImage: NetworkImage(state.logo!),
-                          radius: 20),
-                      const SizedBox(width: 10),
+                      // CircleAvatar(
+                      //     backgroundImage: NetworkImage(state.logo!),
+                      //     radius: 20),
+                      // const SizedBox(width: 10),
                       Text(state.name!,
-                          style: Theme.of(context).textTheme.headline5)
+                          style: Theme.of(context).textTheme.headline3)
                     ]),
                     const SizedBox(height: 20),
-                    Text(state.description!),
-                    const SizedBox(height: 20)
+                    // Text(state.description!),
+                    // const SizedBox(height: 20)
                   ])),
           Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
