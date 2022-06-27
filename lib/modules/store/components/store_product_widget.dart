@@ -1,14 +1,17 @@
+import 'package:turtlz/modules/store/product/product_detail/view/product_detail_screen.dart';
 import 'package:turtlz/repositories/product_repository/product_repository.dart';
 import 'package:turtlz/repositories/product_repository/models/product.dart';
 import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:vrouter/vrouter.dart';
 
 Widget storeProduct(BuildContext context, Product product) {
   return GestureDetector(
-      onTap: () => context.vRouter.toNamed('/productDetail',
-          pathParameters: {'productId': product.Id!}),
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ProductDetailScreen(productId: product.Id))),
       child: GridTile(
           child: Column(children: [
         ClipRRect(
@@ -46,6 +49,7 @@ Widget storeProduct(BuildContext context, Product product) {
                 WidgetSpan(
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                       Text(
                           "${currencyFromString(product.discountPrice.toString())}\t",
@@ -53,7 +57,7 @@ Widget storeProduct(BuildContext context, Product product) {
                       Text(currencyFromString(product.originalPrice.toString()),
                           style: theme.textTheme.bodyText2!.copyWith(
                               decoration: TextDecoration.lineThrough,
-                              fontSize: 12))
+                              fontSize: 10))
                     ]))
               ]))
             ]))

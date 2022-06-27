@@ -61,23 +61,14 @@ class _CompanyInfoState extends State<CompanyInfo> {
                 const TextSpan(text: '(주)룬샷컴퍼니\n'),
                 const TextSpan(
                     text: '사업장 주소: 경기도 성남시 판교역로192번길 16 판교타워 806호\n'),
-                const TextSpan(text: '사업자등록번호: 407-81-32513  '),
-                WidgetSpan(
-                    child: GestureDetector(
-                        onTap: () => isWebRouter(context,
-                            'http://www.ftc.go.kr/bizCommPop.do?wrkr_no=4078132513/'),
-                        child: Text('정보 확인',
-                            style: theme.textTheme.bodyText2!.copyWith(
-                                color: theme.primaryColor,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline)))),
+                const TextSpan(text: '사업자등록번호: 407-81-32513'),
                 const TextSpan(text: '\n통신판매업신고번호: 2021-성남분당A-0655'),
                 const TextSpan(text: '\n이메일: contact@loonshot.company'),
                 const TextSpan(text: '\n입금계좌: 우리은행 1005-004-261257\n'),
                 WidgetSpan(
                     child: GestureDetector(
                         onTap: () => isWebRouter(
-                            context, 'https://aroundusprivacypolicy.oopy.io/'),
+                            context, 'https://turtlz.co/personal_policy/'),
                         child: Text('개인정보 처리방침',
                             style: theme.textTheme.bodyText2!.copyWith(
                                 color: theme.primaryColor,
@@ -90,7 +81,7 @@ class _CompanyInfoState extends State<CompanyInfo> {
                 WidgetSpan(
                     child: GestureDetector(
                   onTap: () =>
-                      isWebRouter(context, 'https://arounduspp2.oopy.io/'),
+                      isWebRouter(context, 'https://turtlz.co/agreement/'),
                   child: Text('서비스 이용약관',
                       style: theme.textTheme.bodyText2!.copyWith(
                           color: theme.primaryColor,

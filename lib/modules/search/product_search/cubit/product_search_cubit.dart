@@ -18,9 +18,8 @@ class ProductSearchCubit extends Cubit<ProductSearchState> {
 
   final SearchRepository _searchRepository;
 
-  Future<void> productSearch(String keyword, int page) async {
+  Future<void> productSearch(String keyword) async {
     emit(state.copyWith(
-      products: [],
       maxIndex: false,
     ));
 

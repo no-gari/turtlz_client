@@ -6,10 +6,12 @@ import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/modules/store/product/cubit/product_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:vrouter/vrouter.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   static String routeName = '/product_detail_screen';
+  final String? productId;
+
+  ProductDetailScreen({this.productId});
 
   @override
   _ProductDetailScreenState createState() => _ProductDetailScreenState();
@@ -18,8 +20,6 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    final productId = context.vRouter.pathParameters['productId'];
-
     return BlocProvider.value(
         value: BlocProvider.of<AuthenticationBloc>(context),
         child: MultiBlocProvider(providers: [
@@ -29,6 +29,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           BlocProvider<BrandDetailCubit>(
               create: (_) => BrandDetailCubit(
                   RepositoryProvider.of<BrandRepository>(context)))
-        ], child: ProductDetailPage(productId: productId)));
+        ], child: ProductDetailPage(productId: widget.productId)));
   }
 }

@@ -16,13 +16,22 @@ class ProductSearchPage extends StatefulWidget {
 
 class _ProductSearchPageState extends State<ProductSearchPage> {
   late ProductSearchCubit _productSearchCubit;
-  int _page = 1;
+  final _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _productSearchCubit = BlocProvider.of<ProductSearchCubit>(context);
-    _productSearchCubit.productSearch(widget.keyword!, _page);
+    _scrollController.addListener(_onScroll);
+    _productSearchCubit.productSearch(widget.keyword!);
+  }
+
+  void _onScroll() {
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+    if (maxScroll - currentScroll == 0) {
+      _productSearchCubit.productSearch(widget.keyword!);
+    }
   }
 
   @override
@@ -34,6 +43,7 @@ class _ProductSearchPageState extends State<ProductSearchPage> {
                 style: Theme.of(context).textTheme.headline5)),
         body: SafeArea(
             child: SingleChildScrollView(
+                controller: _scrollController,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: BlocBuilder<ProductSearchCubit, ProductSearchState>(
                     builder: (context, state) {

@@ -38,10 +38,27 @@ class StoreCubit extends Cubit<StoreState> {
     });
   }
 
+  Future<void> getSubCollection() async {
+    ApiResult<List> apiResult = await _storeRepository.getSubCollection();
+
+    apiResult.when(success: (List? listResponse) {
+      emit(state.copyWith(
+          isLoaded: true,
+          subCollections: [Collection('', "전체보기", '')] +
+              listResponse!.map((e) => Collection.fromJson(e)).toList()));
+    }, failure: (NetworkExceptions? error) {
+      emit(state.copyWith(error: error));
+    });
+  }
+
   Future<void> getProductsByCollection(
-      String collection, String sort, int page) async {
-    ApiResult<PageResponse> apiResult =
-        await _storeRepository.getProductsByCollection(collection, sort, page);
+      bool isNew, String collection, String sort) async {
+    if (isNew == true) {
+      emit(state.copyWith(page: 1));
+    }
+
+    ApiResult<PageResponse> apiResult = await _storeRepository
+        .getProductsByCollection(collection, sort, state.page!);
 
     apiResult.when(success: (PageResponse? pageResponse) {
       List<Product> newProducts = [];
@@ -64,7 +81,8 @@ class StoreCubit extends Cubit<StoreState> {
       emit(
         state.copyWith(
           isLoaded: true,
-          products: page == 1 ? newProducts : state.products! + newProducts,
+          products:
+              state.page == 1 ? newProducts : state.products! + newProducts,
           next: pageResponse.next,
           previous: pageResponse.previous,
           count: pageResponse.count,

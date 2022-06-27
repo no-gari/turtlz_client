@@ -16,16 +16,11 @@ class SignInCubit extends Cubit<SignInState> {
       {required String code,
       required String email,
       required String nickname,
-      String? profileImageUrl,
       String? socialType}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     ApiResult<Map> apiResult = await _authenticationRepository.signInWithSns(
-        code: code,
-        profileImageUrl: profileImageUrl,
-        email: email,
-        nickname: nickname,
-        socialType: socialType);
+        code: code, email: email, nickname: nickname, socialType: socialType);
 
     apiResult.when(success: (Map? response) {
       prefs.setString('access', response!['access']);

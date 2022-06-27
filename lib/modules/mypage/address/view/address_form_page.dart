@@ -1,7 +1,6 @@
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:turtlz/repositories/address_repository/models/address.dart';
 import 'package:turtlz/modules/mypage/address/cubit/address_cubit.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,7 +95,7 @@ class _AddressFormPage extends State<AddressFormPage> {
                                           borderSide: BorderSide(
                                               color: Theme.of(context)
                                                   .primaryColor)),
-                                      hintText: '번호를010 입력해 주세요.'),
+                                      hintText: '번호를 입력해 주세요.'),
                                   inputFormatters: [
                                     MaskedInputFormatter('000-0000-0000',
                                         allowedCharMatcher: RegExp('[0-9]'))

@@ -114,10 +114,8 @@ class _LoginWidgetState extends State<LoginWidget> {
       _signInCubit.signInWithSns(
           code: user.id.toString(),
           email: user.kakaoAccount!.email.toString(),
-          nickname: user.kakaoAccount!.profile!.nickname.toString(),
-          socialType: 'kakao',
-          profileImageUrl:
-              user.kakaoAccount!.profile!.profileImageUrl.toString());
+          nickname: user.kakaoAccount!.profile!.nickname ?? '용감한 거북이',
+          socialType: 'kakao');
     } catch (error) {
       print(error.toString());
     }
@@ -132,7 +130,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     _signInCubit.signInWithSns(
         code: credential.userIdentifier!,
         email: credential.email!,
-        nickname: credential.familyName! + credential.givenName!,
+        nickname: credential.givenName ?? '용감한 거북이',
         socialType: 'apple');
   }
 

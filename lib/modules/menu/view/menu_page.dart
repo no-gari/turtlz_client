@@ -197,10 +197,11 @@ class _NewsScreenState extends State<MenuPage> {
               for (var brand in state.brands!)
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  onTap: () {
-                    context.vRouter.toNamed(BrandDetailScreen.routeName,
-                        pathParameters: {'brandId': brand.Id!});
-                  },
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              BrandDetailScreen(brandId: brand.Id))),
                   title: Text(brand.name!,
                       style: Theme.of(context).textTheme.headline5),
                   trailing: const Icon(Icons.arrow_forward_ios,

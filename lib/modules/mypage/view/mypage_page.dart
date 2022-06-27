@@ -324,7 +324,7 @@ class _MyPageState extends State<MyPage> {
           });
       return false;
     } else {
-      isWebRouter(context, 'https://ed83p.channel.io');
+      isWebRouter(context, 'https://turtlz.channel.io');
       return true;
     }
   }

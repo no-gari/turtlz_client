@@ -10,12 +10,7 @@ part 'brand_search_state.dart';
 
 class BrandSearchCubit extends Cubit<BrandSearchState> {
   BrandSearchCubit(this._searchRepository)
-      : super(const BrandSearchState(
-          isLoading: true,
-          isLoaded: false,
-          maxIndex: false,
-          page: 1,
-        ));
+      : super(const BrandSearchState(page: 1));
 
   final SearchRepository _searchRepository;
 

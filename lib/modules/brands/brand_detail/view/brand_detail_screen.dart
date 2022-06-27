@@ -8,6 +8,10 @@ import 'package:vrouter/vrouter.dart';
 class BrandDetailScreen extends StatefulWidget {
   static String routeName = '/brand_detail_screen';
 
+  final String? brandId;
+
+  BrandDetailScreen({this.brandId});
+
   @override
   _BrandDetailScreenState createState() => _BrandDetailScreenState();
 }
@@ -25,6 +29,6 @@ class _BrandDetailScreenState extends State<BrandDetailScreen> {
         ],
         child: Scaffold(
             appBar: AppBar(automaticallyImplyLeading: true),
-            body: BrandDetailPage(Id: brandId)));
+            body: BrandDetailPage(Id: widget.brandId)));
   }
 }

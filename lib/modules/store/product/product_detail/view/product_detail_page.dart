@@ -42,25 +42,18 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
       return Scaffold(
-        bottomNavigationBar: productSaleBottomNavigator(context, _productCubit,
-            state.status == AuthenticationStatus.authenticated),
-        body:
-            BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
-          if (state.isLoaded == true) {
-            return bodyWidget(context);
-          } else {
-            return Container();
-          }
-        }),
-        // floatingActionButton: FloatingActionButton(
-        //     backgroundColor: theme.primaryColor,
-        //     child: SvgPicture.asset("assets/icons/cart.svg",
-        //         color: Colors.white),
-        //     onPressed: () =>
-        //         state.status == AuthenticationStatus.authenticated
-        //             ? Navigator.pushNamed(context, CartScreen.routeName)
-        //             : showSocialLoginNeededDialog(context))
-      );
+          bottomNavigationBar: productSaleBottomNavigator(
+              context,
+              _productCubit,
+              state.status == AuthenticationStatus.authenticated),
+          body: BlocBuilder<ProductCubit, ProductState>(
+              builder: (context, state) {
+            if (state.isLoaded == true) {
+              return bodyWidget(context);
+            } else {
+              return Container();
+            }
+          }));
     });
   }
 
@@ -108,23 +101,10 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, BrandDetailScreen.routeName,
-                                arguments: {'Id': product.brand!.Id!}),
-                            child: Row(children: [
-                              Container(
-                                  width: 20,
-                                  height: 20,
-                                  margin: EdgeInsets.only(right: 10),
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              product.brand!.url!)))),
-                              Text("${product.brand!.name}",
-                                  style: theme.textTheme.headline5)
-                            ])),
+                        Row(children: [
+                          Text("${product.brand!.name}",
+                              style: theme.textTheme.headline5)
+                        ]),
                         const SizedBox(height: 10),
                         WrappedKoreanText("${product.name}",
                             style: theme.textTheme.headline5),
