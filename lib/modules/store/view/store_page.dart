@@ -48,12 +48,10 @@ class _StorePageState extends State<StorePage> {
                         BlocBuilder<AuthenticationBloc, AuthenticationState>(
                             builder: (context, state) {
                           return IconButton(
-                              onPressed: () => state.status ==
-                                      AuthenticationStatus.authenticated
-                                  ? context.vRouter.toNamed('/notification')
-                                  : showSocialLoginNeededDialog(context),
-                              icon: ImageIcon(Svg.Svg("assets/icons/noti.svg"),
-                                  color: theme.primaryColor));
+                              onPressed: () {},
+                              icon: const ImageIcon(
+                                  Svg.Svg("assets/icons/noti.svg"),
+                                  color: Colors.white));
                         })
                       ]),
                   const SizedBox(height: 10),

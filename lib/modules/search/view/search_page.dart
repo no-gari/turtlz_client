@@ -48,12 +48,9 @@ class _SearchPageState extends State<SearchPage> {
                               Text('search.',
                                   style: Theme.of(context).textTheme.headline3),
                               IconButton(
-                                  onPressed: () => state.status ==
-                                          AuthenticationStatus.authenticated
-                                      ? context.vRouter.toNamed('/notification')
-                                      : showSocialLoginNeededDialog(context),
+                                  onPressed: () {},
                                   icon: ImageIcon(Svg("assets/icons/noti.svg"),
-                                      color: Theme.of(context).primaryColor))
+                                      color: Colors.white))
                             ]),
                         const SizedBox(height: 20),
                         Column(

@@ -43,12 +43,9 @@ class _CartPageState extends State<CartPage> {
                           Text('cart.',
                               style: Theme.of(context).textTheme.headline3),
                           IconButton(
-                              onPressed: () => state.status ==
-                                      AuthenticationStatus.authenticated
-                                  ? context.vRouter.toNamed('/notification')
-                                  : showSocialLoginNeededDialog(context),
+                              onPressed: () {},
                               icon: ImageIcon(Svg.Svg("assets/icons/noti.svg"),
-                                  color: theme.primaryColor))
+                                  color: Colors.white))
                         ]),
                     BlocBuilder<CartCubit, CartState>(
                         builder: (context, state) {

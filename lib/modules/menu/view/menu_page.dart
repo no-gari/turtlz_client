@@ -291,13 +291,10 @@ class storeAppBarWidget extends StatelessWidget {
                             Text('category.',
                                 style: Theme.of(context).textTheme.headline3),
                             IconButton(
-                                onPressed: () => state!.status ==
-                                        AuthenticationStatus.authenticated
-                                    ? context.vRouter.toNamed('/notification')
-                                    : showSocialLoginNeededDialog(context),
+                                onPressed: () {},
                                 icon: ImageIcon(
                                     const Svg("assets/icons/noti.svg"),
-                                    color: theme.primaryColor))
+                                    color: Colors.white))
                           ]))
                     ]))))));
   }
