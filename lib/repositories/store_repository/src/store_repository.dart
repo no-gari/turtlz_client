@@ -41,6 +41,16 @@ class StoreRepository {
     }
   }
 
+  Future<ApiResult<List>> getPopupCollection() async {
+    try {
+      var response = await _dioClient
+          .get('/api/v1/commerce/collection/collection/pop-up/');
+      return ApiResult.success(data: response);
+    } catch (e) {
+      throw ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
   Future<ApiResult<List>> getSubCollection() async {
     try {
       var response = await _dioClient.get('/api/v1/commerce/collection/');

@@ -38,6 +38,19 @@ class StoreCubit extends Cubit<StoreState> {
     });
   }
 
+  Future<void> getPopupCollection() async {
+    ApiResult<List> apiResult = await _storeRepository.getPopupCollection();
+
+    apiResult.when(success: (List? listResponse) {
+      emit(state.copyWith(
+          isLoaded: true,
+          popupCollections:
+              listResponse!.map((e) => Menu.fromJson(e)).toList()));
+    }, failure: (NetworkExceptions? error) {
+      emit(state.copyWith(error: error));
+    });
+  }
+
   Future<void> getSubCollection() async {
     ApiResult<List> apiResult = await _storeRepository.getSubCollection();
 

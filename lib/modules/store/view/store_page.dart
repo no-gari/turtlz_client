@@ -1,4 +1,3 @@
-import 'package:flutter/rendering.dart';
 import 'package:turtlz/modules/store/product/product_detail/view/product_detail_screen.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
@@ -9,9 +8,11 @@ import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:turtlz/support/base_component/company_info.dart';
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
 import 'package:turtlz/modules/store/cubit/store_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -33,12 +34,58 @@ class _StorePageState extends State<StorePage> {
     _storeCubit.getCollections();
     _storeCubit.getSubCollection();
     _storeCubit.getMainCollection();
+    _storeCubit.getPopupCollection();
   }
 
   @override
   Widget build(BuildContext context) {
+    showDialogIfFirstLoaded(
+        BuildContext context, String? url, String? id) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool? isFirstLoaded = prefs.getBool('keyIsFirstLoaded');
+      if (isFirstLoaded == null) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  elevation: 0,
+                  contentPadding: const EdgeInsets.all(0),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(32.0))),
+                  content: GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ProductDetailScreen(productId: id!))),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32),
+                          child: Image.network(url!))),
+                  actions: <Widget>[
+                    MaterialButton(
+                        child: const Text("다시는 이 창을 보지 않습니다."),
+                        onPressed: () {
+                          prefs.setBool('keyIsFirstLoaded', false);
+                          Navigator.of(context).pop();
+                        })
+                  ]);
+            });
+      }
+    }
+
     return Scaffold(
         body: BlocBuilder<StoreCubit, StoreState>(builder: (context, state) {
+      if (state.isLoaded &&
+          state.popupCollections != null &&
+          state.popupCollections!.isNotEmpty) {
+        Future.delayed(
+            Duration.zero,
+            () => showDialogIfFirstLoaded(
+                context,
+                state.popupCollections![0].thumbnail,
+                state.popupCollections![0].Id));
+      }
+
       if (state.isLoaded) {
         return SingleChildScrollView(
             child: SafeArea(
@@ -46,18 +93,18 @@ class _StorePageState extends State<StorePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset("assets/images/turtlz.svg", width: 100),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const ImageIcon(
-                              Svg.Svg("assets/icons/noti.svg"),
-                              color: Colors.white))
-                    ]),
-              ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SvgPicture.asset("assets/images/turtlz.svg",
+                            width: 100),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const ImageIcon(
+                                Svg.Svg("assets/icons/noti.svg"),
+                                color: Colors.white))
+                      ])),
               const SizedBox(height: 10),
               BlocBuilder<AuthenticationBloc, AuthenticationState>(
                   builder: (context, state) {
