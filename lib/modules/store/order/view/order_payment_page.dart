@@ -107,7 +107,7 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
                           child: const Text('잠시만 기다려주세요...',
                               style: TextStyle(fontSize: 20.0)))
                     ]))),
-                userCode: 'imp03489525',
+                userCode: 'imp30008433',
                 // 가맹점 식별코드
 
                 /* [필수입력] 결제 데이터 */
