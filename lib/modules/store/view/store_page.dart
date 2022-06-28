@@ -2,8 +2,9 @@ import 'package:turtlz/modules/store/product/product_detail/view/product_detail_
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/modules/productList/view/product_list_screen.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as Svg;
 import 'package:turtlz/repositories/product_repository/models/brand.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as Svg;
+import '../../../repositories/product_repository/models/product.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:turtlz/support/base_component/company_info.dart';
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
@@ -15,8 +16,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../repositories/product_repository/models/product.dart';
 
 class StorePage extends StatefulWidget {
   @override
@@ -39,40 +38,6 @@ class _StorePageState extends State<StorePage> {
 
   @override
   Widget build(BuildContext context) {
-    showDialogIfFirstLoaded(
-        BuildContext context, String? url, String? id) async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      bool? isFirstLoaded = prefs.getBool('keyIsFirstLoaded');
-      if (isFirstLoaded == null) {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                  elevation: 0,
-                  contentPadding: const EdgeInsets.all(0),
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(32.0))),
-                  content: GestureDetector(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ProductDetailScreen(productId: id!))),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(32),
-                          child: Image.network(url!))),
-                  actions: <Widget>[
-                    MaterialButton(
-                        child: const Text("다시는 이 창을 보지 않습니다."),
-                        onPressed: () {
-                          prefs.setBool('keyIsFirstLoaded', false);
-                          Navigator.of(context).pop();
-                        })
-                  ]);
-            });
-      }
-    }
-
     return Scaffold(
         body: BlocBuilder<StoreCubit, StoreState>(builder: (context, state) {
       if (state.isLoaded &&
@@ -361,4 +326,37 @@ Widget collectionProduct(BuildContext context, Product product) {
               ]))
             ]))
       ]));
+}
+
+showDialogIfFirstLoaded(BuildContext context, String? url, String? id) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool? isFirstLoaded = prefs.getBool('keyIsFirstLoaded');
+  if (isFirstLoaded == null) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              elevation: 0,
+              contentPadding: const EdgeInsets.all(0),
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(32.0))),
+              content: GestureDetector(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ProductDetailScreen(productId: id!))),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(32),
+                      child: Image.network(url!))),
+              actions: <Widget>[
+                MaterialButton(
+                    child: const Text("다시는 이 창을 보지 않습니다."),
+                    onPressed: () {
+                      prefs.setBool('keyIsFirstLoaded', false);
+                      Navigator.of(context).pop();
+                    })
+              ]);
+        });
+  }
 }
