@@ -1,9 +1,7 @@
-import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/brands/brand_detail/view/brand_detail_screen.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/modules/productList/view/product_list_screen.dart';
 import 'package:turtlz/modules/brands/brand_home/cubit/brand_cubit.dart';
-import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:turtlz/modules/store/cubit/store_cubit.dart';
 import 'package:turtlz/support/style/format_unit.dart';
@@ -11,7 +9,6 @@ import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
-import 'package:vrouter/vrouter.dart';
 import 'dart:math' as math;
 
 class MenuPage extends StatefulWidget {
@@ -110,12 +107,12 @@ class _NewsScreenState extends State<MenuPage> {
                       children: [
                         Image.asset('assets/images/new_products_banner.png',
                             width: maxWidth(context)),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text('터틀즈가 입수한 신상 캠핑용품!',
                             style: theme.textTheme.headline5)
                       ]),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () => Navigator.push(
                       context,
@@ -130,32 +127,31 @@ class _NewsScreenState extends State<MenuPage> {
                       children: [
                         Image.asset('assets/images/fire_banner.png',
                             width: maxWidth(context)),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text('불멍하기 딱 좋은 요즘 날씨!',
                             style: theme.textTheme.headline5!)
                       ]),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ProductListScreen(
-                              collectionId: 'VWLAH5XCDFSY',
-                              collectionName: '캠핑소품',
-                              thumbnail:
-                                  'https://cdn.clayful.io/stores/ZCJ4P8CZH2UR.GZ5QLVHQY5XQ/images/G2DQQG53PD3G/v1/Ellipse_61.png'))),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset('assets/images/sensible_banner.png',
-                            width: maxWidth(context)),
-                        SizedBox(height: 5),
-                        Text('감성캠핑에 빠질 수 없는 필수품 모음!',
-                            style: theme.textTheme.headline5)
-                      ]),
-                ),
-                SizedBox(height: 20),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProductListScreen(
+                                collectionId: 'VWLAH5XCDFSY',
+                                collectionName: '캠핑소품',
+                                thumbnail:
+                                    'https://cdn.clayful.io/stores/ZCJ4P8CZH2UR.GZ5QLVHQY5XQ/images/G2DQQG53PD3G/v1/Ellipse_61.png'))),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset('assets/images/sensible_banner.png',
+                              width: maxWidth(context)),
+                          const SizedBox(height: 5),
+                          Text('감성캠핑에 빠질 수 없는 필수품 모음!',
+                              style: theme.textTheme.headline5)
+                        ])),
+                const SizedBox(height: 20),
                 GestureDetector(
                     onTap: () => Navigator.push(
                         context,

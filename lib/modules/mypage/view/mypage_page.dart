@@ -55,13 +55,10 @@ class _MyPageState extends State<MyPage> {
                               Text('my page.',
                                   style: Theme.of(context).textTheme.headline3),
                               IconButton(
-                                  onPressed: () => state.status ==
-                                          AuthenticationStatus.authenticated
-                                      ? context.vRouter.toNamed('/notification')
-                                      : showSocialLoginNeededDialog(context),
-                                  icon: ImageIcon(
+                                  onPressed: () {},
+                                  icon: const ImageIcon(
                                       Svg.Svg("assets/icons/noti.svg"),
-                                      color: theme.primaryColor))
+                                      color: Colors.white))
                             ]),
                         if (state.status == AuthenticationStatus.authenticated)
                           Column(

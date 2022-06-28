@@ -96,15 +96,51 @@ class StoreCubit extends Cubit<StoreState> {
   }
 
   Future<void> getMainCollection() async {
-    ApiResult<List> apiResult = await _storeRepository.getMainCollection();
+    ApiResult<List<dynamic>> apiResult =
+        await _storeRepository.getMainCollection();
 
-    apiResult.when(success: (List? listResponse) {
-      emit(state.copyWith(
-          isLoaded: true,
-          subCollections: [Collection('', "전체보기", '')] +
-              listResponse!.map((e) => Collection.fromJson(e)).toList()));
+    apiResult.when(success: (List<dynamic>? listResponse) {
+      emit(
+        state.copyWith(isLoaded: true, mainCollections: listResponse!),
+      );
     }, failure: (NetworkExceptions? error) {
       emit(state.copyWith(error: error));
     });
   }
+
+  // Future<void> getMainCollection() async {
+  //   emit(state.copyWith(isLoaded: false));
+
+  //
+  // apiResult.when(success: (List<MainCollection>? listResponse) {
+  //   List<MainCollection> mainCollections = [];
+  //
+  //   if (apiResult != null) {
+  //     mainCollections = apiResult.map((e) {
+  //       return MainCollection(
+  //
+  //       );
+  //     }).toList();
+
+  // List<Product> productList = List<Product>.from(state
+  //     .mainCollections![i]['products']
+  //     .map((model) => Product(
+  //     Id: model['Id'],
+  //     name: model['name'],
+  //     rating: model['rating'],
+  //     originalPrice: model['originalPrice'],
+  //     discountPrice: model['discountPrice'],
+  //     discountRate: model['discountRate'],
+  //     thumbnail: model['thumbnail'],
+  //     brand: Brand(name: model['brand']))));
+  //
+  // productChildren.add(productList);
+  // return Text(
+  //     state.mainCollections![i]['collection']['name']);
+
+  // emit(state.copyWith(isLoaded: true, mainCollections: listResponse));
+  //   }, failure: (NetworkExceptions? error) {
+  //     emit(state.copyWith(error: error));
+  //   });
+  // }
 }

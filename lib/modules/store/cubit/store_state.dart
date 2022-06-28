@@ -19,7 +19,7 @@ class StoreState extends Equatable {
   });
 
   final List<Product>? products;
-  final List<MainCollection>? mainCollections;
+  final List<dynamic>? mainCollections;
   final List<BannerCollection>? bannerCollections;
   final Collection? selectedMenu;
   final List<Menu>? collections;
@@ -53,7 +53,7 @@ class StoreState extends Equatable {
 
   StoreState copyWith({
     List<Product>? products,
-    List<MainCollection>? mainCollections,
+    List<dynamic>? mainCollections,
     List<BannerCollection>? bannerCollections,
     Collection? selectedMenu,
     List<Menu>? collections,
