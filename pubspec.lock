@@ -253,6 +253,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
+  double_back_to_close:
+    dependency: "direct main"
+    description:
+      name: double_back_to_close
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   encrypt:
     dependency: transitive
     description:

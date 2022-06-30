@@ -45,36 +45,22 @@ class _OrderFormListPageState extends State<OrderFormListPage> {
           if (state.orderForm!.length > 0) {
             return ListView.builder(
                 controller: _scrollController,
-                itemBuilder: (context, index) => Container(
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
+                shrinkWrap: true,
+                itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           Text("${state.orderForm![index].orderDate}",
                               style: theme.textTheme.headline5!
                                   .copyWith(color: Color(0xFF606060))),
+                          SizedBox(height: 10),
                           Wrap(
                               runSpacing: 10,
                               children: List.generate(
                                   state.orderForm![index].itemsInfo!.length,
                                   (i) => orderTileWidget(
                                       context, state, index, i))),
-                          if (state.orderForm![index].itemsInfo![0].status !=
-                              '주문 확정')
-                            GestureDetector(
-                                onTap: () {
-                                  // showTopSnackBar(
-                                  //     context,
-                                  //     CustomSnackBar.info(
-                                  //         message: "주문이 확정되었습니다."));
-                                  _orderFormCubit.approveOrder(
-                                      state.orderForm![index].Id!);
-                                },
-                                child: Container(
-                                    child: Center(child: Text('주문 확정')),
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black)))),
                         ])),
                 itemCount: state.orderForm!.length);
           } else {
@@ -104,13 +90,13 @@ class _OrderFormListPageState extends State<OrderFormListPage> {
         },
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Container(
-              width: 300,
+              width: maxWidth(context),
               child:
                   Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(
                     width: 85,
                     height: 85,
-                    margin: EdgeInsets.only(right: 10),
+                    margin: const EdgeInsets.only(right: 10),
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: NetworkImage(
@@ -127,17 +113,21 @@ class _OrderFormListPageState extends State<OrderFormListPage> {
                                 "${state.orderForm![index].itemsInfo![i].status}",
                                 style: theme.textTheme.headline6!
                                     .copyWith(color: theme.accentColor)),
+                            SizedBox(height: 8),
                             Text(
                                 "${state.orderForm![index].itemsInfo![i].productName}",
-                                style: theme.textTheme.headline6),
+                                style: theme.textTheme.headline6,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis),
                             Text(
                                 "${state.orderForm![index].itemsInfo![i].variantName}",
-                                style: theme.textTheme.subtitle2!
-                                    .copyWith(fontSize: Adaptive.dp(10))),
+                                style: theme.textTheme.subtitle2,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis),
+                            SizedBox(height: 8),
                             Text(
                                 "수량 : ${state.orderForm![index].itemsInfo![i].quantity}개",
-                                style: theme.textTheme.subtitle2!
-                                    .copyWith(fontSize: Adaptive.dp(10)))
+                                style: theme.textTheme.subtitle2)
                           ]),
                       Align(
                           alignment: Alignment.bottomRight,

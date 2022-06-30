@@ -102,11 +102,16 @@ class _OrderPageState extends State<OrderPage> {
                                         : Icons.check_box_outline_blank_rounded,
                                     color: const Color(0xFFC4C4C4)))
                           ]),
-                      Text("주문 상품의 상세 정보, 가격, 환불정책 등을  확인하였으며, 이에 동의합니다."),
+                      const Text(
+                          "주문 상품의 상세 정보, 가격, 환불정책 등을  확인하였으며, 이에 동의합니다."),
                       Column(children: [
-                        agreeRow(title: '개인정보 수집/이용 동의'),
+                        agreeRow(
+                            title: '개인정보 수집/이용 동의',
+                            url: 'https://turtlz.co/personal_policy/'),
                         SizedBox(height: 5),
-                        agreeRow(title: '개인정보 제3자 제공 동의'),
+                        agreeRow(
+                            title: '개인정보 제3자 제공 동의',
+                            url: 'https://turtlz.co/agreement/'),
                         SizedBox(height: 5),
                         agreeRow(
                             title: '결제대행 서비스 이용 약관',

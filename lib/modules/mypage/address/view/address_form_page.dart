@@ -139,10 +139,12 @@ class _AddressFormPage extends State<AddressFormPage> {
                                                         color:
                                                             theme.primaryColor,
                                                         width: 1))),
-                                            child: Text(address.postalCode ==
-                                                    null
-                                                ? ""
-                                                : "${address.postalCode}"))),
+                                            child: Text(
+                                                address.postalCode == null
+                                                    ? ""
+                                                    : "${address.postalCode}",
+                                                style:
+                                                    theme.textTheme.button))),
                                   ),
                                 ),
                                 GestureDetector(
@@ -205,9 +207,11 @@ class _AddressFormPage extends State<AddressFormPage> {
                                             bottom: BorderSide(
                                                 color: theme.primaryColor,
                                                 width: 1))),
-                                    child: Text(address.bigAddress == null
-                                        ? ""
-                                        : "${address.bigAddress}")),
+                                    child: Text(
+                                        address.bigAddress == null
+                                            ? ""
+                                            : "  ${address.bigAddress}",
+                                        style: theme.textTheme.button)),
                               ),
                               TextFormField(
                                   onChanged: (value) {

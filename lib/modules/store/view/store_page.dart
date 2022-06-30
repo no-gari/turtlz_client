@@ -1,5 +1,5 @@
-import 'package:turtlz/modules/store/product/product_detail/view/product_detail_screen.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
+import 'package:turtlz/modules/store/product/product_detail/view/product_detail_screen.dart';
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/modules/productList/view/product_list_screen.dart';
 import 'package:turtlz/repositories/product_repository/models/brand.dart';
@@ -41,14 +41,17 @@ class _StorePageState extends State<StorePage> {
     return Scaffold(
         body: BlocBuilder<StoreCubit, StoreState>(builder: (context, state) {
       if (state.isLoaded &&
+          state.collections != null &&
+          state.subCollections != null &&
+          state.mainCollections != null &&
           state.popupCollections != null &&
           state.popupCollections!.isNotEmpty) {
         Future.delayed(
             Duration.zero,
             () => showDialogIfFirstLoaded(
                 context,
-                state.popupCollections![0].thumbnail,
-                state.popupCollections![0].Id));
+                context.read<StoreCubit>().state.popupCollections![0].thumbnail,
+                context.read<StoreCubit>().state.popupCollections![0].Id));
       }
 
       if (state.isLoaded) {
@@ -168,11 +171,10 @@ class _StorePageState extends State<StorePage> {
                                             'https://cdn.clayful.io/stores/ZCJ4P8CZH2UR.GZ5QLVHQY5XQ/images/G2DQQG53PD3G/v1/Ellipse_61.png'))),
                             child: Column(children: [
                               CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                radius: maxWidth(context) * 0.08,
-                                child:
-                                    Image.asset('assets/images/sensible.png'),
-                              ),
+                                  backgroundColor: Colors.transparent,
+                                  radius: maxWidth(context) * 0.08,
+                                  child: Image.asset(
+                                      'assets/images/sensible.png')),
                               const SizedBox(height: 5),
                               Text('#감성캠핑', style: theme.textTheme.headline6)
                             ])),
@@ -215,7 +217,7 @@ class _StorePageState extends State<StorePage> {
                   return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.all(0),
-                    itemCount: productList.length,
+                    itemCount: state.mainCollections!.length,
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
@@ -281,7 +283,7 @@ Widget collectionProduct(BuildContext context, Product product) {
         ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.network(product.thumbnail!,
-                fit: BoxFit.cover, height: (maxWidth(context) - 45) / 2)),
+                fit: BoxFit.cover, height: 170)),
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child:

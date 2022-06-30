@@ -2,6 +2,7 @@ import 'package:turtlz/repositories/authentication_repository/authentication_rep
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/support/base_component/login_needed.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:turtlz/modules/mypage/view/mypage_screen.dart';
 import 'package:turtlz/modules/search/view/search_screen.dart';
 import 'package:turtlz/modules/store/view/store_screen.dart';
@@ -79,11 +80,14 @@ class _MainPageState extends State<MainPage> {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
       return Scaffold(
-          body: PageView(
-              children: pageList,
-              controller: _pageController,
-              onPageChanged: _onPageChanged,
-              physics: const NeverScrollableScrollPhysics()),
+          body: DoubleBack(
+            message: '앱을 닫으시려면 한 번 더 눌러주세요.',
+            child: PageView(
+                children: pageList,
+                controller: _pageController,
+                onPageChanged: _onPageChanged,
+                physics: const NeverScrollableScrollPhysics()),
+          ),
           bottomNavigationBar: Container(
               decoration: const BoxDecoration(
                   border:

@@ -1,3 +1,4 @@
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/signin/cubit/signin_cubit.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -42,7 +43,7 @@ class LoginButton extends StatelessWidget {
 class LoginWidget extends StatefulWidget {
   static String? routeName = 'login/kakao/web';
   final String? reUrl = environment['kakaoUrl'];
-  final String? clientId = "5c014310672477f3dd4a2ba19eacc6ad";
+  final String? clientId = "b653738e481f9f690aa4f4512acb19e8";
 
   String connect() =>
       "https://kauth.kakao.com/oauth/authorize?client_id=$clientId&redirect_uri=$reUrl&response_type=code";
@@ -52,7 +53,7 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
-  bool _isKakaoTalkInstalled = false;
+  bool _isKakaoTalkInstalled = true;
   bool _isIOS = false;
   late SignInCubit _signInCubit;
 
@@ -160,9 +161,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         Navigator.pop(context);
                       }),
                 if (_isIOS == true) SizedBox(width: 20),
-                LoginButton(
-                    backgroundColor: Colors.amber,
-                    icon: Icons.mode_comment_rounded,
+                GestureDetector(
                     onTap: () {
                       if (kIsWeb) {
                         html.window.location.href = widget.connect();
@@ -170,7 +169,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                         _loginButtonPressed();
                         Navigator.pop(context);
                       }
-                    })
+                    },
+                    child: const CircleAvatar(
+                      backgroundColor: Colors.amber,
+                      child: ImageIcon(Svg("assets/icons/kakao.svg"),
+                          color: Colors.black),
+                    ))
               ])
             ]));
   }

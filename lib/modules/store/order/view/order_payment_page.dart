@@ -1,3 +1,4 @@
+import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:turtlz/modules/store/order/view/order_cancel_page.dart';
 import 'package:turtlz/modules/store/order/cubit/payment_cubit.dart';
 import 'package:turtlz/modules/store/order/cubit/order_cubit.dart';
@@ -169,8 +170,7 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
                   style: theme.textTheme.headline4)),
           MaterialButton(
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, "", (route) => false);
+                context.vRouter.to(MainScreen.routeName, isReplacement: true);
               },
               child: Text("홈 화면으로 이동"))
         ])));

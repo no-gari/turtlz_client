@@ -1,4 +1,4 @@
-package com.loonshot.turtlz
+package co.loonshot.turtlz
 
 import io.flutter.embedding.android.FlutterActivity
 

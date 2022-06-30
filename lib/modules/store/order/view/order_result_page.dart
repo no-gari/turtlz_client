@@ -1,6 +1,8 @@
+import 'package:turtlz/modules/cart/view/cart_screen.dart';
+import 'package:turtlz/modules/main/main_screen.dart';
+import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/support/style/theme.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vrouter/vrouter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,34 +30,32 @@ class OrderResultPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Colors.white,
-        ),
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.black),
+            backgroundColor: Colors.white),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                  margin: EdgeInsets.only(top: Adaptive.h(25)),
-                  child: Column(children: [
-                    SvgPicture.asset(
-                        isSuccessed
-                            ? 'assets/icons/success.svg'
-                            : 'assets/icons/error.svg',
-                        color: theme.accentColor),
-                    Text(isSuccessed ? '주문 완료!' : '주문 실패!',
-                        style: theme.textTheme.headline1!.copyWith(height: 1.5))
-                  ])),
-              Container(
-                  child: Column(children: [
-                MaterialButton(
-                    onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                        context, '', (route) => false),
-                    child: Text('더 둘러보기'),
-                    textColor: theme.accentColor,
-                    color: Colors.white),
-                SizedBox(height: Adaptive.h(10))
-              ]))
+                  margin: const EdgeInsets.only(top: 200),
+                  child: Center(
+                      child: Text(isSuccessed ? 'order success! :)' : '주문 실패!',
+                          style: theme.textTheme.headline1!
+                              .copyWith(height: 1.5)))),
+              GestureDetector(
+                  onTap: () => context.vRouter
+                      .to(MainScreen.routeName, isReplacement: true),
+                  child: Container(
+                      alignment: Alignment.center,
+                      width: maxWidth(context) - 40,
+                      decoration: BoxDecoration(
+                          border:
+                              Border.all(color: theme.primaryColor, width: 2),
+                          borderRadius: BorderRadius.circular(25)),
+                      margin: const EdgeInsets.only(bottom: 50),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Text('더 둘러보기', style: theme.textTheme.headline4)))
             ]));
   }
 }
