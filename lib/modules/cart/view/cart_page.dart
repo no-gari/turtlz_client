@@ -54,12 +54,7 @@ class _CartPageState extends State<CartPage> {
                             selector: (state) => state.carts,
                             builder: (context, carts) {
                               if (carts != null && carts.isNotEmpty) {
-                                // print(carts.map((e) => e.Id));
 
-                                // bool allCheckBox = !(carts
-                                //     .map((cart) => cart.isChecked)
-                                //     .toList()
-                                //     .contains(false));
                                 return Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -73,49 +68,6 @@ class _CartPageState extends State<CartPage> {
                                                 style:
                                                     theme.textTheme.headline5),
                                             const SizedBox(height: 15),
-                                            // 전체선택 컴포넌트
-                                            // Column(
-                                            //   crossAxisAlignment: CrossAxisAlignment.start,
-                                            //   children: [
-                                            //     Row(
-                                            //       mainAxisAlignment:
-                                            //           MainAxisAlignment.spaceBetween,
-                                            //       children: [
-                                            //         Row(
-                                            //           children: [
-                                            //             GestureDetector(
-                                            //                 onTap: () {
-                                            //                   _cartCubit.allSelectedCart(
-                                            //                       !allCheckBox);
-                                            //                 },
-                                            //                 child: allCheckBox
-                                            //                     ? Icon(Icons.check_box_rounded)
-                                            //                     : Icon(Icons
-                                            //                         .check_box_outline_blank_rounded)),
-                                            //             Text("전체선택")
-                                            //           ],
-                                            //         ),
-                                            //         InkWell(
-                                            //           onTap: () {
-                                            //             List<Cart> deleteCarts = state.carts!
-                                            //                 .fold(
-                                            //                     <Cart>[],
-                                            //                     (pre, cart) => cart.isChecked!
-                                            //                         ? pre + [cart]
-                                            //                         : pre + []);
-                                            //             _cartCubit.deleteCart(deleteCarts);
-                                            //           },
-                                            //           child: Text(
-                                            //             "선택삭제",
-                                            //             style: TextStyle(
-                                            //                 decoration:
-                                            //                     TextDecoration.underline),
-                                            //           ),
-                                            //         )
-                                            //       ],
-                                            //     ),
-                                            //   ],
-                                            // ),
                                             Column(
                                                 children: List.generate(
                                                     carts.length,

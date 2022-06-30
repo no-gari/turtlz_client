@@ -79,6 +79,36 @@ class AuthenticationRepository {
     }
   }
 
+  Future<ApiResult<Map>> signInWithEmail(
+      {required String email, required String password}) async {
+    try {
+      String body = json.encode({
+        "email": email,
+        "password": password,
+      });
+      var response =
+          await _dioClient.signinPost('/api/v1/user/email_login/', data: body);
+      return ApiResult.success(data: response);
+    } catch (e) {
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  Future<ApiResult<Map>> signUpWithEmail(
+      {required String email, required String password}) async {
+    try {
+      String body = json.encode({
+        "email": email,
+        "password": password,
+      });
+      var response =
+          await _dioClient.signinPost('/api/v1/user/email_signup/', data: body);
+      return ApiResult.success(data: response);
+    } catch (e) {
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
   Future<String?> getAccessToken() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();

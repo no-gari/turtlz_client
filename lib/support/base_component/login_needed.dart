@@ -1,4 +1,5 @@
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:turtlz/modules/authentication/signin/view/signin_screen.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
 import 'package:turtlz/modules/authentication/signin/cubit/signin_cubit.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -130,7 +131,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     _signInCubit.signInWithSns(
         code: credential.userIdentifier!,
-        email: credential.email!,
+        email: credential.userIdentifier.toString() + '@icloud.com',
         nickname: credential.givenName ?? '용감한 거북이',
         socialType: 'apple');
   }
@@ -138,19 +139,23 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 250,
-        padding: EdgeInsets.all(5),
+        height: 240,
+        padding: const EdgeInsets.all(5),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Login / Register',
                   style: Theme.of(context).textTheme.headline4),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Text('로그인이 필요한 서비스입니다.',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5!
+                      .copyWith(fontWeight: FontWeight.w500)),
+              Text('카카오톡으로 5초만에 회원가입!',
                   style: Theme.of(context).textTheme.headline5),
-              Text('1분만에 회원가입!', style: Theme.of(context).textTheme.headline5),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 if (_isIOS == true)
                   LoginButton(
@@ -175,7 +180,20 @@ class _LoginWidgetState extends State<LoginWidget> {
                       child: ImageIcon(Svg("assets/icons/kakao.svg"),
                           color: Colors.black),
                     ))
-              ])
+              ]),
+              const SizedBox(height: 20),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                            builder: (BuildContext context) => SigninScreen()));
+                  },
+                  child: Text('다른 방법으로 로그인 하기',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(decoration: TextDecoration.underline)))
             ]));
   }
 }

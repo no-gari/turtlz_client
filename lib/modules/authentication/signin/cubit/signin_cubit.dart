@@ -34,6 +34,44 @@ class SignInCubit extends Cubit<SignInState> {
     });
   }
 
+  Future<void> signInWithEmail(
+      {required String email, required String password}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    ApiResult<Map> apiResult = await _authenticationRepository.signInWithEmail(
+        email: email, password: password);
+
+    apiResult.when(success: (Map? response) {
+      prefs.setString('access', response!['access']);
+      prefs.setString('refresh', response['refresh']);
+      _authenticationRepository.logIn();
+      emit(state.copyWith(auth: true, errorMessage: ''));
+    }, failure: (NetworkExceptions? error) {
+      emit(state.copyWith(
+          error: error,
+          errorMessage: NetworkExceptions.getErrorMessage(error!)));
+    });
+  }
+
+  Future<void> signUpWithEmail(
+      {required String email, required String password}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    ApiResult<Map> apiResult = await _authenticationRepository.signUpWithEmail(
+        email: email, password: password);
+
+    apiResult.when(success: (Map? response) {
+      prefs.setString('access', response!['access']);
+      prefs.setString('refresh', response['refresh']);
+      _authenticationRepository.logIn();
+      emit(state.copyWith(auth: true, errorMessage: ''));
+    }, failure: (NetworkExceptions? error) {
+      emit(state.copyWith(
+          error: error,
+          errorMessage: NetworkExceptions.getErrorMessage(error!)));
+    });
+  }
+
   void errorMsg() {
     emit(state.copyWith(errorMessage: ""));
   }

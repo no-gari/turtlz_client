@@ -81,13 +81,12 @@ class _MainPageState extends State<MainPage> {
         builder: (context, state) {
       return Scaffold(
           body: DoubleBack(
-            message: '앱을 닫으시려면 한 번 더 눌러주세요.',
-            child: PageView(
-                children: pageList,
-                controller: _pageController,
-                onPageChanged: _onPageChanged,
-                physics: const NeverScrollableScrollPhysics()),
-          ),
+              message: '앱을 닫으시려면 한 번 더 눌러주세요.',
+              child: PageView(
+                  children: pageList,
+                  controller: _pageController,
+                  onPageChanged: _onPageChanged,
+                  physics: const NeverScrollableScrollPhysics())),
           bottomNavigationBar: Container(
               decoration: const BoxDecoration(
                   border:
