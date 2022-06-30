@@ -280,9 +280,9 @@ class _ProductListPageState extends State<ProductListPage> {
                               if (state.products != null &&
                                   state.products!.isNotEmpty)
                                 const SizedBox(height: 20),
-                              state.products != null &&
-                                      state.products!.isNotEmpty
-                                  ? GridView.count(
+                              if (state.products != null &&
+                                      state.products!.isNotEmpty)
+                                  GridView.count(
                                       physics: NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       crossAxisCount: 2,
@@ -292,8 +292,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                       children: List.generate(
                                           state.products!.length,
                                           (index) => storeProduct(
-                                              context, state.products![index])))
-                                  : Container(
+                                              context, state.products![index]))),
+                                 if (state.products !=null && state.products!.isEmpty) Container(
                                       padding: EdgeInsets.only(
                                           top: MediaQuery.of(context)
                                                   .size

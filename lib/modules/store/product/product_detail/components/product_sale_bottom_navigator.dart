@@ -25,14 +25,12 @@ Widget productSaleBottomNavigator(
       },
       child: Container(
           height: 70,
+          alignment: Alignment.center,
           width: maxWidth(context),
-          decoration: BoxDecoration(
-              border: Border(
-                  top: BorderSide(color: Theme.of(context).primaryColor))),
-          child: Center(
-              child: Text('구매하기',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5!
-                      .copyWith(color: Theme.of(context).primaryColor)))));
+          decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+          child: Text('구매하기',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5!
+                  .copyWith(color: Colors.white))));
 }

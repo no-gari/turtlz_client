@@ -36,7 +36,7 @@ class _CompanyInfoState extends State<CompanyInfo> {
             ]),
             GestureDetector(
                 onTap: () => setState(() => isOpened = !isOpened),
-                child: Wrap(children: [
+                child: Row(children: [
                   Text('사업자 정보',
                       style: Theme.of(context)
                           .textTheme

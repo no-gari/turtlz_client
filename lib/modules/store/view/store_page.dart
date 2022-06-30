@@ -355,8 +355,8 @@ showDialogIfFirstLoaded(BuildContext context, String? url, String? id) async {
                 MaterialButton(
                     child: const Text("다시는 이 창을 보지 않습니다."),
                     onPressed: () {
-                      prefs.setBool('keyIsFirstLoaded', false);
-                      Navigator.of(context).pop();
+                      // prefs.setBool('keyIsFirstLoaded', false);
+                      // Navigator.of(context).pop();
                     })
               ]);
         });

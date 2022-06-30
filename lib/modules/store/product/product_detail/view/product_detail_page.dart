@@ -75,7 +75,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         flexibleSpace: FlexibleSpaceBar(
-            background: Stack(clipBehavior: Clip.none, children: [
+            background:
+                Stack(fit: StackFit.expand, clipBehavior: Clip.none, children: [
           Image.network(product.thumbnail!,
               fit: BoxFit.cover,
               height: maxWidth(context),
@@ -83,7 +84,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
           Positioned(
               height: 100,
               width: maxWidth(context),
-              bottom: 47,
+              bottom: 0,
               child: Container(
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -97,7 +98,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               bottom: 0,
               child: Container(
                   width: maxWidth(context),
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -108,7 +109,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                         const SizedBox(height: 10),
                         WrappedKoreanText("${product.name}",
                             style: theme.textTheme.headline5),
-                        if (product.summary != '') SizedBox(height: 3),
+                        if (product.summary != '') const SizedBox(height: 3),
                         if (product.summary != '')
                           WrappedKoreanText("${product.summary}"),
                         Align(
@@ -120,17 +121,21 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                     .headline4!
                                     .copyWith(color: theme.primaryColor)))
                       ]))),
-          Container(
-              padding: EdgeInsets.symmetric(
-                  vertical: AppBar().preferredSize.height, horizontal: 18),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                        child: Icon(Icons.arrow_back_ios_outlined,
-                            color: Colors.black54),
-                        onTap: () => Navigator.pop(context))
-                  ]))
+          Positioned(
+            left: 0,
+            top: 0,
+            child: Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: AppBar().preferredSize.height, horizontal: 18),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                          child: Icon(Icons.arrow_back_ios_outlined,
+                              color: Colors.black),
+                          onTap: () => Navigator.pop(context))
+                    ])),
+          )
         ])));
   }
 
