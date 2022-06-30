@@ -352,12 +352,19 @@ showDialogIfFirstLoaded(BuildContext context, String? url, String? id) async {
                       borderRadius: BorderRadius.circular(32),
                       child: Image.network(url!))),
               actions: <Widget>[
-                MaterialButton(
-                    child: const Text("다시는 이 창을 보지 않습니다."),
-                    onPressed: () {
-                      // prefs.setBool('keyIsFirstLoaded', false);
-                      // Navigator.of(context).pop();
-                    })
+                Center(
+                  child: MaterialButton(
+                      child: const Text("지금, 캠빌 차크닉 텐트 최저가 할인 중!"),
+                      onPressed: () {
+                        // prefs.setBool('keyIsFirstLoaded', false);
+                        // Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ProductDetailScreen(productId: id!)));
+                      }),
+                )
               ]);
         });
   }
