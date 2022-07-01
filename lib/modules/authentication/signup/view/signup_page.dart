@@ -134,28 +134,12 @@ class _SignupPageState extends State<SignupPage> {
                                     color: Theme.of(context).primaryColor,
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Center(
-                                    child: Text("로그인",
+                                    child: Text("회원가입",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline5!
                                             .copyWith(color: Colors.white))))),
                         const SizedBox(height: 30),
-                        GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute<void>(
-                                      builder: (BuildContext context) =>
-                                          SignupScreen()));
-                            },
-                            child: Center(
-                                child: Text('이메일로 회원가입',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2!
-                                        .copyWith(
-                                            decoration:
-                                                TextDecoration.underline))))
                       ]))),
         ));
   }

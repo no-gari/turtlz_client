@@ -1,7 +1,7 @@
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:turtlz/modules/authentication/signin/view/signin_screen.dart';
 import 'package:turtlz/repositories/authentication_repository/authentication_repository.dart';
+import 'package:turtlz/modules/authentication/signin/view/signin_screen.dart';
 import 'package:turtlz/modules/authentication/signin/cubit/signin_cubit.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:universal_html/html.dart' as html;
@@ -115,7 +115,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
       _signInCubit.signInWithSns(
           code: user.id.toString(),
-          email: user.kakaoAccount!.email.toString(),
+          email: user.kakaoAccount!.email!,
           nickname: user.kakaoAccount!.profile!.nickname ?? '용감한 거북이',
           socialType: 'kakao');
     } catch (error) {
