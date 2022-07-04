@@ -71,19 +71,22 @@ class _ProductListPageState extends State<ProductListPage> {
                               builder: (BuildContext context) {
                                 String bottomSort = 'price.sale';
 
-                                return StatefulBuilder(builder: (BuildContext context, StateSetter mystate) {
+                                return StatefulBuilder(builder:
+                                    (BuildContext context,
+                                        StateSetter mystate) {
                                   return Container(
                                       height: 150,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 20),
                                       child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             const SizedBox(height: 20),
                                             Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Text('filter.',
                                                       style: theme
@@ -92,19 +95,21 @@ class _ProductListPageState extends State<ProductListPage> {
                                                       onTap: () {
                                                         _storeCubit
                                                             .getProductsByCollection(
-                                                            true,
-                                                            _selectedCollection
-                                                                .Id,
-                                                            sort);
-                                                        Navigator.of(context).pop();
+                                                                true,
+                                                                _selectedCollection
+                                                                    .Id,
+                                                                sort);
+                                                        Navigator.of(context)
+                                                            .pop();
                                                       },
                                                       child: Container(
                                                         child: Text('적용하기',
-                                                            style: theme.textTheme
+                                                            style: theme
+                                                                .textTheme
                                                                 .headline5!
                                                                 .copyWith(
-                                                                color: theme
-                                                                    .primaryColor)),
+                                                                    color: theme
+                                                                        .primaryColor)),
                                                       ))
                                                 ]),
                                             SizedBox(height: 20),
@@ -116,35 +121,33 @@ class _ProductListPageState extends State<ProductListPage> {
                                                           sort = 'price.sale';
                                                         });
                                                         mystate(() {
-                                                          bottomSort = 'price.sale';
+                                                          bottomSort =
+                                                              'price.sale';
                                                         });
                                                       },
                                                       child: Container(
-                                                          padding: EdgeInsets.all(10),
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  10),
                                                           decoration: BoxDecoration(
                                                               color: bottomSort !=
-                                                                  'price.sale'
+                                                                      'price.sale'
                                                                   ? Colors.white
-                                                                  : theme.primaryColor,
+                                                                  : theme
+                                                                      .primaryColor,
                                                               border: Border.all(
                                                                   color: theme
                                                                       .primaryColor),
                                                               borderRadius:
-                                                              BorderRadius.circular(
-                                                                  25)),
-                                                          alignment: Alignment.center,
+                                                                  BorderRadius.circular(
+                                                                      25)),
+                                                          alignment:
+                                                              Alignment.center,
                                                           child: Text('가격 낮은 순',
                                                               style: theme
-                                                                  .textTheme.headline5!
-                                                                  .copyWith(
-                                                                  color: bottomSort !=
-                                                                      'price.sale'
-                                                                      ? theme
-                                                                      .primaryColor
-                                                                      : Colors
-                                                                      .white))
-                                                      ))
-                                              ),
+                                                                  .textTheme
+                                                                  .headline5!
+                                                                  .copyWith(color: bottomSort != 'price.sale' ? theme.primaryColor : Colors.white))))),
                                               const SizedBox(width: 5),
                                               Expanded(
                                                 child: GestureDetector(
@@ -153,33 +156,38 @@ class _ProductListPageState extends State<ProductListPage> {
                                                         sort = '-price.sale';
                                                       });
                                                       mystate(() {
-                                                        bottomSort = '-price.sale';
+                                                        bottomSort =
+                                                            '-price.sale';
                                                       });
                                                     },
                                                     child: Container(
-                                                      padding: EdgeInsets.all(10),
+                                                      padding:
+                                                          EdgeInsets.all(10),
                                                       decoration: BoxDecoration(
                                                           color: bottomSort !=
-                                                              '-price.sale'
+                                                                  '-price.sale'
                                                               ? Colors.white
-                                                              : theme.primaryColor,
+                                                              : theme
+                                                                  .primaryColor,
                                                           border: Border.all(
                                                               color: theme
                                                                   .primaryColor),
                                                           borderRadius:
-                                                          BorderRadius.circular(
-                                                              25)),
-                                                      alignment: Alignment.center,
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      25)),
+                                                      alignment:
+                                                          Alignment.center,
                                                       child: Text('가격 높은 순',
-                                                          style: theme
-                                                              .textTheme.headline5!
+                                                          style: theme.textTheme
+                                                              .headline5!
                                                               .copyWith(
-                                                              color: bottomSort !=
-                                                                  '-price.sale'
-                                                                  ? theme
-                                                                  .primaryColor
-                                                                  : Colors
-                                                                  .white)),
+                                                                  color: bottomSort !=
+                                                                          '-price.sale'
+                                                                      ? theme
+                                                                          .primaryColor
+                                                                      : Colors
+                                                                          .white)),
                                                     )),
                                               ),
                                               const SizedBox(width: 5),
@@ -190,68 +198,38 @@ class _ProductListPageState extends State<ProductListPage> {
                                                           sort = '-createdAt';
                                                         });
                                                         mystate(() {
-                                                          bottomSort = '-createdAt';
+                                                          bottomSort =
+                                                              '-createdAt';
                                                         });
                                                       },
                                                       child: Container(
                                                           padding:
-                                                          const EdgeInsets.all(10),
+                                                              const EdgeInsets.all(
+                                                                  10),
                                                           decoration: BoxDecoration(
-                                                              color: bottomSort != '-createdAt'
+                                                              color: bottomSort !=
+                                                                      '-createdAt'
                                                                   ? Colors.white
                                                                   : theme
-                                                                  .primaryColor,
+                                                                      .primaryColor,
                                                               border: Border.all(
                                                                   color: theme
                                                                       .primaryColor),
                                                               borderRadius:
-                                                              BorderRadius.circular(
-                                                                  25)),
+                                                                  BorderRadius.circular(
+                                                                      25)),
                                                           alignment:
-                                                          Alignment.center,
+                                                              Alignment.center,
                                                           child: Text('최신 순',
-                                                              style: theme.textTheme
+                                                              style: theme
+                                                                  .textTheme
                                                                   .headline5!
-                                                                  .copyWith(
-                                                                  color: bottomSort != '-createdAt'
-                                                                      ? theme.primaryColor
-                                                                      : Colors.white)))))
+                                                                  .copyWith(color: bottomSort != '-createdAt' ? theme.primaryColor : Colors.white)))))
                                             ]),
-                                            const SizedBox(height: 10),
-                                            // Text('color.',
-                                            //     style: theme.textTheme.headline5),
-                                            // const SizedBox(height: 5),
-                                            // GridView.count(
-                                            //     physics:
-                                            //     const NeverScrollableScrollPhysics(),
-                                            //     shrinkWrap: true,
-                                            //     crossAxisCount: 5,
-                                            //     crossAxisSpacing: 5,
-                                            //     mainAxisSpacing: 5,
-                                            //     childAspectRatio: 1.7,
-                                            //     children: List.generate(
-                                            //         colorList.length,
-                                            //             (index) => Container(
-                                            //               alignment: Alignment.center,
-                                            //               decoration: BoxDecoration(
-                                            //                   borderRadius:
-                                            //                   BorderRadius.circular(
-                                            //                       25),
-                                            //                   border: Border.all(
-                                            //                       color: theme
-                                            //                           .primaryColor)),
-                                            //               child: Text(
-                                            //                   colorList[index]['name']
-                                            //                       .toString(),
-                                            //                   style: theme.textTheme
-                                            //                       .headline6!
-                                            //                       .copyWith(
-                                            //                       color: theme.primaryColor))),
-                                            //             )
-                                            //     )
+                                            const SizedBox(height: 10)
                                           ]));
                                 });
-                              } ,
+                              },
                               isScrollControlled: false),
                           child: const Padding(
                               padding: EdgeInsets.only(right: 20),
@@ -281,33 +259,34 @@ class _ProductListPageState extends State<ProductListPage> {
                                   state.products!.isNotEmpty)
                                 const SizedBox(height: 20),
                               if (state.products != null &&
-                                      state.products!.isNotEmpty)
-                                  GridView.count(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 5,
-                                      mainAxisSpacing: 15,
-                                      childAspectRatio: (4 / 7.5),
-                                      children: List.generate(
-                                          state.products!.length,
-                                          (index) => storeProduct(
-                                              context, state.products![index]))),
-                                 if (state.products !=null && state.products!.isEmpty) Container(
-                                      padding: EdgeInsets.only(
-                                          top: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.35),
-                                      child: Center(
-                                          child: Column(children: [
-                                        Text("no products :(",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline3),
-                                        const SizedBox(height: 20),
-                                        const Text('찾으시는 상품이 없습니다.')
-                                      ])))
+                                  state.products!.isNotEmpty)
+                                GridView.count(
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 5,
+                                    mainAxisSpacing: 15,
+                                    childAspectRatio: (4 / 7),
+                                    children: List.generate(
+                                        state.products!.length,
+                                        (index) => storeProduct(
+                                            context, state.products![index]))),
+                              if (state.products != null &&
+                                  state.products!.isEmpty)
+                                Container(
+                                    padding: EdgeInsets.only(
+                                        top:
+                                            MediaQuery.of(context).size.height *
+                                                0.35),
+                                    child: Center(
+                                        child: Column(children: [
+                                      Text("no products :(",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline3),
+                                      const SizedBox(height: 20),
+                                      const Text('찾으시는 상품이 없습니다.')
+                                    ])))
                             ]));
                   } else {
                     return Center(
@@ -370,23 +349,3 @@ class _ProductListPageState extends State<ProductListPage> {
             itemCount: state.subCollections!.length));
   }
 }
-
-var colorList = [
-  {'name': '옐로우', 'id': 'PTJ3UAT5R5DV'},
-  {'name': '네이비', 'id': 'KU8KB7MKTQJ7'},
-  {'name': '핑크', 'id': '6FVMGUW6FHPD'},
-  {'name': '레드', 'id': 'MPFPX5F7A4VW'},
-  {'name': '멀티', 'id': 'NNJCKNJWT8TP'},
-  {'name': '베이지', 'id': 'MFAFSJT5UWW9'},
-  {'name': '브라운', 'id': 'VN56J2HK6H4R'},
-  {'name': '블루', 'id': '7T3C5VWXS3CX'},
-  {'name': '그린', 'id': 'LMAGF9PBE2F7'},
-  {'name': '오렌지', 'id': '69GXG8WEWZE8'},
-  {'name': '실버', 'id': 'Z6MH5V5GNJF8'},
-  {'name': '바이올렛', 'id': 'HLFRR4JSQQCJ'},
-  {'name': '블랙', 'id': 'XBX7QN64NRWT'},
-  {'name': '골드', 'id': 'NWR42BW5L8HQ'},
-  {'name': '화이트', 'id': '55KHHK4R9PBE'},
-  {'name': '그레이', 'id': 'FN8YGZQW7F2R'},
-  {'name': '투명', 'id': 'ZHHR375W92FU'},
-];

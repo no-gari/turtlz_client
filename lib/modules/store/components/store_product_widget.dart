@@ -17,7 +17,7 @@ Widget storeProduct(BuildContext context, Product product) {
         ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.network(product.thumbnail!,
-                fit: BoxFit.cover, height: (maxWidth(context) - 45) / 2)),
+                fit: BoxFit.cover, height: 170)),
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child:
@@ -26,20 +26,18 @@ Widget storeProduct(BuildContext context, Product product) {
                   text: TextSpan(children: [
                 WidgetSpan(
                     child: Text("${product.brand!.name}",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 10),
                         maxLines: 1)),
                 TextSpan(text: "\n", style: theme.textTheme.subtitle1),
                 WidgetSpan(
                     child: Text("${product.name}",
-                        style: theme.textTheme.subtitle1!
-                            .copyWith(fontWeight: FontWeight.w500),
+                        style: theme.textTheme.subtitle2!.copyWith(
+                            fontWeight: FontWeight.w500, color: Colors.black),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis))
               ])),
-              const SizedBox(height: 5),
+              const SizedBox(height: 3),
               RichText(
                   text: TextSpan(children: [
                 TextSpan(

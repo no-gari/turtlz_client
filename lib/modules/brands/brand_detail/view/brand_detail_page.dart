@@ -67,8 +67,6 @@ class _BrandDetailPageState extends State<BrandDetailPage> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Text('products',
-                    //     style: Theme.of(context).textTheme.headline4),
                     const SizedBox(height: 20),
                     productList.isNotEmpty
                         ? GridView.count(

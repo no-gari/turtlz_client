@@ -13,7 +13,7 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = '2'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
@@ -67,8 +67,8 @@ android {
 
     buildTypes {
         release {
-            shrinkResources false
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             signingConfig signingConfigs.release
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
