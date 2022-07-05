@@ -1,5 +1,4 @@
 import 'modules/authentication/bloc/authentication_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turtlz/support/networks/dio_client.dart';
 import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:turtlz/support/style/theme.dart';
@@ -16,7 +15,19 @@ class AppView extends StatefulWidget {
   State<StatefulWidget> createState() => _AppViewState();
 }
 
-class _AppViewState extends State<AppView> {
+class _AppViewState extends State<AppView> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return VRouter(

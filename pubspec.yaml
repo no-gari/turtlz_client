@@ -38,6 +38,9 @@ dependencies:
   flutter_local_notifications: ^9.5.2
   firebase_messaging_platform_interface:
 
+  # deep link
+  firebase_dynamic_links:
+
   # web
   firebase_core_web:
   vrouter: ^1.2.0+21
@@ -74,6 +77,9 @@ dependencies:
   iamport_flutter: ^0.10.1+3
   flutter_multi_formatter:
 
+dependency_overrides:
+  firebase_core_platform_interface: 4.4.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,7 +87,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
 
   fonts:
     - family: Montserrat

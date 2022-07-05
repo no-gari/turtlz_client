@@ -34,11 +34,19 @@
 				<string>kakaoa0c154bbdfaa3783d0e6cb554030e621</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>co.loonshot.turtlz</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>https://turtlz.page.link</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<string>0</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>a0c154bbdfaa3783d0e6cb554030e621</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -84,8 +92,6 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
-		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>카메라는 상담에서 사용할 사진을 찍기 위해 사용됩니다.</string>
@@ -115,5 +121,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	<key>NSBonjourServices</key>
+    <array>
+        <string>_dartobservatory._tcp</string>
+    </array>
 </dict>
 </plist>

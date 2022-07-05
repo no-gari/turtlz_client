@@ -8,8 +8,7 @@ import 'dart:async';
 import 'dart:io';
 
 Future<void> onBackgroundMessage(RemoteMessage message) async {
-  await Firebase.initializeApp();
-
+  // await Firebase.initializeApp();
   if (message.data.containsKey('data')) {
     final data = message.data['data'];
   }
@@ -42,7 +41,7 @@ class FCM {
     }
     AndroidInitializationSettings initSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-    IOSInitializationSettings initSettingsIOS = IOSInitializationSettings(
+    IOSInitializationSettings initSettingsIOS = const IOSInitializationSettings(
       requestSoundPermission: true,
       requestBadgePermission: true,
       requestAlertPermission: true,
