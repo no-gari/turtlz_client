@@ -44,7 +44,17 @@
 				<string>https://turtlz.page.link</string>
 			</array>
 		</dict>
+		<dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb611717723715703</string>
+            </array>
+        </dict>
 	</array>
+	<key>FacebookAppID</key>
+    <string>611717723715703</string>
+    <key>FacebookDisplayName</key>
+    <string>터틀즈</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>

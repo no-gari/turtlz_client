@@ -41,6 +41,9 @@ dependencies:
   # onesignal
   onesignal_flutter: ^3.2.7
 
+  # facebook
+  facebook_app_events: ^0.16.0
+
   # deep link
   firebase_dynamic_links:
 
