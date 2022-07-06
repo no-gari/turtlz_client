@@ -1,11 +1,11 @@
-import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:turtlz/modules/store/order/view/order_cancel_page.dart';
 import 'package:turtlz/modules/store/order/cubit/payment_cubit.dart';
 import 'package:turtlz/modules/store/order/cubit/order_cubit.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:iamport_flutter/model/payment_data.dart';
+import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 /* 아임포트 결제 모듈을 불러옵니다. */
@@ -27,8 +27,9 @@ class OrderPaymentPage extends StatefulWidget {
 class _OrderPaymentPageState extends State<OrderPaymentPage> {
   late OrderCubit _orderCubit;
   late PaymentCubit _paymentCubit;
-
   late Map<String, dynamic> orderTemp;
+
+  static final facebookAppEvents = FacebookAppEvents();
 
   @override
   void initState() {
@@ -49,8 +50,6 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
       "agreed": _orderCubit.state.agreed
     };
 
-    print(orderTemp);
-
     _paymentCubit
         .createOrder(orderTemp)
         .catchError((error) => _paymentCubit.failureOrder(error));
@@ -58,15 +57,20 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-
     return BlocBuilder<PaymentCubit, PaymentState>(builder: (context, state) {
       if (state.isLoaded) {
+        facebookAppEvents.logInitiatedCheckout(
+            totalPrice: state.order!.amount!.toDouble(),
+            currency: 'KRW',
+            contentId: state.order!.merchantUid,
+            contentType: state.order!.name,
+            numItems: state.order!.amount);
+
         return SafeArea(
             child: IamportPayment(
                 appBar: AppBar(
                     backgroundColor: Colors.white,
-                    iconTheme: IconThemeData(color: Colors.black),
+                    iconTheme: const IconThemeData(color: Colors.black),
                     elevation: 0,
                     title: Text('결제 페이지',
                         style: Theme.of(context).textTheme.headline6),
@@ -77,7 +81,7 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                    title: Text("결제를 취소합니다."),
+                                    title: const Text("결제를 취소합니다."),
                                     actions: [
                                       MaterialButton(
                                           onPressed: () {
@@ -97,7 +101,7 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
                               });
                         },
                         icon: const Icon(Icons.arrow_back_ios_rounded))),
-                initialChild: Container(
+                initialChild: SizedBox(
                     child: Center(
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -165,14 +169,13 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
           Container(
-              margin: EdgeInsets.only(bottom: 20),
+              margin: const EdgeInsets.only(bottom: 20),
               child: Text("${state.errorMessage}",
                   style: theme.textTheme.headline4)),
           MaterialButton(
-              onPressed: () {
-                context.vRouter.to(MainScreen.routeName, isReplacement: true);
-              },
-              child: Text("홈 화면으로 이동"))
+              onPressed: () =>
+                  context.vRouter.to(MainScreen.routeName, isReplacement: true),
+              child: const Text("홈 화면으로 이동"))
         ])));
   }
 }

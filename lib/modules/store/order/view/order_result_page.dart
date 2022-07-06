@@ -1,13 +1,14 @@
-import 'package:turtlz/modules/cart/view/cart_screen.dart';
-import 'package:turtlz/modules/main/main_screen.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:turtlz/support/style/format_unit.dart';
+import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:turtlz/support/style/theme.dart';
-import 'package:vrouter/vrouter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:vrouter/vrouter.dart';
 
 class OrderResultPage extends StatelessWidget {
   static String routeName = '/order_result_page';
+
+  static final facebookAppEvents = FacebookAppEvents();
 
   OrderResultPage(this.result);
 
@@ -15,6 +16,8 @@ class OrderResultPage extends StatelessWidget {
 
   bool getIsSuccessed(Map<String, String> result) {
     if (result['imp_success'] == 'true') {
+      facebookAppEvents.logPurchase(
+          amount: double.parse(result['amount']!), currency: 'KRW');
       return true;
     }
     if (result['success'] == 'true') {
@@ -26,7 +29,6 @@ class OrderResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isSuccessed = getIsSuccessed(result);
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
 
     return Scaffold(
         appBar: AppBar(

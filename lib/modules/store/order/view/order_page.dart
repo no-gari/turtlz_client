@@ -45,9 +45,8 @@ class _OrderPageState extends State<OrderPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Wrap(children: [
                     Padding(
-                      child: Text('order.', style: theme.textTheme.headline3),
-                      padding: const EdgeInsets.only(bottom: 10),
-                    ),
+                        child: Text('order.', style: theme.textTheme.headline3),
+                        padding: const EdgeInsets.only(bottom: 10)),
                     orderCompose(
                         title: '주문 상품 (${orderTemp.products!.length})',
                         child: Column(children: [
@@ -58,9 +57,8 @@ class _OrderPageState extends State<OrderPage> {
                                   (index) => orderItemTile(_orderCubit,
                                       orderTemp.products![index]))),
                           const Padding(
-                            padding: EdgeInsets.only(bottom: 10),
-                            child: Divider(color: Colors.grey),
-                          )
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: Divider(color: Colors.grey))
                         ])),
                     orderCompose(
                         title: "쿠폰 사용",
@@ -79,15 +77,6 @@ class _OrderPageState extends State<OrderPage> {
                         title: "결제 정보",
                         child: orderPayment(
                             context, orderTemp.products!, _orderCubit)),
-                    // orderCompose(
-                    //     title: "결제 방식",
-                    //     child: Column(children: [
-                    //       Row(children: [
-                    //         payMethodContainer(context, '카드 결제', 'card'),
-                    //         const SizedBox(width: 10),
-                    //         payMethodContainer(context, '계좌 이체', 'trans')
-                    //       ])
-                    //     ])),
                     Column(children: [
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -225,7 +214,7 @@ class agreeRow extends StatelessWidget {
                     initialUrl: url!,
                     javascriptMode: JavascriptMode.unrestricted));
           },
-          child: Text('확인',
+          child: const Text('확인',
               style: TextStyle(decoration: TextDecoration.underline)))
     ]);
   }

@@ -4,6 +4,7 @@ import 'package:turtlz/repositories/cart_repository/models/cart_temp.dart';
 import 'package:turtlz/modules/store/product/cubit/product_cubit.dart';
 import 'package:turtlz/repositories/cart_repository/models/cart.dart';
 import 'package:turtlz/modules/store/order/view/order_screen.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ class ProductPurchaseSheet extends StatefulWidget {
 }
 
 class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
+  static final facebookAppEvents = FacebookAppEvents();
   late ProductCubit _productCubit;
   late Product _product;
   late double modalHeight;
@@ -265,6 +267,14 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
                                                     child: Text("확인"))
                                               ]);
                                         });
+                                    for (var cart in cartTempList) {
+                                      facebookAppEvents.logAddToCart(
+                                          id: _product.name!,
+                                          type: cart.variants!.Id!,
+                                          price: cart.variants!.discountPrice!
+                                              .toDouble(),
+                                          currency: 'KRW');
+                                    }
                                   } else {
                                     chooseProduct(context);
                                   }

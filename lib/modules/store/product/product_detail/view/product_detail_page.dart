@@ -3,8 +3,8 @@ import 'package:turtlz/repositories/authentication_repository/authentication_rep
 import 'package:turtlz/modules/authentication/bloc/authentication_bloc.dart';
 import 'package:turtlz/repositories/product_repository/models/product.dart';
 import 'package:turtlz/modules/store/product/cubit/product_cubit.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/support/style/theme.dart';
@@ -28,6 +28,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   late ProductCubit _productCubit;
   late Product product;
   late FeedTemplate defaultFeed;
+  static final facebookAppEvents = FacebookAppEvents();
 
   @override
   void initState() async {
@@ -45,6 +46,12 @@ class _ProductDetailPageState extends State<ProductDetailPage>
         builder: (context, authState) {
       return BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
         if (state.isLoaded) {
+          facebookAppEvents.logViewContent(
+            id: product.name,
+            price: product.discountPrice!.toDouble(),
+            currency: 'KRW',
+          );
+
           setState(() {
             defaultFeed = FeedTemplate(
                 content: Content(

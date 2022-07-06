@@ -259,9 +259,8 @@ class _StorePageState extends State<StorePage> {
                 return Container();
               }),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: CompanyInfo(),
-              )
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: CompanyInfo())
             ])));
       } else {
         return Center(
@@ -338,12 +337,11 @@ showDialogIfFirstLoaded(BuildContext context, String? url, String? id) async {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            elevation: 0,
-            contentPadding: const EdgeInsets.all(0),
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(32.0))),
-            content: Wrap(
-              children: [
+              elevation: 0,
+              contentPadding: const EdgeInsets.all(0),
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(32.0))),
+              content: Wrap(children: [
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -360,25 +358,8 @@ showDialogIfFirstLoaded(BuildContext context, String? url, String? id) async {
                                 ProductDetailScreen(productId: id!))),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(32),
-                        child: Image.network(url!))),
-              ],
-            ),
-            // actions: <Widget>[
-            //   Center(
-            //     child: MaterialButton(
-            //         child: const Text("지금, 캠빌 차크닉 텐트 최저가 할인 중!"),
-            //         onPressed: () {
-            //           // prefs.setBool('keyIsFirstLoaded', false);
-            //           // Navigator.of(context).pop();
-            //           Navigator.push(
-            //               context,
-            //               MaterialPageRoute(
-            //                   builder: (context) =>
-            //                       ProductDetailScreen(productId: id!)));
-            //         }),
-            //   )
-            // ]
-          );
+                        child: Image.network(url!)))
+              ]));
         });
   }
 }
