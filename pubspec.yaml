@@ -38,6 +38,9 @@ dependencies:
   flutter_local_notifications: ^9.5.2
   firebase_messaging_platform_interface:
 
+  # onesignal
+  onesignal_flutter: ^3.2.7
+
   # deep link
   firebase_dynamic_links:
 

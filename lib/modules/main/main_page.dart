@@ -9,7 +9,6 @@ import 'package:turtlz/modules/store/view/store_screen.dart';
 import 'package:turtlz/modules/cart/view/cart_screen.dart';
 import 'package:turtlz/modules/menu/view/menu_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:turtlz/notification.dart';
 import 'package:flutter/material.dart';
 
 enum MenuState { category, search, store, cart, my_page }
@@ -32,30 +31,15 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  String notificationTitle = 'No Title';
-  String notificationBody = 'No Body';
-  String notificationData = 'No Data';
-
   PageController _pageController = PageController();
   int _pageIndex = 0;
 
   @override
   void initState() {
     super.initState();
-
-    final firebaseMessaging = FCM();
-    firebaseMessaging.setNotifications();
-    firebaseMessaging.streamCtlr.stream.listen(_changeData);
-    firebaseMessaging.bodyCtlr.stream.listen(_changeBody);
-    firebaseMessaging.titleCtlr.stream.listen(_changeTitle);
-
     _pageController = PageController(initialPage: 2);
     _pageIndex = 2;
   }
-
-  _changeData(String msg) => setState(() => notificationData = msg);
-  _changeBody(String msg) => setState(() => notificationBody = msg);
-  _changeTitle(String msg) => setState(() => notificationTitle = msg);
 
   void _onPageChanged(int index) => setState(() => _pageIndex = index);
 
