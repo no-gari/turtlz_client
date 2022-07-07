@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+        <string>applinks:turtlz.onelink.me</string>
+    </array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -35,63 +39,64 @@
 			</array>
 		</dict>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>co.loonshot.turtlz</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>https://turtlz.page.link</string>
+				<string>fb611717723715703</string>
 			</array>
 		</dict>
-		<dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb611717723715703</string>
-            </array>
-        </dict>
 	</array>
-	<key>FacebookAppID</key>
-    <string>611717723715703</string>
-    <key>FacebookDisplayName</key>
-    <string>터틀즈</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+	<string>611717723715703</string>
+	<key>FacebookClientToken</key>
+	<string>6f8f2b18c265df4d8a9a7ca422f22e34</string>
+	<key>FacebookDisplayName</key>
+	<string>터틀즈</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<true/>
 	<key>KAKAO_APP_KEY</key>
 	<string>a0c154bbdfaa3783d0e6cb554030e621</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>kftc-bankpay</string>
-		<string>ispmobile</string>
-		<string>itms-apps</string>
-		<string>hdcardappcardansimclick</string>
-		<string>smhyundaiansimclick</string>
-		<string>shinhan-sr-ansimclick</string>
-		<string>smshinhanansimclick</string>
-		<string>kb-acp</string>
-		<string>mpocket.online.ansimclick</string>
-		<string>ansimclickscard</string>
-		<string>ansimclickipcollect</string>
-		<string>vguardstart</string>
-		<string>samsungpay</string>
-		<string>scardcertiapp</string>
-		<string>lottesmartpay</string>
-		<string>lotteappcard</string>
-		<string>cloudpay</string>
-		<string>nhappcardansimclick</string>
-		<string>nonghyupcardansimclick</string>
-		<string>citispay</string>
-		<string>citicardappkr</string>
-		<string>citimobileapp</string>
-		<string>kakaotalk</string>
-		<string>payco</string>
-		<string>lpayapp</string>
-		<string>hanamopmoasign</string>
-		<string>wooripay</string>
-		<string>nhallonepayansimclick</string>
-		<string>hanawalletmembers</string>
+        <string>kftc-bankpay</string>
+        <string>ispmobile</string>
+        <string>itms-apps</string>
+        <string>hdcardappcardansimclick</string>
+        <string>smhyundaiansimclick</string>
+        <string>shinhan-sr-ansimclick</string>
+        <string>smshinhanansimclick</string>
+        <string>kb-acp</string>
+        <string>mpocket.online.ansimclick</string>
+        <string>ansimclickscard</string>
+        <string>ansimclickipcollect</string>
+        <string>vguardstart</string>
+        <string>samsungpay</string>
+        <string>scardcertiapp</string>
+        <string>lottesmartpay</string>
+        <string>lotteappcard</string>
+        <string>cloudpay</string>
+        <string>nhappcardansimclick</string>
+        <string>nonghyupcardansimclick</string>
+        <string>citispay</string>
+        <string>citicardappkr</string>
+        <string>citimobileapp</string>
+        <string>kakaotalk</string>
+        <string>payco</string>
+        <string>lpayapp</string>
+        <string>hanamopmoasign</string>
+        <string>wooripay</string>
+        <string>nhallonepayansimclick</string>
+        <string>hanawalletmembers</string>
+        <string>chaipayment</string>
+        <string>kb-auth</string>
+        <string>hyundaicardappcardid</string>
+        <string>com.wooricard.wcard</string>
+        <string>lmslpay</string>
+        <string>lguthepay-xpay</string>
+        <string>liivbank</string>
+        <string>supertoss</string>
+        <string>newsmartpib</string>
 		<string>kakaoa0c154bbdfaa3783d0e6cb554030e621</string>
 		<string>kakaokompassauth</string>
 		<string>storykompassauth</string>
@@ -102,6 +107,8 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+        <key>NSAllowsArbitraryLoadsInWebContent</key>
+        <true/>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>

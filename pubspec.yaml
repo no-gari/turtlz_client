@@ -45,7 +45,7 @@ dependencies:
   facebook_app_events: ^0.16.0
 
   # deep link
-  firebase_dynamic_links:
+  appsflyer_sdk: ^6.5.2+2
 
   # web
   firebase_core_web:
