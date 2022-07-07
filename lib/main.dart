@@ -1,3 +1,4 @@
+import 'package:turtlz/app_view.dart';
 import 'package:turtlz/repositories/authentication_repository/src/authentication_repository.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
@@ -17,13 +18,26 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   KakaoSdk.init(nativeAppKey: 'a0c154bbdfaa3783d0e6cb554030e621');
-  //Remove this method to stop OneSignal Debugging
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
   OneSignal.shared.setAppId("a6edfa7f-bfa7-4613-b692-0fa3cf72f368");
-  // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt.
   OneSignal.shared
       .promptUserForPushNotificationPermission()
       .then((accepted) => print("Accepted permission: $accepted"));
+  OneSignal.shared
+      .setNotificationOpenedHandler((OSNotificationOpenedResult result) async {
+    try {
+      var path = await result.notification.additionalData!["path"];
+      var id = await result.notification.additionalData!["id"];
+      print('==================================');
+      print(path);
+      print('==================================');
+      print('==================================');
+      print(id);
+      print('==================================');
+      vRouterKey.currentState!.toNamed(path, pathParameters: {'id': id});
+    } catch (e, stacktrace) {}
+  });
+
   setPathUrlStrategy();
   Bloc.observer = MyBlocObserver();
   DioClient dioClient = DioClient(Dio());

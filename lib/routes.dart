@@ -32,7 +32,7 @@ final routes = [
     VWidget(path: MenuScreen.routeName, widget: MenuScreen()),
     VWidget(path: CartScreen.routeName, widget: CartScreen()),
     VWidget(
-        path: 'product/:productId',
+        path: 'product/:id',
         widget: ProductDetailScreen(),
         name: '/productDetail'),
     VWidget(

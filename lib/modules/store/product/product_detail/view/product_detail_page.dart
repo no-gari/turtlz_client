@@ -28,7 +28,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   static final facebookAppEvents = FacebookAppEvents();
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     _productCubit = BlocProvider.of<ProductCubit>(context);
     _productCubit.getProductDetail(_productId).whenComplete(() {
@@ -124,20 +124,19 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                     .copyWith(color: theme.primaryColor)))
                       ]))),
           Positioned(
-            left: 0,
-            top: 0,
-            child: Container(
-                padding: EdgeInsets.symmetric(
-                    vertical: AppBar().preferredSize.height, horizontal: 18),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                          child: const Icon(Icons.arrow_back_ios_outlined,
-                              color: Colors.black),
-                          onTap: () => Navigator.pop(context))
-                    ])),
-          )
+              left: 0,
+              top: 0,
+              child: Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: AppBar().preferredSize.height, horizontal: 18),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                            child: const Icon(Icons.arrow_back_ios_outlined,
+                                color: Colors.black),
+                            onTap: () => Navigator.pop(context))
+                      ])))
         ])));
   }
 
