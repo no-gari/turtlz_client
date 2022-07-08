@@ -51,10 +51,10 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="turtlz" />
-                <data android:scheme="https"
+                <data
                     android:host="turtlz.onelink.me"
-                    android:pathPrefix="/qlg1983n" />
+                    android:pathPrefix="/9ZBJ"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
 
@@ -67,8 +67,10 @@
             android:exported="true">
             <intent-filter android:label="flutter_web_auth">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="oauth"
                     android:scheme="kakaoa0c154bbdfaa3783d0e6cb554030e621" />
