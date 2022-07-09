@@ -4,7 +4,7 @@ description: turtlz application.
 
 publish_to: 'none'
 
-version: 1.0.2+2
+version: 1.0.3+22070901
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
