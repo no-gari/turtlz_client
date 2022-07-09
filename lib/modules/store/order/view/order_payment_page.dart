@@ -4,6 +4,7 @@ import 'package:turtlz/modules/store/order/cubit/order_cubit.dart';
 import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:iamport_flutter/model/payment_data.dart';
 import 'package:turtlz/modules/main/main_screen.dart';
+import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,9 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
   late Map<String, dynamic> orderTemp;
 
   static final facebookAppEvents = FacebookAppEvents();
+
+  AppsflyerSdk appsflyerSdk = AppsflyerSdk(AppsFlyerOptions(
+      afDevKey: 'k9PJxiGCC9TFE4humtAzbb', appId: '1632376048'));
 
   @override
   void initState() {
@@ -65,6 +69,14 @@ class _OrderPaymentPageState extends State<OrderPaymentPage> {
             contentId: state.order!.merchantUid,
             contentType: state.order!.name,
             numItems: state.order!.amount);
+
+        appsflyerSdk.logEvent('af_initiated_checkout', {
+          'af_price': state.order!.amount,
+          'af_content_id': state.order!.merchantUid,
+          'af_content_type': state.order!.name,
+          'af_currency': 'KRW',
+          'af_quantity': state.order!.amount
+        });
 
         return SafeArea(
             child: IamportPayment(

@@ -2,13 +2,15 @@ import 'package:turtlz/repositories/authentication_repository/src/authentication
 import 'package:turtlz/support/networks/network_exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turtlz/support/networks/api_result.dart';
+import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-
 part 'signin_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit(this._authenticationRepository) : super(const SignInState());
+  AppsflyerSdk appsflyerSdk = AppsflyerSdk(AppsFlyerOptions(
+      afDevKey: 'k9PJxiGCC9TFE4humtAzbb', appId: '1632376048'));
 
   final AuthenticationRepository _authenticationRepository;
 
@@ -25,6 +27,9 @@ class SignInCubit extends Cubit<SignInState> {
     apiResult.when(success: (Map? response) {
       prefs.setString('access', response!['access']);
       prefs.setString('refresh', response['refresh']);
+      appsflyerSdk.logEvent(
+          'af_complete_registration', {'af_registration_method': socialType});
+      appsflyerSdk.logEvent('af_login', {});
       _authenticationRepository.logIn();
       emit(state.copyWith(auth: true, errorMessage: ''));
     }, failure: (NetworkExceptions? error) {
@@ -44,6 +49,7 @@ class SignInCubit extends Cubit<SignInState> {
     apiResult.when(success: (Map? response) {
       prefs.setString('access', response!['access']);
       prefs.setString('refresh', response['refresh']);
+      appsflyerSdk.logEvent('af_login', {});
       _authenticationRepository.logIn();
       emit(state.copyWith(auth: true, errorMessage: ''));
     }, failure: (NetworkExceptions? error) {
@@ -63,7 +69,9 @@ class SignInCubit extends Cubit<SignInState> {
     apiResult.when(success: (Map? response) {
       prefs.setString('access', response!['access']);
       prefs.setString('refresh', response['refresh']);
-      _authenticationRepository.logIn();
+      appsflyerSdk.logEvent(
+          'af_complete_registration', {'af_registration_method': 'email'});
+      appsflyerSdk.logEvent('af_login', {});
       emit(state.copyWith(auth: true, errorMessage: ''));
     }, failure: (NetworkExceptions? error) {
       emit(state.copyWith(

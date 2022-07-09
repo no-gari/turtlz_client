@@ -47,4 +47,3 @@ class ProductCubit extends Cubit<ProductState> {
     });
   }
 }
-// [{product: HS3QRF3RPGHK, variant: 2FQRP8P8H7NA, quantity: 1}, {product: HS3QRF3RPGHK, variant: G8PMPUDXYSWP, quantity: 1}]

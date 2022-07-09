@@ -6,6 +6,7 @@ import 'package:turtlz/repositories/cart_repository/models/cart.dart';
 import 'package:turtlz/modules/store/order/view/order_screen.dart';
 import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:turtlz/support/style/format_unit.dart';
+import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/foundation.dart';
@@ -19,6 +20,8 @@ class ProductPurchaseSheet extends StatefulWidget {
 }
 
 class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
+  AppsflyerSdk appsflyerSdk = AppsflyerSdk(AppsFlyerOptions(
+      afDevKey: 'k9PJxiGCC9TFE4humtAzbb', appId: '1632376048'));
   static final facebookAppEvents = FacebookAppEvents();
   late ProductCubit _productCubit;
   late Product _product;
@@ -269,11 +272,21 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
                                         });
                                     for (var cart in cartTempList) {
                                       facebookAppEvents.logAddToCart(
-                                          id: _product.name!,
+                                          id: _product.Id!,
                                           type: cart.variants!.Id!,
                                           price: cart.variants!.discountPrice!
                                               .toDouble(),
                                           currency: 'KRW');
+                                      appsflyerSdk.logEvent('af_add_to_cart', {
+                                        'af_price':
+                                            cart.variants!.discountPrice!,
+                                        'af_content':
+                                            cart.variants!.variantName,
+                                        'af_content_id': _product.Id,
+                                        'af_content_type': cart.variants!.Id,
+                                        'af_currency': 'KRW',
+                                        'af_quantity': cart.quantity
+                                      });
                                     }
                                   } else {
                                     chooseProduct(context);
@@ -466,27 +479,28 @@ class _ProductPurchaseSheetState extends State<ProductPurchaseSheet> {
             pre + (cartTemp.quantity! * cartTemp.variants!.discountPrice!));
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border(
-                top: BorderSide(color: theme.dividerColor),
-              )),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text("총 ${cartTempList.length}개의 상품"),
-            RichText(
-                text: TextSpan(style: theme.textTheme.bodyText1, children: [
-              const TextSpan(text: "총 금액 "),
-              TextSpan(
-                  text: "${currencyFromString(total.toString())}",
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.red))
-            ]))
-          ])),
-    );
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  top: BorderSide(color: theme.dividerColor),
+                )),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("총 ${cartTempList.length}개의 상품"),
+                  RichText(
+                      text:
+                          TextSpan(style: theme.textTheme.bodyText1, children: [
+                    const TextSpan(text: "총 금액 "),
+                    TextSpan(
+                        text: currencyFromString(total.toString()),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.red))
+                  ]))
+                ])));
   }
 
   List<Widget> productQuantity() {

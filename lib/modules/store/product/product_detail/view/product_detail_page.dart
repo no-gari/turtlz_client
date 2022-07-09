@@ -6,6 +6,7 @@ import 'package:turtlz/modules/store/product/cubit/product_cubit.dart';
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:turtlz/support/style/format_unit.dart';
+import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:turtlz/support/style/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -22,6 +23,9 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState extends State<ProductDetailPage>
     with SingleTickerProviderStateMixin {
+  AppsflyerSdk appsflyerSdk = AppsflyerSdk(AppsFlyerOptions(
+      afDevKey: 'k9PJxiGCC9TFE4humtAzbb', appId: '1632376048'));
+
   String get _productId => this.widget.productId!;
   late ProductCubit _productCubit;
   late Product product;
@@ -42,8 +46,16 @@ class _ProductDetailPageState extends State<ProductDetailPage>
         builder: (context, authState) {
       return BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
         if (state.isLoaded) {
+          appsflyerSdk.logEvent('af_content_view', {
+            'af_price': product.discountPrice,
+            'af_content': product.name,
+            'af_content_id': product.Id,
+            'af_content_type': product.brand!.name,
+            'af_currency': 'KRW'
+          });
+
           facebookAppEvents.logViewContent(
-            id: product.name,
+            id: product.Id!,
             price: product.discountPrice!.toDouble(),
             currency: 'KRW',
           );

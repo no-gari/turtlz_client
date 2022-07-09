@@ -1,4 +1,3 @@
-import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:turtlz/support/style/format_unit.dart';
 import 'package:turtlz/modules/main/main_screen.dart';
 import 'package:turtlz/support/style/theme.dart';
@@ -8,16 +7,12 @@ import 'package:vrouter/vrouter.dart';
 class OrderResultPage extends StatelessWidget {
   static String routeName = '/order_result_page';
 
-  static final facebookAppEvents = FacebookAppEvents();
-
   OrderResultPage(this.result);
 
   final Map<String, String> result;
 
   bool getIsSuccessed(Map<String, String> result) {
     if (result['imp_success'] == 'true') {
-      facebookAppEvents.logPurchase(
-          amount: double.parse(result['amount']!), currency: 'KRW');
       return true;
     }
     if (result['success'] == 'true') {
